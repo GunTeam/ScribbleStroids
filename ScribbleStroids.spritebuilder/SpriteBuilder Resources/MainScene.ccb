@@ -1151,11 +1151,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-<<<<<<< HEAD
-							<real>0.52992957830429077</real>
-=======
 							<real>0.89999997615814209</real>
->>>>>>> FETCH_HEAD
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1179,8 +1175,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.77353113889694214</real>
-							<real>0.77618008852005005</real>
+							<real>1</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1192,7 +1188,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>Scribble ‘Stroids</string>
+							<string>Scribble ‘Stroidsss</string>
 							<false/>
 						</array>
 					</dict>
@@ -1328,6 +1324,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
