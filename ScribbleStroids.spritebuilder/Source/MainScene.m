@@ -7,7 +7,24 @@
 //
 
 #import "MainScene.h"
+#import "GameScene.h"
 
 @implementation MainScene
+
+-(void) didLoadFromCCB{
+    //any custom initialization needed goes here
+}
+
+-(void) playGame{
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"]];
+}
+
+-(void) howTo{
+    
+}
+
+-(void) highScores{
+    
+}
 
 @end
