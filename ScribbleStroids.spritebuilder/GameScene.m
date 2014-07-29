@@ -25,13 +25,14 @@ double missileLaunchImpulse = 3;
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
-
     
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
     [self addChild:_physicsNode z:-1];
     
     _physicsNode.collisionDelegate = self;
+    
+    //
     
     Asteroid *asteroid = (Asteroid *) [CCBReader load:@"Asteroid"];
     
