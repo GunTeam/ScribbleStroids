@@ -13,6 +13,7 @@
 
 -(void) didLoadFromCCB{
     //any custom initialization needed goes here
+    [viewController authenticateLocalPlayer];
 }
 
 -(void) playGame{
