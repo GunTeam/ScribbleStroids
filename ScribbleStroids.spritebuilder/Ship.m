@@ -12,15 +12,22 @@ double bulletLaunchImpulse = 3;
 
 @implementation Ship
 
+-(void) didLoadFromCCB {
+    self.physicsBody.collisionType = @"ship";
+    self.physicsBody.collisionGroup = @"ShipGroup";
+}
+
 -(void) fire {
     CCLOG(@"Ship has fired");
     CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
+    bullet.position = self.position;
     bullet.physicsBody.velocity = self.physicsBody.velocity;
     
     bullet.physicsBody.velocity = self.physicsBody.velocity;
+    [self.parent addChild:bullet];
     [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos(self.rotation*M_PI/180),
                                                     bulletLaunchImpulse*-sin(self.rotation*M_PI/180))];
-    [self.parent addChild:bullet];
+    
 }
 
 @end

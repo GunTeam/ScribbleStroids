@@ -38,6 +38,7 @@
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87B1986DBEE00D3F431 /* Asteroid.m */; };
 		BA00D87F1986DBF900D3F431 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87E1986DBF900D3F431 /* Ship.m */; };
+		BA00D8821988298D00D3F431 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D8811988298D00D3F431 /* Bullet.m */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,8 @@
 		BA00D87B1986DBEE00D3F431 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asteroid.m; sourceTree = "<group>"; };
 		BA00D87D1986DBF900D3F431 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		BA00D87E1986DBF900D3F431 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		BA00D8801988298D00D3F431 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		BA00D8811988298D00D3F431 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,6 +241,8 @@
 				BA00D87B1986DBEE00D3F431 /* Asteroid.m */,
 				BA00D87D1986DBF900D3F431 /* Ship.h */,
 				BA00D87E1986DBF900D3F431 /* Ship.m */,
+				BA00D8801988298D00D3F431 /* Bullet.h */,
+				BA00D8811988298D00D3F431 /* Bullet.m */,
 			);
 			name = "Sprite Classes";
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA00D8821988298D00D3F431 /* Bullet.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				BABD42D8198416E600C4A826 /* GameScene.m in Sources */,

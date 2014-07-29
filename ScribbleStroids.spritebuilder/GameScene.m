@@ -20,18 +20,18 @@ double missileLaunchImpulse = 3;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
+    _physicsNode.collisionDelegate = self;
+    
     Asteroid *asteroid = (Asteroid *) [CCBReader load:@"Asteroid"];
-    //you can't assign its position here because it thinks it starts at scale 1, pos (0,0)
+    
     asteroid.position = CGPointMake(100, 300);
     asteroid.scale = .4;
-    asteroid.physicsBody.collisionType = @"asteroid";
+    
     [_physicsNode addChild:asteroid];
     
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(100, 100);
     mainShip.scale = .2;
-    mainShip.physicsBody.collisionGroup = @"ShipGroup";
-    mainShip.physicsBody.collisionType = @"ship";
     [_physicsNode addChild:mainShip z:2];
     _physicsNode.debugDraw = true;
 
@@ -40,13 +40,15 @@ double missileLaunchImpulse = 3;
 -(void) update:(CCTime)delta{
     if (_leftButton.state) {
         mainShip.rotation -=5;
+        mainShip.physicsBody.angularVelocity = 0;
     }
     
     if (_rightButton.state) {
         mainShip.rotation += 5;
+        mainShip.physicsBody.angularVelocity = 0;
     }
     
-    if (_boostButton.state) {        
+    if (_boostButton.state) {
         CGFloat shipDirection = mainShip.rotation;
         CGPoint thrust = CGPointMake(15*cos(shipDirection*M_PI/180), 15*-sin(shipDirection*M_PI/180));
         [mainShip.physicsBody applyImpulse:thrust];
@@ -93,20 +95,24 @@ double missileLaunchImpulse = 3;
 
 -(void) Shoot{
     CCLOG(@"Shoot Button Pressed");
-//    [mainShip fire];
-    CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
-    
-    bullet.position = mainShip.position;
-    bullet.physicsBody.collisionGroup = @"ShipGroup";
-    bullet.physicsBody.collisionType = @"bullet";
-    bullet.physicsBody.velocity = mainShip.physicsBody.velocity;
-    [_physicsNode addChild:bullet z:1];
-    CGFloat shipDirection = mainShip.rotation;
-    [bullet.physicsBody applyImpulse: CGPointMake(missileLaunchImpulse*cos(shipDirection*M_PI/180),
-                                                  missileLaunchImpulse*-sin(shipDirection*M_PI/180))];
+    [mainShip fire];
+//    CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
+//    
+//    bullet.position = mainShip.position;
+//    bullet.physicsBody.velocity = mainShip.physicsBody.velocity;
+//    [_physicsNode addChild:bullet z:1];
+//    CGFloat shipDirection = mainShip.rotation;
+//    [bullet.physicsBody applyImpulse: CGPointMake(missileLaunchImpulse*cos(shipDirection*M_PI/180),
+//                                                  missileLaunchImpulse*-sin(shipDirection*M_PI/180))];
 }
 
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCNode *)bullet asteroid:(Asteroid *)asteroid {
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(CCSprite *)asteroid {
+    // collision handling
+    CCLOG(@"Asteroid and ship collided");
+    return true;
+}
+
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCSprite *)bullet asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and bullet collided");
     return true;

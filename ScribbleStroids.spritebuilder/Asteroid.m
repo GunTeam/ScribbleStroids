@@ -18,6 +18,9 @@
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
+    
+    self.physicsBody.collisionGroup = @"AsteroidGroup";
+    self.physicsBody.collisionType = @"asteroid";
 }
 
 -(void) update:(CCTime)delta {
