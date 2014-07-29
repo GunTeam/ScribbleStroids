@@ -8,9 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Ship.h"
+#import "Asteroid.h"
 
-@interface GameScene : CCNode {
+@interface GameScene : CCNode <CCPhysicsCollisionDelegate>
+{
+    //SB code connections
+    CCButton *_leftButton;
+    CCButton *_rightButton;
+    CCButton *_boostButton;
+    CCButton *_shootButton;
+    CCLabelTTF *_scoreLabel;
+    //end SB code connections
+   
+    CGFloat screenWidth;
+    CGFloat screenHeight;
     
+    CCPhysicsNode *_physicsNode;
+    
+    Ship *mainShip;
 }
 
 @end
