@@ -25,9 +25,9 @@
 
 -(void) update:(CCTime)delta{
     if (self.position.y > screenHeight || self.position.y < 0 || self.position.x > screenWidth ||self.position.x < 0) {
-        CCLOG(@"AMERICA");
         [self removeFromParentAndCleanup:true];
     }
+    
 }
 
 @end

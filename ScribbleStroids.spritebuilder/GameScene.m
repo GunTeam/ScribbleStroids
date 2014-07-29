@@ -15,10 +15,21 @@ double missileLaunchImpulse = 3;
 
 -(void) didLoadFromCCB {
     
+    [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
+    _leftButton.exclusiveTouch = false;
+    _rightButton.exclusiveTouch = false;
+    _boostButton.exclusiveTouch = false;
+    _shootButton.exclusiveTouch = false;
+    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
+
+    
+    //add the physics node behind the gamescene buttons
+    _physicsNode = [[CCPhysicsNode alloc]init];
+    [self addChild:_physicsNode z:-1];
     
     _physicsNode.collisionDelegate = self;
     
@@ -27,12 +38,12 @@ double missileLaunchImpulse = 3;
     asteroid.position = CGPointMake(100, 300);
     asteroid.scale = .4;
     
-    [_physicsNode addChild:asteroid];
+    [_physicsNode addChild:asteroid z:-10];
     
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(100, 100);
     mainShip.scale = .2;
-    [_physicsNode addChild:mainShip z:2];
+    [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = true;
 
 }
@@ -96,25 +107,46 @@ double missileLaunchImpulse = 3;
 -(void) Shoot{
     CCLOG(@"Shoot Button Pressed");
     [mainShip fire];
-//    CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
-//    
-//    bullet.position = mainShip.position;
-//    bullet.physicsBody.velocity = mainShip.physicsBody.velocity;
-//    [_physicsNode addChild:bullet z:1];
-//    CGFloat shipDirection = mainShip.rotation;
-//    [bullet.physicsBody applyImpulse: CGPointMake(missileLaunchImpulse*cos(shipDirection*M_PI/180),
-//                                                  missileLaunchImpulse*-sin(shipDirection*M_PI/180))];
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(CCSprite *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
+    
+    
+    
     return true;
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCSprite *)bullet asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and bullet collided");
+    
+    if (asteroid.scale > .11) {
+        
+        Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"Asteroid"];
+        asteroid1.position = asteroid.position;
+        asteroid1.scale = asteroid.scale*.5;
+        int rx1 = (arc4random() % 40) - 20;
+        int ry1 = (arc4random() % 40) - 20;
+        asteroid1.physicsBody.velocity = CGPointMake(rx1, ry1);
+        [_physicsNode addChild:asteroid1];
+        
+        
+        Asteroid *asteroid2 = (Asteroid *)[CCBReader load:@"Asteroid"];
+        asteroid2.position = asteroid.position;
+        asteroid2.scale = asteroid.scale*.5;
+        int rx2 = (arc4random() % 40) - 20;
+        int ry2 = (arc4random() % 40) - 20;
+        asteroid2.physicsBody.velocity = CGPointMake(rx2, ry2);
+        [_physicsNode addChild:asteroid2];
+        
+        
+    }
+    
+    [asteroid removeFromParent];
+    [bullet removeFromParent];
+    
     return true;
 }
 
