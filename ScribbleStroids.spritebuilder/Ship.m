@@ -8,11 +8,19 @@
 
 #import "Ship.h"
 
+double bulletLaunchImpulse = 3;
 
 @implementation Ship
 
 -(void) fire {
-    //fill me in!
+    CCLOG(@"Ship has fired");
+    CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
+    bullet.physicsBody.velocity = self.physicsBody.velocity;
+    
+    bullet.physicsBody.velocity = self.physicsBody.velocity;
+    [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos(self.rotation*M_PI/180),
+                                                    bulletLaunchImpulse*-sin(self.rotation*M_PI/180))];
+    [self.parent addChild:bullet];
 }
 
 @end

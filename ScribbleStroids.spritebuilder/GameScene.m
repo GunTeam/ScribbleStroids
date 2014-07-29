@@ -7,8 +7,9 @@
 //
 
 #import "GameScene.h"
+#import "Ship.h"
 
-
+double missileLaunchImpulse = 3;
 
 @implementation GameScene
 
@@ -19,20 +20,12 @@
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
-    
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(100, 100);
     mainShip.scale = .2;
-//    mainShip.physicsBody.linearDamping = 1;
-    [_physicsNode addChild:mainShip];
+    [_physicsNode addChild:mainShip z:2];
     _physicsNode.debugDraw = true;
-    
-    
-//    CGPoint launchDirection = ccp(1, 0);
-//    CGPoint force = ccpMult(launchDirection, 8000);
-//    [mainShip.physicsBody applyForce:force];
-    
-//    [self schedule:@selector(update:) interval:0.];
+
 }
 
 -(void) update:(CCTime)delta{
@@ -51,13 +44,8 @@
         CGPoint thrust = CGPointMake(15*cos(shipDirection*M_PI/180), 15*-sin(shipDirection*M_PI/180));
         [mainShip.physicsBody applyImpulse:thrust];
     } else {
-        mainShip.physicsBody.velocity = CGPointMake(mainShip.physicsBody.velocity.x*.99,
-                                                    mainShip.physicsBody.velocity.y*.99);
-    }
-    
-    if (_shootButton.state) {
-        mainShip.physicsBody.velocity = CGPointMake(0, 0);
-        //shoot some bullets
+        mainShip.physicsBody.velocity = CGPointMake(mainShip.physicsBody.velocity.x*.995,
+                                                    mainShip.physicsBody.velocity.y*.995);
     }
     
     if (mainShip.position.x > screenWidth){
@@ -76,7 +64,6 @@
 
 -(void) TurnLeft{
     CCLOG(@"Left Button Pressed");
-//    mainShip.physicsBody.angularVelocity = 20;
 }
 
 -(void) TurnRight{
@@ -89,6 +76,16 @@
 
 -(void) Shoot{
     CCLOG(@"Shoot Button Pressed");
+//    [mainShip fire];
+    CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
+    
+    bullet.position = mainShip.position;
+    
+    bullet.physicsBody.velocity = mainShip.physicsBody.velocity;
+    [_physicsNode addChild:bullet z:1];
+    CGFloat shipDirection = mainShip.rotation;
+    [bullet.physicsBody applyImpulse: CGPointMake(missileLaunchImpulse*cos(shipDirection*M_PI/180),
+                                                  missileLaunchImpulse*-sin(shipDirection*M_PI/180))];
 }
 
 @end
