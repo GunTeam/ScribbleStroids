@@ -11,4 +11,8 @@
 
 @implementation Ship
 
+-(void) fire {
+    //fill me in!
+}
+
 @end
