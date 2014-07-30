@@ -86,13 +86,6 @@ double missileLaunchImpulse = 3;
     
 }
 
--(void) addAsteroid:(int)typeOfAsteroid{
-    if (typeOfAsteroid == 0) {
-        [_physicsNode addChild:[CCBReader load:@"Asteroid"]];
-        [_physicsNode addChild:[CCBReader load:@"Asteroid"]];
-    }
-}
-
 -(void) TurnLeft{
     CCLOG(@"Left Button Pressed");
 }
@@ -149,6 +142,11 @@ double missileLaunchImpulse = 3;
     [bullet removeFromParent];
     
     return true;
+}
+
+-(void)level1
+{
+    
 }
 
 @end
