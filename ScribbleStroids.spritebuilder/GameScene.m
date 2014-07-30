@@ -43,11 +43,11 @@ double missileLaunchImpulse = 3;
     //new artwork.
     //You must induce the physicsBody property of an object to access properties like
     //velocity and angularVelocity, and to access methods like applyImpulse
-    Asteroid *asteroid = (Asteroid *) [CCBReader load:@"Asteroid"];
+    /*Asteroid *asteroid = (Asteroid *) [CCBReader load:@"Asteroid"];
     asteroid.position = CGPointMake(100, 300);
     asteroid.physicsBody.velocity = CGPointMake(10, 10);
     asteroid.scale = .4;
-    [_physicsNode addChild:asteroid z:-10];
+    [_physicsNode addChild:asteroid z:-10];*/
     
     
     //spawn the ship
@@ -61,6 +61,8 @@ double missileLaunchImpulse = 3;
     
     //this is for debugging purposes. While true, you can see the physics bodies
     _physicsNode.debugDraw = true;
+    
+    [self level1];
 
 }
 
@@ -153,7 +155,17 @@ double missileLaunchImpulse = 3;
 
 -(void)level1
 {
+    Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"Asteroid"];
+    asteroid1.position = CGPointMake(75, 300);
+    asteroid1.physicsBody.velocity = CGPointMake(5, 20);
+    asteroid1.scale = .4;
+    [_physicsNode addChild:asteroid1 z:-10];
     
+    Asteroid *asteroid2 = (Asteroid *) [CCBReader load:@"Asteroid"];
+    asteroid2.position = CGPointMake(250, 100);
+    asteroid2.physicsBody.velocity = CGPointMake(-50, 25);
+    asteroid2.scale = .3;
+    [_physicsNode addChild:asteroid2 z:-10];
 }
 
 @end
