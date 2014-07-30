@@ -39,7 +39,13 @@
 		BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87B1986DBEE00D3F431 /* Asteroid.m */; };
 		BA00D87F1986DBF900D3F431 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87E1986DBF900D3F431 /* Ship.m */; };
 		BA00D8821988298D00D3F431 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D8811988298D00D3F431 /* Bullet.m */; };
+		BA10FE661988C7A40023D1F2 /* multiFlame1.png in Resources */ = {isa = PBXBuildFile; fileRef = BA10FE641988C7A40023D1F2 /* multiFlame1.png */; };
+		BA10FE671988C7A40023D1F2 /* multiFlame1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA10FE651988C7A40023D1F2 /* multiFlame1@2x.png */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
+		BAC0DA8B198949A7005A3E66 /* flameTest.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC0DA8A198949A7005A3E66 /* flameTest.png */; };
+		BAC0DA8E19894B76005A3E66 /* flameTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC0DA8D19894B76005A3E66 /* flameTest@2x.png */; };
+		BAC0DA91198953B0005A3E66 /* flame.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC0DA8F198953B0005A3E66 /* flame.png */; };
+		BAC0DA92198953B0005A3E66 /* flameTest1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC0DA90198953B0005A3E66 /* flameTest1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,8 +106,14 @@
 		BA00D87E1986DBF900D3F431 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		BA00D8801988298D00D3F431 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		BA00D8811988298D00D3F431 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
+		BA10FE641988C7A40023D1F2 /* multiFlame1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multiFlame1.png; path = ../../../../SSArt/FlameSprites/multiFlame1.png; sourceTree = "<group>"; };
+		BA10FE651988C7A40023D1F2 /* multiFlame1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "multiFlame1@2x.png"; path = "../../../../SSArt/FlameSprites/multiFlame1@2x.png"; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		BAC0DA8A198949A7005A3E66 /* flameTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flameTest.png; path = ../../../../SSArt/FlameSprites/flameTest.png; sourceTree = "<group>"; };
+		BAC0DA8D19894B76005A3E66 /* flameTest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flameTest@2x.png"; path = "../../../../SSArt/FlameSprites/flameTest@2x.png"; sourceTree = "<group>"; };
+		BAC0DA8F198953B0005A3E66 /* flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flame.png; path = ../../../../SSArt/FlameSprites/flame.png; sourceTree = "<group>"; };
+		BAC0DA90198953B0005A3E66 /* flameTest1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flameTest1.png; path = ../../../../SSArt/FlameSprites/flameTest1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +230,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA10FE611988C7840023D1F2 /* Art */,
 				B73789911807667A0076A88C /* Icons */,
 				B737893A180761570076A88C /* Published-iOS */,
 			);
@@ -245,6 +258,27 @@
 				BA00D8811988298D00D3F431 /* Bullet.m */,
 			);
 			name = "Sprite Classes";
+			sourceTree = "<group>";
+		};
+		BA10FE611988C7840023D1F2 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				BA10FE631988C78B0023D1F2 /* FlameSprites */,
+			);
+			name = Art;
+			sourceTree = "<group>";
+		};
+		BA10FE631988C78B0023D1F2 /* FlameSprites */ = {
+			isa = PBXGroup;
+			children = (
+				BAC0DA8F198953B0005A3E66 /* flame.png */,
+				BAC0DA90198953B0005A3E66 /* flameTest1.png */,
+				BAC0DA8D19894B76005A3E66 /* flameTest@2x.png */,
+				BAC0DA8A198949A7005A3E66 /* flameTest.png */,
+				BA10FE641988C7A40023D1F2 /* multiFlame1.png */,
+				BA10FE651988C7A40023D1F2 /* multiFlame1@2x.png */,
+			);
+			name = FlameSprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,12 +361,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
+				BAC0DA8B198949A7005A3E66 /* flameTest.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
+				BAC0DA91198953B0005A3E66 /* flame.png in Resources */,
+				BA10FE661988C7A40023D1F2 /* multiFlame1.png in Resources */,
+				BAC0DA92198953B0005A3E66 /* flameTest1.png in Resources */,
+				BA10FE671988C7A40023D1F2 /* multiFlame1@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				BAC0DA8E19894B76005A3E66 /* flameTest@2x.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,

@@ -39,7 +39,11 @@ double missileLaunchImpulse = 3;
     asteroid.position = CGPointMake(100, 300);
     asteroid.scale = .4;
     
-    [_physicsNode addChild:asteroid z:-10];
+//    [_physicsNode addChild:asteroid z:-10];
+    
+//    CCSprite *fire = (CCSprite *) [CCBReader load:@"Flames"];
+//    fire.position = CGPointMake(screenWidth/2, screenHeight/3);
+//    [self addChild:fire];
     
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(100, 100);
