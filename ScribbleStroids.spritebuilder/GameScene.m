@@ -62,7 +62,7 @@ double missileLaunchImpulse = 3;
     //this is for debugging purposes. While true, you can see the physics bodies
     _physicsNode.debugDraw = true;
     
-    [self level1];
+    [self asteroidSpawn:0];
 
 }
 
@@ -123,28 +123,62 @@ double missileLaunchImpulse = 3;
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCSprite *)bullet asteroid:(Asteroid *)asteroid {
     // collision handling
-    CCLOG(@"Asteroid and bullet collided");
+    CCLOG(@"Asteroid and bullet collided.... %d", asteroid.size);
     
     //this splits the asteroid that is being shot in half if it's large enough
     
-    if (asteroid.scale > .11) {
+    if (asteroid.size == 1) {
         
         Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"Asteroid"];
         asteroid1.position = asteroid.position;
-        asteroid1.scale = asteroid.scale*.5;
+        asteroid1.size = asteroid.size + 1;
+        
+        int rx1 = (arc4random() % 40) - 20;
+        int ry1 = (arc4random() % 40) - 20;
+        asteroid1.physicsBody.velocity = CGPointMake(rx1, ry1);
+        [_physicsNode addChild:asteroid1];
+
+        asteroid.numberOfAsteroids = asteroid.numberOfAsteroids - 1;
+
+        
+        Asteroid *asteroid2 = (Asteroid *)[CCBReader load:@"Asteroid"];
+        asteroid2.position = asteroid.position;
+        asteroid2.size = asteroid.size + 1;
+        
+        int rx2 = (arc4random() % 40) - 20;
+        int ry2 = (arc4random() % 40) - 20;
+        asteroid2.physicsBody.velocity = CGPointMake(rx2, ry2);
+        [_physicsNode addChild:asteroid2];
+    }
+    
+    else if (asteroid.size == 2){
+        
+        Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"Asteroid"];
+        asteroid1.position = asteroid.position;
+        asteroid1.size = asteroid.size + 1;
+        
         int rx1 = (arc4random() % 40) - 20;
         int ry1 = (arc4random() % 40) - 20;
         asteroid1.physicsBody.velocity = CGPointMake(rx1, ry1);
         [_physicsNode addChild:asteroid1];
         
+        asteroid.numberOfAsteroids = asteroid.numberOfAsteroids - 1;
+
         Asteroid *asteroid2 = (Asteroid *)[CCBReader load:@"Asteroid"];
         asteroid2.position = asteroid.position;
-        asteroid2.scale = asteroid.scale*.5;
+        asteroid2.size = asteroid.size + 1;
+        
         int rx2 = (arc4random() % 40) - 20;
         int ry2 = (arc4random() % 40) - 20;
         asteroid2.physicsBody.velocity = CGPointMake(rx2, ry2);
         [_physicsNode addChild:asteroid2];
-        
+    }
+    else if (asteroid.size == 3) {
+        asteroid.numberOfAsteroids = asteroid.numberOfAsteroids - 1;
+    }
+    
+    if (asteroid.numberOfAsteroids == 0) {
+        CCLOG(@"No more asteroids.");
     }
     //destroy the asteroid and the bullet
     [asteroid removeFromParent];
@@ -153,19 +187,26 @@ double missileLaunchImpulse = 3;
     return true;
 }
 
--(void)level1
+
+-(void)levelGenerator
+{
+    for (int i = 1; i < 100; i++) {
+        [self asteroidSpawn:0];
+    }
+}
+
+-(void)asteroidSpawn :(int)parentSize
 {
     Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"Asteroid"];
-    asteroid1.position = CGPointMake(75, 300);
-    asteroid1.physicsBody.velocity = CGPointMake(5, 20);
-    asteroid1.scale = .4;
-    [_physicsNode addChild:asteroid1 z:-10];
+    asteroid1.position = CGPointMake(arc4random() % 100, arc4random() % 300);
+    asteroid1.physicsBody.velocity = CGPointMake(arc4random() % 10, arc4random() % 30);
+    [_physicsNode addChild:asteroid1];
     
-    Asteroid *asteroid2 = (Asteroid *) [CCBReader load:@"Asteroid"];
-    asteroid2.position = CGPointMake(250, 100);
-    asteroid2.physicsBody.velocity = CGPointMake(-50, 25);
-    asteroid2.scale = .3;
-    [_physicsNode addChild:asteroid2 z:-10];
+    asteroid1.size = parentSize + 1;
+    asteroid1.numberOfAsteroids = 4;
 }
+
+
+
 
 @end

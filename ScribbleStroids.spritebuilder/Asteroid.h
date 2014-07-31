@@ -13,4 +13,7 @@
     CGFloat screenWidth,screenHeight;
 }
 
+@property int size;
+@property int numberOfAsteroids;
+
 @end
