@@ -10,6 +10,8 @@
 #import "Ship.h"
 
 double missileLaunchImpulse = 3;
+double shipThrust = 30;
+double shipDampening = .97;
 
 @implementation GameScene
 
@@ -58,13 +60,13 @@ double missileLaunchImpulse = 3;
     
     if (_boostButton.state) {
         CGFloat shipDirection = mainShip.rotation;
-        CGPoint thrust = CGPointMake(15*cos(shipDirection*M_PI/180), 15*-sin(shipDirection*M_PI/180));
+        CGPoint thrust = CGPointMake(shipThrust*cos((shipDirection-90)*M_PI/180), shipThrust*-sin((shipDirection-90)*M_PI/180));
         [mainShip.physicsBody applyImpulse:thrust];
         [mainShip showFlames];
         
     } else {
-        mainShip.physicsBody.velocity = CGPointMake(mainShip.physicsBody.velocity.x*.995,
-                                                    mainShip.physicsBody.velocity.y*.995);
+        mainShip.physicsBody.velocity = CGPointMake(mainShip.physicsBody.velocity.x*shipDampening,
+                                                    mainShip.physicsBody.velocity.y*shipDampening);
         [mainShip hideFlames];
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;

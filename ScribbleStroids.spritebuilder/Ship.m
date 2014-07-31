@@ -45,8 +45,8 @@ double bulletLaunchImpulse = 3;
     
     bullet.physicsBody.velocity = self.physicsBody.velocity;
     [self.parent addChild:bullet];
-    [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos(self.rotation*M_PI/180),
-                                                    bulletLaunchImpulse*-sin(self.rotation*M_PI/180))];
+    [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos((self.rotation-90)*M_PI/180),
+                                                    bulletLaunchImpulse*-sin((self.rotation-90)*M_PI/180))];
     
 }
 
