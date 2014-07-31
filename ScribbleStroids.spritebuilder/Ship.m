@@ -13,8 +13,47 @@ double bulletLaunchImpulse = 3;
 @implementation Ship
 
 -(void) didLoadFromCCB {
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    screenWidth = screenSize.width;
+    screenHeight = screenSize.height;
+    
     self.physicsBody.collisionType = @"ship";
     self.physicsBody.collisionGroup = @"ShipGroup";
+//    CCSprite *flames = (CCSprite *)[CCBReader load:@"Flames"];
+    animationManager = _flames.userObject;
+//    flames.scale = 4;
+//    flames.rotation = -90;
+//    flames.position = CGPointMake(5, 25);
+//    [self addChild:flames z:1];
+    [self schedule:@selector(runFlames:) interval:1./3.];
+    [self hideFlames];
+}
+
+-(void)update:(CCTime)delta{
+    if (self.position.x > screenWidth){
+        self.position = CGPointMake(0, self.position.y);
+    } else if (self.position.x < 0){
+        self.position = CGPointMake(screenWidth, self.position.y);
+    }
+    
+    if (self.position.y > screenHeight){
+        self.position = CGPointMake(self.position.x, 0);
+    } else if (self.position.y < 0) {
+        self.position = CGPointMake(self.position.x, screenHeight);
+    }
+}
+
+-(void) hideFlames{
+    _flames.visible = false;
+}
+
+-(void) showFlames{
+    _flames.visible = true;
+}
+
+-(void) runFlames:(CCTime)dt{
+    [animationManager runAnimationsForSequenceNamed:@"Animation1"];
 }
 
 -(void) fire {
@@ -25,8 +64,8 @@ double bulletLaunchImpulse = 3;
     
     bullet.physicsBody.velocity = self.physicsBody.velocity;
     [self.parent addChild:bullet];
-    [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos(self.rotation*M_PI/180),
-                                                    bulletLaunchImpulse*-sin(self.rotation*M_PI/180))];
+    [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos((self.rotation-90)*M_PI/180),
+                                                    bulletLaunchImpulse*-sin((self.rotation-90)*M_PI/180))];
     
 }
 

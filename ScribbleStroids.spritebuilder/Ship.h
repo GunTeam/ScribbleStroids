@@ -10,9 +10,15 @@
 #import "cocos2d.h"
 
 @interface Ship : CCSprite {
-    
+    CGFloat screenWidth,screenHeight;
+    CCBAnimationManager *animationManager;
+    CCSprite *_flames;
 }
 
+@property CCSprite* flames;
+
 -(void) fire;
+-(void) hideFlames;
+-(void) showFlames;
 
 @end

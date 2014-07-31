@@ -20,7 +20,7 @@
     CCButton *_shootButton;
     CCLabelTTF *_scoreLabel;
     //end SB code connections
-   
+    
     CGFloat screenWidth;
     CGFloat screenHeight;
     
@@ -28,5 +28,8 @@
     
     Ship *mainShip;
 }
+
+@property int numberOfAsteroidsRemaingingInLevel;
+@property int level;
 
 @end
