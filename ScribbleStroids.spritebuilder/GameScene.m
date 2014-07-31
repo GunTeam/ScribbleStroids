@@ -7,7 +7,6 @@
 //
 
 #import "GameScene.h"
-#import "Ship.h"
 
 double missileLaunchImpulse = 3;
 double shipThrust = 30;
@@ -43,7 +42,7 @@ double shipDampening = .97;
     mainShip.position = CGPointMake(100, 100);
     mainShip.scale = .2;
     [_physicsNode addChild:mainShip z:-1];
-//    _physicsNode.debugDraw = true;
+    _physicsNode.debugDraw = true;
 
 }
 
