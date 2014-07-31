@@ -28,28 +28,20 @@ double missileLaunchImpulse = 3;
     
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
+//    _physicsNode.sleepTimeThreshold = 100;
     [self addChild:_physicsNode z:-1];
     
     _physicsNode.collisionDelegate = self;
     
-    //
-    
-    Asteroid *asteroid = (Asteroid *) [CCBReader load:@"Asteroid"];
-    
-    asteroid.position = CGPointMake(100, 300);
-    asteroid.scale = .4;
-    
-//    [_physicsNode addChild:asteroid z:-10];
-    
-//    CCSprite *fire = (CCSprite *) [CCBReader load:@"Flames"];
-//    fire.position = CGPointMake(screenWidth/2, screenHeight/3);
-//    [self addChild:fire];
+    Asteroid *asteroid = (Asteroid *)[CCBReader load:@"AsteroidSmall"];
+    asteroid.position = CGPointMake(screenWidth /4, screenHeight/2);
+    [_physicsNode addChild:asteroid];
     
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(100, 100);
     mainShip.scale = .2;
     [_physicsNode addChild:mainShip z:-1];
-    _physicsNode.debugDraw = true;
+//    _physicsNode.debugDraw = true;
 
 }
 
@@ -68,10 +60,12 @@ double missileLaunchImpulse = 3;
         CGFloat shipDirection = mainShip.rotation;
         CGPoint thrust = CGPointMake(15*cos(shipDirection*M_PI/180), 15*-sin(shipDirection*M_PI/180));
         [mainShip.physicsBody applyImpulse:thrust];
+        [mainShip showFlames];
         
     } else {
         mainShip.physicsBody.velocity = CGPointMake(mainShip.physicsBody.velocity.x*.995,
                                                     mainShip.physicsBody.velocity.y*.995);
+        [mainShip hideFlames];
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
 

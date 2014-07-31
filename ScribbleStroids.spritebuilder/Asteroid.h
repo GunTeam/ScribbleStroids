@@ -13,4 +13,6 @@
     CGFloat screenWidth,screenHeight;
 }
 
+@property int size;
+
 @end

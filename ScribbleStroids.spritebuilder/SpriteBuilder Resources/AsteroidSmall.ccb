@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>4</integer>
+	<integer>1</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -38,82 +38,9 @@
 		<key>baseClass</key>
 		<string>CCSprite</string>
 		<key>children</key>
-		<array>
-			<dict>
-				<key>UUID</key>
-				<integer>3</integer>
-				<key>baseClass</key>
-				<string>CCBFile</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>Flames</string>
-				<key>memberVarAssignmentName</key>
-				<string>_flames</string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.14374999701976776</real>
-							<real>0.5</real>
-							<integer>0</integer>
-							<integer>2</integer>
-							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>3</real>
-							<real>3</real>
-							<true/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>rotation</string>
-						<key>type</key>
-						<string>Degrees</string>
-						<key>value</key>
-						<real>-90</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>ccbFile</string>
-						<key>type</key>
-						<string>CCBFile</string>
-						<key>value</key>
-						<string>Flames.ccb</string>
-					</dict>
-				</array>
-				<key>selected</key>
-				<true/>
-			</dict>
-		</array>
+		<array/>
 		<key>customClass</key>
-		<string>Ship</string>
+		<string>Asteroid</string>
 		<key>displayName</key>
 		<string>CCSprite</string>
 		<key>memberVarAssignmentName</key>
@@ -123,11 +50,11 @@
 		<key>physicsBody</key>
 		<dict>
 			<key>affectedByGravity</key>
-			<false/>
+			<true/>
 			<key>allowsRotation</key>
 			<true/>
 			<key>bodyShape</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>collisionCategories</key>
 			<array/>
 			<key>collisionMask</key>
@@ -135,7 +62,7 @@
 			<key>collisionType</key>
 			<string></string>
 			<key>cornerRadius</key>
-			<real>0.0</real>
+			<real>10.892086029052734</real>
 			<key>density</key>
 			<real>1</real>
 			<key>dynamic</key>
@@ -147,53 +74,12 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>47.035186767578125</real>
-					<real>120.11329650878906</real>
-				</array>
-				<array>
-					<real>46.074249267578125</real>
-					<real>207.65237426757812</real>
-				</array>
-				<array>
-					<real>280.44537353515625</real>
-					<real>118.76564025878906</real>
-				</array>
-				<array>
-					<real>46.328155517578125</real>
-					<real>30.316413879394531</real>
+					<real>10</real>
+					<real>10.5</real>
 				</array>
 			</array>
 			<key>polygons</key>
-			<array>
-				<array>
-					<array>
-						<real>280.44537353515625</real>
-						<real>118.76564025878906</real>
-					</array>
-					<array>
-						<real>46.074249267578125</real>
-						<real>207.65237426757812</real>
-					</array>
-					<array>
-						<real>47.035186767578125</real>
-						<real>120.11329650878906</real>
-					</array>
-				</array>
-				<array>
-					<array>
-						<real>47.035186767578125</real>
-						<real>120.11329650878906</real>
-					</array>
-					<array>
-						<real>46.328155517578125</real>
-						<real>30.316413879394531</real>
-					</array>
-					<array>
-						<real>280.44537353515625</real>
-						<real>118.76564025878906</real>
-					</array>
-				</array>
-			</array>
+			<array/>
 		</dict>
 		<key>properties</key>
 		<array>
@@ -226,7 +112,7 @@
 				<string>Point</string>
 				<key>value</key>
 				<array>
-					<real>0.42657470703125</real>
+					<real>0.5</real>
 					<real>0.5</real>
 				</array>
 			</dict>
@@ -251,7 +137,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>Art/blueNeonShip.png</string>
+					<string>Art/Asteroids/AsteroidSmall.png</string>
 				</array>
 			</dict>
 			<dict>

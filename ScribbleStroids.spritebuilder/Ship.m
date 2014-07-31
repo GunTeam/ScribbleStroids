@@ -15,6 +15,26 @@ double bulletLaunchImpulse = 3;
 -(void) didLoadFromCCB {
     self.physicsBody.collisionType = @"ship";
     self.physicsBody.collisionGroup = @"ShipGroup";
+//    CCSprite *flames = (CCSprite *)[CCBReader load:@"Flames"];
+    animationManager = _flames.userObject;
+//    flames.scale = 4;
+//    flames.rotation = -90;
+//    flames.position = CGPointMake(5, 25);
+//    [self addChild:flames z:1];
+    [self schedule:@selector(runFlames:) interval:1./3.];
+    [self hideFlames];
+}
+
+-(void) hideFlames{
+    _flames.visible = false;
+}
+
+-(void) showFlames{
+    _flames.visible = true;
+}
+
+-(void) runFlames:(CCTime)dt{
+    [animationManager runAnimationsForSequenceNamed:@"Animation1"];
 }
 
 -(void) fire {
