@@ -11,10 +11,15 @@
 double missileLaunchImpulse = 3;
 double shipThrust = 30;
 double shipDampening = .97;
+int smallSpeedIncrease = 60;
+int mediumSpeedIncrease = 80;
+int initialAsteroidVelocity = 40;
 
 @implementation GameScene
 
 -(void) didLoadFromCCB {
+    //start with level 1
+    self.level = 1;
     
     [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
     _leftButton.exclusiveTouch = false;
@@ -34,15 +39,13 @@ double shipDampening = .97;
     
     _physicsNode.collisionDelegate = self;
     
-    Asteroid *asteroid = (Asteroid *)[CCBReader load:@"AsteroidSmall"];
-    asteroid.position = CGPointMake(screenWidth /4, screenHeight/2);
-    [_physicsNode addChild:asteroid];
-    
     mainShip = (Ship *)[CCBReader load:@"Ship"];
-    mainShip.position = CGPointMake(100, 100);
+    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     mainShip.scale = .2;
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = true;
+    
+    [self createLevel:self.level];
 
 }
 
@@ -70,18 +73,6 @@ double shipDampening = .97;
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
 
-    
-    if (mainShip.position.x > screenWidth){
-        mainShip.position = CGPointMake(0, mainShip.position.y);
-    } else if (mainShip.position.x < 0){
-        mainShip.position = CGPointMake(screenWidth, mainShip.position.y);
-    }
-    
-    if (mainShip.position.y > screenHeight){
-        mainShip.position = CGPointMake(mainShip.position.x, 0);
-    } else if (mainShip.position.y < 0) {
-        mainShip.position = CGPointMake(mainShip.position.x, screenHeight);
-    }
     
 }
 
@@ -115,26 +106,38 @@ double shipDampening = .97;
     // collision handling
     CCLOG(@"Asteroid and bullet collided");
     
-    if (asteroid.scale > .11) {
-        
-        Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"Asteroid"];
-        asteroid1.position = asteroid.position;
-        asteroid1.scale = asteroid.scale*.5;
-        int rx1 = (arc4random() % 40) - 20;
-        int ry1 = (arc4random() % 40) - 20;
-        asteroid1.physicsBody.velocity = CGPointMake(rx1, ry1);
+    if (asteroid.size == 1) {
+        Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"AsteroidMedium"];
+        asteroid1.size = 2;
+        asteroid1.position = CGPointMake(asteroid.position.x+1, asteroid.position.y +1);
+        asteroid1.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2));
         [_physicsNode addChild:asteroid1];
         
-        
-        Asteroid *asteroid2 = (Asteroid *)[CCBReader load:@"Asteroid"];
-        asteroid2.position = asteroid.position;
-        asteroid2.scale = asteroid.scale*.5;
-        int rx2 = (arc4random() % 40) - 20;
-        int ry2 = (arc4random() % 40) - 20;
-        asteroid2.physicsBody.velocity = CGPointMake(rx2, ry2);
+        Asteroid *asteroid2 = (Asteroid *) [CCBReader load:@"AsteroidMedium"];
+        asteroid2.size = 2;
+        asteroid2.position = CGPointMake(asteroid.position.x-1, asteroid.position.y-1);
+        asteroid2.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2));
         [_physicsNode addChild:asteroid2];
+                
+    } else if (asteroid.size == 2){
+        Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"AsteroidSmall"];
+        asteroid1.size = 3;
+        asteroid1.position = CGPointMake(asteroid.position.x+1, asteroid.position.y +1);
+        asteroid1.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2));
+        [_physicsNode addChild:asteroid1];
         
-        
+        Asteroid *asteroid2 = (Asteroid *) [CCBReader load:@"AsteroidSmall"];
+        asteroid2.size = 3;
+        asteroid2.position = CGPointMake(asteroid.position.x-1, asteroid.position.y-1);
+        asteroid2.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2));
+        [_physicsNode addChild:asteroid2];
+
+    } else {
+        [asteroid removeFromParent];
+        self.numberOfAsteroidsRemaingingInLevel -= 1;
+        if (self.numberOfAsteroidsRemaingingInLevel == 0) {
+            [self levelOver];
+        }
     }
     
     [asteroid removeFromParent];
@@ -143,8 +146,27 @@ double shipDampening = .97;
     return true;
 }
 
--(void)level1
-{
+-(void) levelOver {
+    //run level over animation
+    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+    self.level += 1;
+    [self createLevel:self.level];
+}
+
+-(void) createLevel:(int) level{
+    for (int i = 0; i < level; i++) {
+        Asteroid *asteroid = (Asteroid *) [CCBReader load:@"AsteroidLarge"];
+        asteroid.size = 1;
+        int asteroidX = (int) (arc4random()%(int)screenWidth);
+        int asteroidY = (int) (arc4random()%(int)screenHeight/2)+screenHeight/2;
+        asteroid.position = CGPointMake(asteroidX, asteroidY);
+        int asteroidVelocityX = (arc4random()%20)-10;
+        int asteroidVelocityY = (arc4random()%initialAsteroidVelocity)-initialAsteroidVelocity/2;
+        asteroid.physicsBody.velocity = CGPointMake(asteroidVelocityX, asteroidVelocityY);
+        [_physicsNode addChild:asteroid];
+        
+    }
+    self.numberOfAsteroidsRemaingingInLevel = level*4;
     
 }
 
