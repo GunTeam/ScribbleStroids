@@ -97,8 +97,6 @@ int initialAsteroidVelocity = 40;
     // collision handling
     CCLOG(@"Asteroid and ship collided");
     
-    
-    
     return true;
 }
 

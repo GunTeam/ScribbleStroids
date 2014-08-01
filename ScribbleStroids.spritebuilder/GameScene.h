@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <iAd/iAd.h>
 #import "cocos2d.h"
 #import "Ship.h"
 #import "Asteroid.h"
+#import "MainScene.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
+    MainScene *main;
     //SB code connections
     CCButton *_leftButton;
     CCButton *_rightButton;

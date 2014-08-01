@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <iAd/iAd.h>
 #import "cocos2d.h"
 #import "CCNode.h"
 
-@interface MainScene : CCNode
+@interface MainScene : CCNode <ADBannerViewDelegate>
 {
     CCLabelTTF *_titleLabel;
+    ADBannerView *_bannerView;
+    ADBannerView *_adView;
 }
 -(void) playGame;
 -(void) howTo;
