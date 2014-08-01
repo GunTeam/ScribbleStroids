@@ -31,6 +31,7 @@ double touchThreshold = 45;
 //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
         
         mainShip.rotation = point;
+        _joystickArrow.rotation = point;
         
 //        mainShip.rotation = asin((_joystickCenter.position.y - touchLocation.y)/hypotenuse)*180/M_PI;
     }
@@ -47,6 +48,8 @@ double touchThreshold = 45;
         //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
         
         mainShip.rotation = point;
+        _joystickArrow.rotation = point;
+
     }
 }
 
