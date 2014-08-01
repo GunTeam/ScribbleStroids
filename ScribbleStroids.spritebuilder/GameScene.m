@@ -11,9 +11,9 @@
 double missileLaunchImpulse = 3;
 double shipThrust = 30;
 double shipDampening = .97;
-int smallSpeedIncrease = 60;
-int mediumSpeedIncrease = 80;
-int initialAsteroidVelocity = 40;
+int smallSpeedIncrease = 80;
+int mediumSpeedIncrease = 120;
+int initialAsteroidVelocity = 60;
 bool debugMode = false;
 
 @implementation GameScene
@@ -21,8 +21,32 @@ bool debugMode = false;
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Received a touch");
+    mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
-    
+    double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
+    if (hypotenuse<30) {
+        CCLOG(@"Touch inside threshold");
+        CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
+//        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
+        
+        mainShip.rotation = point;
+        
+//        mainShip.rotation = asin((_joystickCenter.position.y - touchLocation.y)/hypotenuse)*180/M_PI;
+    }
+}
+
+-(void) touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
+    CCLOG(@"Moved a touch");
+    mainShip.physicsBody.angularVelocity = 0;
+    CGPoint touchLocation = [touch locationInNode:self];
+    double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
+    if (hypotenuse<30) {
+        CCLOG(@"Touch inside threshold");
+        CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
+        //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
+        
+        mainShip.rotation = point;
+    }
 }
 
 
@@ -30,6 +54,9 @@ bool debugMode = false;
 -(void) didLoadFromCCB {
     //start with level 1
     self.userInteractionEnabled = true;
+    self.multipleTouchEnabled =true;
+    
+    
     
     self.level = 1;
     
@@ -42,12 +69,13 @@ bool debugMode = false;
     _boostButton.exclusiveTouch = false;
     _shootButton.exclusiveTouch = false;
     
+    _leftButton.visible = false;
+    _rightButton.visible = false;
     
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
-    
     
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];

@@ -19,6 +19,7 @@
     CCButton *_boostButton;
     CCButton *_shootButton;
     CCLabelTTF *_scoreLabel;
+    CCSprite *_joystickCenter;
     //end SB code connections
     
     CGFloat screenWidth;
