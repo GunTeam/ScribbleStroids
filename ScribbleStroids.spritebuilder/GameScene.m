@@ -15,6 +15,7 @@ int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
 int initialAsteroidVelocity = 60;
 bool debugMode = false;
+double touchThreshold = 45;
 
 @implementation GameScene
 
@@ -24,7 +25,7 @@ bool debugMode = false;
     mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
     double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
-    if (hypotenuse<30) {
+    if (hypotenuse<touchThreshold) {
         CCLOG(@"Touch inside threshold");
         CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
 //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
@@ -40,7 +41,7 @@ bool debugMode = false;
     mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
     double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
-    if (hypotenuse<30) {
+    if (hypotenuse<touchThreshold) {
         CCLOG(@"Touch inside threshold");
         CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
         //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
