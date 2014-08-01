@@ -9,18 +9,19 @@
 #import "GameScene.h"
 
 double missileLaunchImpulse = 3;
-double shipThrust = 30;
+double shipThrust = 20;
 double shipDampening = .97;
 int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
 int initialAsteroidVelocity = 60;
 bool debugMode = false;
 double touchThreshold = 45;
+int numberOfLives = 5;
+int startLevel = 1;
 
 @implementation GameScene
 
-- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Received a touch");
     mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
@@ -36,8 +37,7 @@ double touchThreshold = 45;
 //        mainShip.rotation = asin((_joystickCenter.position.y - touchLocation.y)/hypotenuse)*180/M_PI;
     }
 }
-
--(void) touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
+-(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Moved a touch");
     mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
@@ -53,16 +53,12 @@ double touchThreshold = 45;
     }
 }
 
-
-
 -(void) didLoadFromCCB {
     //start with level 1
     self.userInteractionEnabled = true;
     self.multipleTouchEnabled =true;
     
-    
-    
-    self.level = 1;
+    self.level = startLevel;
     
     self.score = 0;
     _scoreLabel.string = [NSString stringWithFormat:@"Score: %d", self.score];
@@ -90,12 +86,26 @@ double touchThreshold = 45;
     
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    mainShip.scale = .2;
+//    mainShip.scale = .2;
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
     
     [self createLevel:self.level];
+    
+    self.lives = numberOfLives;
+    [self displayNumberOfLives];
 
+}
+
+-(void) displayNumberOfLives {
+    for (int i = 0; i < self.lives; i++) {
+        CCLOG(@"Loading ships");
+        CCSprite *ship = [CCSprite spriteWithImageNamed:@"PurpleFins200dpi.png"];
+        ship.anchorPoint = CGPointMake(0, 1);
+        ship.scale = .2;
+        ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.2, screenHeight);
+        [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
+    }
 }
 
 -(void) update:(CCTime)delta{
@@ -125,18 +135,6 @@ double touchThreshold = 45;
     
 }
 
--(void) TurnLeft{
-    CCLOG(@"Left Button Pressed");
-}
-
--(void) TurnRight{
-    CCLOG(@"Right Button Pressed");
-}
-
--(void) Boost{
-    CCLOG(@"Boost Button Pressed");
-}
-
 -(void) Shoot{
     CCLOG(@"Shoot Button Pressed");
     [mainShip fire];
@@ -145,9 +143,11 @@ double touchThreshold = 45;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(CCSprite *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
-    
-    
-    
+    self.lives -=1 ;
+    [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
+    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+    mainShip.physicsBody.velocity = CGPointMake(0, 0);
+    mainShip.rotation = 0;
     return true;
 }
 
