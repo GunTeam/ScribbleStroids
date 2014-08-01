@@ -14,12 +14,27 @@ double shipDampening = .97;
 int smallSpeedIncrease = 60;
 int mediumSpeedIncrease = 80;
 int initialAsteroidVelocity = 40;
+bool debugMode = false;
 
 @implementation GameScene
 
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CCLOG(@"Received a touch");
+    CGPoint touchLocation = [touch locationInNode:self];
+    
+}
+
+
+
 -(void) didLoadFromCCB {
     //start with level 1
+    self.userInteractionEnabled = true;
+    
     self.level = 1;
+    
+    self.score = 0;
+    _scoreLabel.string = [NSString stringWithFormat:@"Score: %d", self.score];
     
     [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
     _leftButton.exclusiveTouch = false;
@@ -27,10 +42,12 @@ int initialAsteroidVelocity = 40;
     _boostButton.exclusiveTouch = false;
     _shootButton.exclusiveTouch = false;
     
+    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
+    
     
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
@@ -43,7 +60,7 @@ int initialAsteroidVelocity = 40;
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     mainShip.scale = .2;
     [_physicsNode addChild:mainShip z:-1];
-    _physicsNode.debugDraw = true;
+    _physicsNode.debugDraw = debugMode;
     
     [self createLevel:self.level];
 
@@ -139,6 +156,9 @@ int initialAsteroidVelocity = 40;
             [self levelOver];
         }
     }
+    
+    self.score += 1;
+    _scoreLabel.string = [NSString stringWithFormat:@"Score: %d", self.score];
     
     [asteroid removeFromParent];
     [bullet removeFromParent];

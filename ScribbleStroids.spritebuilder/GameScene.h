@@ -31,5 +31,6 @@
 
 @property int numberOfAsteroidsRemaingingInLevel;
 @property int level;
+@property int score;
 
 @end

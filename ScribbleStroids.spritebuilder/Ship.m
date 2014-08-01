@@ -61,9 +61,9 @@ double bulletLaunchImpulse = 3;
     CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
     bullet.position = self.position;
     bullet.physicsBody.velocity = self.physicsBody.velocity;
-    
+    bullet.scale = 2;
     bullet.physicsBody.velocity = self.physicsBody.velocity;
-    [self.parent addChild:bullet];
+    [self.parent addChild:bullet z:-2];
     [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos((self.rotation-90)*M_PI/180),
                                                     bulletLaunchImpulse*-sin((self.rotation-90)*M_PI/180))];
     
