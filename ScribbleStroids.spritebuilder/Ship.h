@@ -13,9 +13,13 @@
     CGFloat screenWidth,screenHeight;
     CCBAnimationManager *animationManager;
     CCSprite *_flames;
+    
+    double fireRate;
 }
 
 @property CCSprite* flames;
+@property double rateOfFire;
+@property bool readyToFire;
 
 -(void) fire;
 -(void) hideFlames;

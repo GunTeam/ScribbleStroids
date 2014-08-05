@@ -18,6 +18,8 @@ double bulletLaunchImpulse = 3;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
+    fireRate = 0;
+    
     self.physicsBody.collisionType = @"ship";
     self.physicsBody.collisionGroup = @"ShipGroup";
 //    CCSprite *flames = (CCSprite *)[CCBReader load:@"Flames"];
@@ -31,12 +33,18 @@ double bulletLaunchImpulse = 3;
 }
 
 -(void)update:(CCTime)delta{
+    
+    if (fireRate > 0) {
+        self.readyToFire = false;
+        fireRate -= self.rateOfFire;
+    } else{
+        self.readyToFire = true;
+    }
     if (self.position.x > screenWidth){
         self.position = CGPointMake(0, self.position.y);
     } else if (self.position.x < 0){
         self.position = CGPointMake(screenWidth, self.position.y);
     }
-    
     if (self.position.y > screenHeight){
         self.position = CGPointMake(self.position.x, 0);
     } else if (self.position.y < 0) {
@@ -57,6 +65,8 @@ double bulletLaunchImpulse = 3;
 }
 
 -(void) fire {
+    fireRate = 1;
+    
     CCLOG(@"Ship has fired");
     CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
     bullet.position = self.position;

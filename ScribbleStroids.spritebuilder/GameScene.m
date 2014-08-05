@@ -9,7 +9,7 @@
 #import "GameScene.h"
 
 double missileLaunchImpulse = 3;
-double shipThrust = 20;
+double shipThrust = 10;
 double shipDampening = .97;
 int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
@@ -33,8 +33,6 @@ int startLevel = 1;
         
         mainShip.rotation = point;
         _joystickArrow.rotation = point;
-        
-//        mainShip.rotation = asin((_joystickCenter.position.y - touchLocation.y)/hypotenuse)*180/M_PI;
     }
 }
 -(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -54,14 +52,13 @@ int startLevel = 1;
 }
 
 -(void) didLoadFromCCB {
-    //start with level 1
+    
     self.userInteractionEnabled = true;
     self.multipleTouchEnabled =true;
     
     self.level = startLevel;
     
     self.score = 0;
-    _scoreLabel.string = [NSString stringWithFormat:@"Score: %d", self.score];
     
     [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
     _leftButton.exclusiveTouch = false;
@@ -79,22 +76,32 @@ int startLevel = 1;
     
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
-//    _physicsNode.sleepTimeThreshold = 100;
     [self addChild:_physicsNode z:-1];
     
     _physicsNode.collisionDelegate = self;
     
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-//    mainShip.scale = .2;
+    mainShip.rateOfFire = 1./30.;
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
+    
+    //labels
+    scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Arial" fontSize:18];
+    scoreLabel.anchorPoint = CGPointMake(0, 1);
+    scoreLabel.position = CGPointMake(0, screenHeight);
+    [self addChild:scoreLabel];
+    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d",self.level] fontName:@"Arial" fontSize:18];
+    levelLabel.anchorPoint = CGPointMake(1, 1);
+    levelLabel.position = CGPointMake(screenWidth, screenHeight);
+    [self addChild:levelLabel];
+    //end labels
     
     [self createLevel:self.level];
     
     self.lives = numberOfLives;
     [self displayNumberOfLives];
-
+    
 }
 
 -(void) displayNumberOfLives {
@@ -103,20 +110,15 @@ int startLevel = 1;
         CCSprite *ship = [CCSprite spriteWithImageNamed:@"PurpleFins200dpi.png"];
         ship.anchorPoint = CGPointMake(0, 1);
         ship.scale = .2;
-        ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.2, screenHeight);
+        ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.2, screenHeight - scoreLabel.contentSizeInPoints.height);
         [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
     }
 }
 
 -(void) update:(CCTime)delta{
-    if (_leftButton.state) {
-        mainShip.rotation -=5;
-        mainShip.physicsBody.angularVelocity = 0;
-    }
     
-    if (_rightButton.state) {
-        mainShip.rotation += 5;
-        mainShip.physicsBody.angularVelocity = 0;
+    if (_shootButton.state && mainShip.readyToFire) {
+        [mainShip fire];
     }
     
     if (_boostButton.state) {
@@ -133,11 +135,6 @@ int startLevel = 1;
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
 
     
-}
-
--(void) Shoot{
-    CCLOG(@"Shoot Button Pressed");
-    [mainShip fire];
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(CCSprite *)asteroid {
@@ -190,18 +187,37 @@ int startLevel = 1;
     }
     
     self.score += 1;
-    _scoreLabel.string = [NSString stringWithFormat:@"Score: %d", self.score];
+    scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
     
     [asteroid removeFromParent];
     [bullet removeFromParent];
+    
+    
     
     return true;
 }
 
 -(void) levelOver {
+    
     //run level over animation
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     self.level += 1;
+    levelLabel.string = [NSString stringWithFormat:@"Level: %d", self.level];
+    CCLabelTTF *levelUpLabel = [CCLabelTTF  labelWithString:@"Level Up!" fontName:@"Helvetica" fontSize:36];
+    levelUpLabel.scale = 0;
+    levelUpLabel.position = CGPointMake(screenWidth/2, screenHeight/2);
+    [self addChild:levelUpLabel];
+    
+    CCAction *expand = [CCActionScaleTo actionWithDuration:1. scale:1];
+    CCAction *delay = [CCActionDelay actionWithDuration:.3];
+    CCAction *disappear = [CCActionFadeOut actionWithDuration:.2];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[expand,delay,disappear]];
+    [levelUpLabel runAction:sequence];
+    [self scheduleOnce:@selector(createLevelAfterDelay:) delay:1.5];
+    
+}
+
+-(void) createLevelAfterDelay: (CCTime)dt{
     [self createLevel:self.level];
 }
 

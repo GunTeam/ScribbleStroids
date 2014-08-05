@@ -18,10 +18,12 @@
     CCButton *_rightButton;
     CCButton *_boostButton;
     CCButton *_shootButton;
-    CCLabelTTF *_scoreLabel;
     CCSprite *_joystickCenter;
     CCSprite *_joystickArrow;
     //end SB code connections
+    
+    CCLabelTTF *levelLabel;
+    CCLabelTTF *scoreLabel;
     
     CGFloat screenWidth;
     CGFloat screenHeight;
