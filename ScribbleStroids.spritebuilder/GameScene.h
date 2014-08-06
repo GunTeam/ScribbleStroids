@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "Ship.h"
 #import "Asteroid.h"
+#import "Stars.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
@@ -21,7 +22,10 @@
     CCSprite *_joystickCenter;
     CCSprite *_joystickArrow;
     //end SB code connections
-        
+    
+    //background sprites
+    NSMutableArray *smallStarsArray,*mediumStarsArray,*largeStarsArray;
+    
     CCLabelTTF *levelLabel;
     CCLabelTTF *scoreLabel;
     

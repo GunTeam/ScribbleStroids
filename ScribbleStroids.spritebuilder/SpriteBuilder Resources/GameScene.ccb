@@ -109,7 +109,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>Boost</string>
+							<string></string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -630,7 +630,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>Shoot</string>
+							<string></string>
 							<integer>1</integer>
 						</array>
 					</dict>

@@ -19,9 +19,9 @@ double touchThreshold = 45;
 int numberOfLives = 5;
 int startLevel = 1;
 
-double smallStarSpeed = .005;
-double mediumStarSpeed = .008;
-double largeStarSpeed = .01;
+double smallStarSpeed = .0006;
+double mediumStarSpeed = .001;
+double largeStarSpeed = .0016;
 
 @implementation GameScene
 
@@ -56,6 +56,32 @@ double largeStarSpeed = .01;
 }
 
 -(void) didLoadFromCCB {
+    //load the background
+    smallStarsArray = [[NSMutableArray alloc]init];
+    mediumStarsArray = [[NSMutableArray alloc]init];
+    largeStarsArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i <= 2; i++) {
+        for (int j = 0; j <= 2; j++) {
+            
+            Stars *small = (Stars *)[CCBReader load:@"SmallStars"];
+            small.position = CGPointMake(i*160, j*284);
+            [self addChild:small z:-5];
+            [smallStarsArray addObject:small];
+            
+            Stars *medium = (Stars *) [CCBReader load:@"MediumStars"];
+            medium.position = CGPointMake(i*160, j*284);
+            [self addChild:medium z:-5];
+            [mediumStarsArray addObject:medium];
+            
+            Stars *large = (Stars *) [CCBReader load:@"LargeStars"];
+            large.position = CGPointMake(i*160, j*284);
+            [self addChild:large z:-5];
+            [largeStarsArray addObject:large];
+            
+        }
+    }
+    //end load background
     
     self.userInteractionEnabled = true;
     self.multipleTouchEnabled =true;
@@ -124,6 +150,18 @@ double largeStarSpeed = .01;
 }
 
 -(void) update:(CCTime)delta{
+    double shipVelocityX = mainShip.physicsBody.velocity.x;
+    double shipVelocityY = mainShip.physicsBody.velocity.y;
+    
+    for (Stars *star in smallStarsArray) {
+        star.position = CGPointMake(star.position.x - smallStarSpeed*shipVelocityX,star.position.y - smallStarSpeed*shipVelocityY);
+    }
+    for (Stars *star in mediumStarsArray) {
+        star.position = CGPointMake(star.position.x - mediumStarSpeed*shipVelocityX,star.position.y - mediumStarSpeed*shipVelocityY);
+    }
+    for (Stars *star in largeStarsArray) {
+        star.position = CGPointMake(star.position.x - largeStarSpeed*shipVelocityX,star.position.y - largeStarSpeed*shipVelocityY);
+    }
     
     if (_shootButton.state && mainShip.readyToFire) {
         [mainShip fire];
@@ -142,6 +180,7 @@ double largeStarSpeed = .01;
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
 
+    
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(CCSprite *)asteroid {

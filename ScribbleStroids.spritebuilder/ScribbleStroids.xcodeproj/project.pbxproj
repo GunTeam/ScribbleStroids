@@ -47,6 +47,7 @@
 		BAE245CA1991744B0030F38A /* MediumStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C41991744B0030F38A /* MediumStars@2x.png */; };
 		BAE245CB1991744B0030F38A /* SmallStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C51991744B0030F38A /* SmallStars.png */; };
 		BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C61991744B0030F38A /* SmallStars@2x.png */; };
+		BAE245D71992AF4E0030F38A /* Stars.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE245D61992AF4E0030F38A /* Stars.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		BAE245C51991744B0030F38A /* SmallStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallStars.png; path = ../../../../../Desktop/SSArt/Stars/SmallStars.png; sourceTree = "<group>"; };
 		BAE245C61991744B0030F38A /* SmallStars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallStars@2x.png"; path = "../../../../../Desktop/SSArt/Stars/SmallStars@2x.png"; sourceTree = "<group>"; };
 		BAE245D419917F500030F38A /* ScribbleStroids.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ScribbleStroids.entitlements; sourceTree = "<group>"; };
+		BAE245D51992AF4E0030F38A /* Stars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stars.h; sourceTree = "<group>"; };
+		BAE245D61992AF4E0030F38A /* Stars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stars.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +263,8 @@
 				BA00D87E1986DBF900D3F431 /* Ship.m */,
 				BA00D8801988298D00D3F431 /* Bullet.h */,
 				BA00D8811988298D00D3F431 /* Bullet.m */,
+				BAE245D51992AF4E0030F38A /* Stars.h */,
+				BAE245D61992AF4E0030F38A /* Stars.m */,
 			);
 			name = "Sprite Classes";
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				BA00D87F1986DBF900D3F431 /* Ship.m in Sources */,
+				BAE245D71992AF4E0030F38A /* Stars.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

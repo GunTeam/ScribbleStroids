@@ -40,7 +40,7 @@
 		<key>children</key>
 		<array/>
 		<key>customClass</key>
-		<string></string>
+		<string>Stars</string>
 		<key>displayName</key>
 		<string>Stars</string>
 		<key>memberVarAssignmentName</key>
@@ -103,7 +103,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>Art/Stars/LargeStarsHuge.png</string>
+					<string>Art/Stars/LargeStarsLessDense.png</string>
 				</array>
 			</dict>
 			<dict>
