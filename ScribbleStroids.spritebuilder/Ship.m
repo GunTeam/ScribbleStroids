@@ -9,6 +9,7 @@
 #import "Ship.h"
 
 double bulletLaunchImpulse = 3;
+double shieldTime = 5;
 
 @implementation Ship
 
@@ -22,24 +23,31 @@ double bulletLaunchImpulse = 3;
     
     self.physicsBody.collisionType = @"ship";
     self.physicsBody.collisionGroup = @"ShipGroup";
-//    CCSprite *flames = (CCSprite *)[CCBReader load:@"Flames"];
+    _shield.physicsBody.collisionGroup = @"ShipGroup";
+    _shield.visible = false;
     animationManager = _flames.userObject;
-//    flames.scale = 4;
-//    flames.rotation = -90;
-//    flames.position = CGPointMake(5, 25);
-//    [self addChild:flames z:1];
     [self schedule:@selector(runFlames:) interval:1./3.];
     [self hideFlames];
+    
+    self.immune = false;
 }
 
 -(void)update:(CCTime)delta{
-    
+    _shield.position = CGPointMake(.46, .45);
     if (fireRate > 0) {
         self.readyToFire = false;
         fireRate -= self.rateOfFire;
     } else{
         self.readyToFire = true;
     }
+    if (_shield.visible) {
+        _shield.physicsBody.density = 5;
+        self.immune = true;
+    } else {
+        _shield.physicsBody.density = .01;
+        self.immune = false;
+    }
+    
     if (self.position.x > screenWidth){
         self.position = CGPointMake(0, self.position.y);
     } else if (self.position.x < 0){
@@ -62,6 +70,14 @@ double bulletLaunchImpulse = 3;
 
 -(void) runFlames:(CCTime)dt{
     [animationManager runAnimationsForSequenceNamed:@"Animation1"];
+}
+
+-(void) shieldUp:(CCTime)dt{
+    _shield.visible = true;
+    CCAction *delay = [CCActionDelay actionWithDuration:shieldTime];
+    CCAction *toggle = [CCActionToggleVisibility action];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[delay,toggle]];
+    [_shield runAction:sequence];
 }
 
 -(void) fire {

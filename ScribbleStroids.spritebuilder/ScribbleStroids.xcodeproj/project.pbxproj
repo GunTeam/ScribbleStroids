@@ -41,6 +41,12 @@
 		BA00D8821988298D00D3F431 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D8811988298D00D3F431 /* Bullet.m */; };
 		BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
+		BAE245C71991744B0030F38A /* LargeStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C11991744B0030F38A /* LargeStars.png */; };
+		BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C21991744B0030F38A /* LargeStars@2x.png */; };
+		BAE245C91991744B0030F38A /* MediumStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C31991744B0030F38A /* MediumStars.png */; };
+		BAE245CA1991744B0030F38A /* MediumStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C41991744B0030F38A /* MediumStars@2x.png */; };
+		BAE245CB1991744B0030F38A /* SmallStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C51991744B0030F38A /* SmallStars.png */; };
+		BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C61991744B0030F38A /* SmallStars@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +110,13 @@
 		BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleFins200dpi.png; path = ../../../../../Desktop/SSArt/ShipSprites/PurpleFins200dpi.png; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		BAE245C11991744B0030F38A /* LargeStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeStars.png; path = ../../../../../Desktop/SSArt/Stars/LargeStars.png; sourceTree = "<group>"; };
+		BAE245C21991744B0030F38A /* LargeStars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LargeStars@2x.png"; path = "../../../../../Desktop/SSArt/Stars/LargeStars@2x.png"; sourceTree = "<group>"; };
+		BAE245C31991744B0030F38A /* MediumStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MediumStars.png; path = ../../../../../Desktop/SSArt/Stars/MediumStars.png; sourceTree = "<group>"; };
+		BAE245C41991744B0030F38A /* MediumStars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MediumStars@2x.png"; path = "../../../../../Desktop/SSArt/Stars/MediumStars@2x.png"; sourceTree = "<group>"; };
+		BAE245C51991744B0030F38A /* SmallStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallStars.png; path = ../../../../../Desktop/SSArt/Stars/SmallStars.png; sourceTree = "<group>"; };
+		BAE245C61991744B0030F38A /* SmallStars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallStars@2x.png"; path = "../../../../../Desktop/SSArt/Stars/SmallStars@2x.png"; sourceTree = "<group>"; };
+		BAE245D419917F500030F38A /* ScribbleStroids.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ScribbleStroids.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +195,7 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				BAE245D419917F500030F38A /* ScribbleStroids.entitlements */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				9222E2B918734FF800A246C7 /* libs */,
@@ -253,6 +267,7 @@
 		BA10FE611988C7840023D1F2 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				BAE245BF199174390030F38A /* Stars */,
 				BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */,
 				BA70A8E71989E35900CFEABB /* Asteroids */,
 				BA10FE631988C78B0023D1F2 /* FlameSprites */,
@@ -272,6 +287,19 @@
 			children = (
 			);
 			name = Asteroids;
+			sourceTree = "<group>";
+		};
+		BAE245BF199174390030F38A /* Stars */ = {
+			isa = PBXGroup;
+			children = (
+				BAE245C11991744B0030F38A /* LargeStars.png */,
+				BAE245C21991744B0030F38A /* LargeStars@2x.png */,
+				BAE245C31991744B0030F38A /* MediumStars.png */,
+				BAE245C41991744B0030F38A /* MediumStars@2x.png */,
+				BAE245C51991744B0030F38A /* SmallStars.png */,
+				BAE245C61991744B0030F38A /* SmallStars@2x.png */,
+			);
+			name = Stars;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,20 +381,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE245CB1991744B0030F38A /* SmallStars.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
+				BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				BAE245C91991744B0030F38A /* MediumStars.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
+				BAE245C71991744B0030F38A /* LargeStars.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
+				BAE245CA1991744B0030F38A /* MediumStars@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
@@ -463,6 +497,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = ScribbleStroids.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -497,6 +532,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = ScribbleStroids.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;

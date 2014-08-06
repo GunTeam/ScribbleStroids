@@ -21,7 +21,7 @@
     CCSprite *_joystickCenter;
     CCSprite *_joystickArrow;
     //end SB code connections
-    
+        
     CCLabelTTF *levelLabel;
     CCLabelTTF *scoreLabel;
     

@@ -19,6 +19,10 @@ double touchThreshold = 45;
 int numberOfLives = 5;
 int startLevel = 1;
 
+double smallStarSpeed = .005;
+double mediumStarSpeed = .008;
+double largeStarSpeed = .01;
+
 @implementation GameScene
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
@@ -104,6 +108,10 @@ int startLevel = 1;
     
 }
 
+-(void) moveStars:(CCTime)dt{
+    
+}
+
 -(void) displayNumberOfLives {
     for (int i = 0; i < self.lives; i++) {
         CCLOG(@"Loading ships");
@@ -134,17 +142,23 @@ int startLevel = 1;
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
 
-    
 }
 
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(CCSprite *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
-    self.lives -=1 ;
-    [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
-    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    mainShip.physicsBody.velocity = CGPointMake(0, 0);
-    mainShip.rotation = 0;
+    if (!mainShip.immune) {
+        self.lives -=1 ;
+        if (self.lives < 0) {
+            [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
+        }
+        [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
+        mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+        mainShip.physicsBody.velocity = CGPointMake(0, 0);
+        mainShip.rotation = 0;
+        [mainShip shieldUp:1];
+    }
+    mainShip.physicsBody.angularVelocity = 0;
     return true;
 }
 
@@ -196,7 +210,6 @@ int startLevel = 1;
     
     return true;
 }
-
 -(void) levelOver {
     
     //run level over animation
@@ -216,11 +229,9 @@ int startLevel = 1;
     [self scheduleOnce:@selector(createLevelAfterDelay:) delay:1.5];
     
 }
-
 -(void) createLevelAfterDelay: (CCTime)dt{
     [self createLevel:self.level];
 }
-
 -(void) createLevel:(int) level{
     for (int i = 0; i < level; i++) {
         Asteroid *asteroid = (Asteroid *) [CCBReader load:@"AsteroidLarge"];
