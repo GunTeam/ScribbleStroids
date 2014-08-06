@@ -187,6 +187,7 @@ double largeStarSpeed = .0016;
     // collision handling
     CCLOG(@"Asteroid and ship collided");
     if (!mainShip.immune) {
+        mainShip.immune = true;
         self.lives -=1 ;
         if (self.lives < 0) {
             [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
