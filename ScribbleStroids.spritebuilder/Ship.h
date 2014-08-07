@@ -22,9 +22,11 @@
 @property double rateOfFire;
 @property bool readyToFire;
 @property bool immune;
+@property int numShields;
 
 -(void) fire;
 -(void) hideFlames;
 -(void) showFlames;
 -(void) shieldUp:(CCTime)dt;
+-(void) touchShield;
 @end

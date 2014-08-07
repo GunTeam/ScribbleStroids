@@ -15,8 +15,9 @@ int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
 int initialAsteroidVelocity = 60;
 bool debugMode = false;
-double touchThreshold = 45;
-int numberOfLives = 5;
+double joystickTouchThreshold = 90;
+double shipTouchThreshold = 50;
+int numberOfLives = 2;
 int startLevel = 1;
 
 double smallStarSpeed = .0006;
@@ -30,21 +31,24 @@ double largeStarSpeed = .0016;
     mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
     double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
-    if (hypotenuse<touchThreshold) {
+    double toShip =pow(pow(touchLocation.x -(mainShip.position.x),2) + pow(touchLocation.y - (mainShip.position.y), 2),.5);
+    if (hypotenuse<joystickTouchThreshold) {
         CCLOG(@"Touch inside threshold");
         CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
-//        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
-        
         mainShip.rotation = point;
         _joystickArrow.rotation = point;
+    } else if (toShip<shipTouchThreshold && mainShip.numShields > 0 && !mainShip.immune){
+        [mainShip touchShield];
     }
+    
+
 }
 -(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Moved a touch");
     mainShip.physicsBody.angularVelocity = 0;
     CGPoint touchLocation = [touch locationInNode:self];
     double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
-    if (hypotenuse<touchThreshold) {
+    if (hypotenuse<joystickTouchThreshold) {
         CCLOG(@"Touch inside threshold");
         CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
         //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
@@ -83,6 +87,10 @@ double largeStarSpeed = .0016;
     }
     //end load background
     
+    CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
+    [self addChild:background z:-2];
+    
+    
     self.userInteractionEnabled = true;
     self.multipleTouchEnabled =true;
     
@@ -113,15 +121,16 @@ double largeStarSpeed = .0016;
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     mainShip.rateOfFire = 1./30.;
+    mainShip.numShields = 2;
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
     
     //labels
-    scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Arial" fontSize:18];
+    scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Chalkduster" fontSize:18];
     scoreLabel.anchorPoint = CGPointMake(0, 1);
     scoreLabel.position = CGPointMake(0, screenHeight);
     [self addChild:scoreLabel];
-    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d",self.level] fontName:@"Arial" fontSize:18];
+    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d",self.level] fontName:@"Chalkduster" fontSize:18];
     levelLabel.anchorPoint = CGPointMake(1, 1);
     levelLabel.position = CGPointMake(screenWidth, screenHeight);
     [self addChild:levelLabel];
@@ -131,10 +140,6 @@ double largeStarSpeed = .0016;
     
     self.lives = numberOfLives;
     [self displayNumberOfLives];
-    
-}
-
--(void) moveStars:(CCTime)dt{
     
 }
 
@@ -240,6 +245,15 @@ double largeStarSpeed = .0016;
         }
     }
     
+    CCLabelTTF *plusOne = [CCLabelTTF labelWithString:@"+1" fontName:@"Chalkduster" fontSize:22];
+    plusOne.position = asteroid.position;
+    CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
+    CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
+    [self addChild:plusOne];
+    [plusOne runAction:sequence];
+//    [plusOne remove]
+    
     self.score += 1;
     scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
     
@@ -256,7 +270,7 @@ double largeStarSpeed = .0016;
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     self.level += 1;
     levelLabel.string = [NSString stringWithFormat:@"Level: %d", self.level];
-    CCLabelTTF *levelUpLabel = [CCLabelTTF  labelWithString:@"Level Up!" fontName:@"Helvetica" fontSize:36];
+    CCLabelTTF *levelUpLabel = [CCLabelTTF  labelWithString:@"Level Up!" fontName:@"Chalkduster" fontSize:36];
     levelUpLabel.scale = 0;
     levelUpLabel.position = CGPointMake(screenWidth/2, screenHeight/2);
     [self addChild:levelUpLabel];

@@ -1151,7 +1151,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.89999997615814209</real>
+							<real>0.82999998331069946</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1188,7 +1188,8 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>Scribble ‘Stroids</string>
+							<string>Scribble
+‘Stroids</string>
 							<false/>
 						</array>
 					</dict>
@@ -1198,7 +1199,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Chalkduster</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1207,7 +1208,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>38</real>
+							<real>66</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1324,6 +1325,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

@@ -9,7 +9,8 @@
 #import "Ship.h"
 
 double bulletLaunchImpulse = 3;
-double shieldTime = 5;
+double crashShieldTime = 5;
+double touchShieldTime = 5;
 
 @implementation Ship
 
@@ -74,7 +75,16 @@ double shieldTime = 5;
 
 -(void) shieldUp:(CCTime)dt{
     _shield.visible = true;
-    CCAction *delay = [CCActionDelay actionWithDuration:shieldTime];
+    CCAction *delay = [CCActionDelay actionWithDuration:crashShieldTime];
+    CCAction *toggle = [CCActionToggleVisibility action];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[delay,toggle]];
+    [_shield runAction:sequence];
+}
+
+-(void) touchShield {
+    self.numShields -= 1;
+    _shield.visible = true;
+    CCAction *delay = [CCActionDelay actionWithDuration:touchShieldTime];
     CCAction *toggle = [CCActionToggleVisibility action];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[delay,toggle]];
     [_shield runAction:sequence];
