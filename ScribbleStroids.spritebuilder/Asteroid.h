@@ -14,5 +14,6 @@
 }
 
 @property int size;
+@property bool isMain;
 
 @end

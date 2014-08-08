@@ -48,18 +48,20 @@ double touchShieldTime = 5;
         _shield.physicsBody.density = .01;
         self.immune = false;
     }
-    
-    if (self.position.x > screenWidth){
+    if (!self.inMain) {
+        if (self.position.x > screenWidth){
         self.position = CGPointMake(0, self.position.y);
     } else if (self.position.x < 0){
         self.position = CGPointMake(screenWidth, self.position.y);
     }
-    if (self.position.y > screenHeight){
+        if (self.position.y > screenHeight){
         self.position = CGPointMake(self.position.x, 0);
     } else if (self.position.y < 0) {
         self.position = CGPointMake(self.position.x, screenHeight);
     }
-}
+    }
+
+    }
 
 -(void) hideFlames{
     _flames.visible = false;
