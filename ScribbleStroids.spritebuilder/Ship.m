@@ -82,7 +82,6 @@ double touchShieldTime = 5;
 }
 
 -(void) touchShield {
-    self.numShields -= 1;
     _shield.visible = true;
     CCAction *delay = [CCActionDelay actionWithDuration:touchShieldTime];
     CCAction *toggle = [CCActionToggleVisibility action];
@@ -93,7 +92,6 @@ double touchShieldTime = 5;
 -(void) fire {
     fireRate = 1;
     
-    CCLOG(@"Ship has fired");
     CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
     bullet.position = self.position;
     bullet.physicsBody.velocity = self.physicsBody.velocity;

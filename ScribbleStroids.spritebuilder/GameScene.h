@@ -11,6 +11,7 @@
 #import "Ship.h"
 #import "Asteroid.h"
 #import "Stars.h"
+#import "Bullet.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
@@ -41,5 +42,6 @@
 @property int level;
 @property int score;
 @property int lives;
+@property int numBombs;
 
 @end

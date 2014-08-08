@@ -19,6 +19,8 @@ double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
 int startLevel = 1;
+int bulletExplosionSpeed = 30;
+int startingNumberOfBombs = 3;
 
 double smallStarSpeed = .0006;
 double mediumStarSpeed = .001;
@@ -38,7 +40,15 @@ double largeStarSpeed = .0016;
         mainShip.rotation = point;
         _joystickArrow.rotation = point;
     } else if (toShip<shipTouchThreshold && mainShip.numShields > 0 && !mainShip.immune){
+        mainShip.numShields -=1;
         [mainShip touchShield];
+        [self displayNumberOfShields];
+    } else if (touchLocation.y > 100 && touchLocation.y < (screenHeight - 50)){
+        if (self.numBombs > 0){
+            [self deployBomb:touchLocation];
+            self.numBombs -=1;
+            [self removeChildByName:[NSString stringWithFormat:@"bomb%d",self.numBombs]];
+        }
     }
     
 
@@ -141,6 +151,21 @@ double largeStarSpeed = .0016;
     self.lives = numberOfLives;
     [self displayNumberOfLives];
     
+    [self displayNumberOfShields];
+    
+    self.numBombs = startingNumberOfBombs;
+    [self displayNumberOfBombs];
+    
+}
+
+-(void) deployBomb:(CGPoint)touch {
+    for (int i = 0; i < 360; i +=30) {
+        Bullet *bullet = (Bullet *)[CCBReader load:@"Bullet"];
+        bullet.physicsBody.velocity = CGPointMake(bulletExplosionSpeed*cos(i), bulletExplosionSpeed*sin(i));
+        bullet.scale = 1.2;
+        bullet.position = touch;
+        [_physicsNode addChild:bullet];
+    }
 }
 
 -(void) displayNumberOfLives {
@@ -151,6 +176,40 @@ double largeStarSpeed = .0016;
         ship.scale = .2;
         ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.2, screenHeight - scoreLabel.contentSizeInPoints.height);
         [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
+    }
+}
+
+-(void) displayNumberOfShields {
+    for (int i = 0; i < mainShip.numShields + 1; i++) {
+        //destroy the children
+        [self removeChildByName:[NSString stringWithFormat:@"shield%d",i]];
+    }
+    double scale = .38;
+    for (int i= 0; i < mainShip.numShields; i++) {
+        CCSprite *shield = (CCSprite *) [CCBReader load:@"ShieldSprite"];
+        shield.scale = scale;
+        if (i == 0) {
+            shield.position = CGPointMake(screenWidth/2 - ((mainShip.numShields-1)*.5*shield.contentSizeInPoints.width)*scale, screenHeight - shield.contentSizeInPoints.height*1.5*scale);
+        } else {
+            shield.position = CGPointMake(screenWidth/2 - ((mainShip.numShields-1)*.5*shield.contentSizeInPoints.width)*scale + i*shield.contentSizeInPoints.width*scale, screenHeight - shield.contentSizeInPoints.height*1.5*scale);
+        }
+        
+        [self addChild:shield z:0 name:[NSString stringWithFormat:@"shield%d",i]];
+    }
+}
+
+-(void) displayNumberOfBombs {
+//    for (int i = 0; i < self.numBombs + 1; i++) {
+//        //destroy the children
+//        [self removeChildByName:[NSString stringWithFormat:@"bomb%d",i]];
+//    }
+    double scale = .223;
+    for (int i= 0; i < self.numBombs; i++) {
+        CCSprite *bomb = [CCSprite spriteWithImageNamed:@"LittleNuke.png"];
+        bomb.scale = scale;
+        bomb.anchorPoint = CGPointMake(1, 1);
+        bomb.position = CGPointMake(screenWidth - scale * bomb.contentSizeInPoints.width*i, screenHeight - levelLabel.contentSizeInPoints.height);
+        [self addChild:bomb z:0 name:[NSString stringWithFormat:@"bomb%d",i]];
     }
 }
 
@@ -252,7 +311,6 @@ double largeStarSpeed = .0016;
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
     [self addChild:plusOne];
     [plusOne runAction:sequence];
-//    [plusOne remove]
     
     self.score += 1;
     scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];

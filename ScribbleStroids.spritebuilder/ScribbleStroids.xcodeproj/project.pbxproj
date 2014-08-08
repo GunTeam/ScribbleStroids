@@ -39,6 +39,9 @@
 		BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87B1986DBEE00D3F431 /* Asteroid.m */; };
 		BA00D87F1986DBF900D3F431 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87E1986DBF900D3F431 /* Ship.m */; };
 		BA00D8821988298D00D3F431 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D8811988298D00D3F431 /* Bullet.m */; };
+		BA9D12B81993F727000C05D1 /* whiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12B71993F727000C05D1 /* whiteCircle.png */; };
+		BA9D12BB19942211000C05D1 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D12BA19942211000C05D1 /* Bomb.m */; };
+		BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12BC19942357000C05D1 /* LittleNuke.png */; };
 		BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
 		BAE245C71991744B0030F38A /* LargeStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C11991744B0030F38A /* LargeStars.png */; };
@@ -108,6 +111,10 @@
 		BA00D87E1986DBF900D3F431 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		BA00D8801988298D00D3F431 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		BA00D8811988298D00D3F431 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
+		BA9D12B71993F727000C05D1 /* whiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteCircle.png; path = ../../../../../Desktop/SSArt/whiteCircle.png; sourceTree = "<group>"; };
+		BA9D12B919942211000C05D1 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
+		BA9D12BA19942211000C05D1 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
+		BA9D12BC19942357000C05D1 /* LittleNuke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LittleNuke.png; path = ../../../../../Desktop/SSArt/Buttons/LittleNuke.png; sourceTree = "<group>"; };
 		BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleFins200dpi.png; path = ../../../../../Desktop/SSArt/ShipSprites/PurpleFins200dpi.png; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
@@ -265,6 +272,8 @@
 				BA00D8811988298D00D3F431 /* Bullet.m */,
 				BAE245D51992AF4E0030F38A /* Stars.h */,
 				BAE245D61992AF4E0030F38A /* Stars.m */,
+				BA9D12B919942211000C05D1 /* Bomb.h */,
+				BA9D12BA19942211000C05D1 /* Bomb.m */,
 			);
 			name = "Sprite Classes";
 			sourceTree = "<group>";
@@ -272,8 +281,10 @@
 		BA10FE611988C7840023D1F2 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				BA9D12BC19942357000C05D1 /* LittleNuke.png */,
 				BAE245BF199174390030F38A /* Stars */,
 				BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */,
+				BA9D12B71993F727000C05D1 /* whiteCircle.png */,
 				BA70A8E71989E35900CFEABB /* Asteroids */,
 				BA10FE631988C78B0023D1F2 /* FlameSprites */,
 			);
@@ -396,6 +407,7 @@
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
+				BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				BAE245C91991744B0030F38A /* MediumStars.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
@@ -408,6 +420,7 @@
 				BAE245CA1991744B0030F38A /* MediumStars@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				BA9D12B81993F727000C05D1 /* whiteCircle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +453,7 @@
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				BABD42D8198416E600C4A826 /* GameScene.m in Sources */,
 				BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */,
+				BA9D12BB19942211000C05D1 /* Bomb.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				BA00D87F1986DBF900D3F431 /* Ship.m in Sources */,
 				BAE245D71992AF4E0030F38A /* Stars.m in Sources */,
