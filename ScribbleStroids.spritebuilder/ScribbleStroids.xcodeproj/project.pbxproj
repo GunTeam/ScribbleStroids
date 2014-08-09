@@ -43,6 +43,7 @@
 		BA9D12BB19942211000C05D1 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D12BA19942211000C05D1 /* Bomb.m */; };
 		BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12BC19942357000C05D1 /* LittleNuke.png */; };
 		BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */; };
+		BAAD3DD61995DB4D0064AF9A /* Shield.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAD3DD51995DB4D0064AF9A /* Shield.m */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
 		BAE245C71991744B0030F38A /* LargeStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C11991744B0030F38A /* LargeStars.png */; };
 		BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C21991744B0030F38A /* LargeStars@2x.png */; };
@@ -116,6 +117,8 @@
 		BA9D12BA19942211000C05D1 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
 		BA9D12BC19942357000C05D1 /* LittleNuke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LittleNuke.png; path = ../../../../../Desktop/SSArt/Buttons/LittleNuke.png; sourceTree = "<group>"; };
 		BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleFins200dpi.png; path = ../../../../../Desktop/SSArt/ShipSprites/PurpleFins200dpi.png; sourceTree = "<group>"; };
+		BAAD3DD41995DB4D0064AF9A /* Shield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shield.h; sourceTree = "<group>"; };
+		BAAD3DD51995DB4D0064AF9A /* Shield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shield.m; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		BAE245C11991744B0030F38A /* LargeStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeStars.png; path = ../../../../../Desktop/SSArt/Stars/LargeStars.png; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				BAE245D61992AF4E0030F38A /* Stars.m */,
 				BA9D12B919942211000C05D1 /* Bomb.h */,
 				BA9D12BA19942211000C05D1 /* Bomb.m */,
+				BAAD3DD41995DB4D0064AF9A /* Shield.h */,
+				BAAD3DD51995DB4D0064AF9A /* Shield.m */,
 			);
 			name = "Sprite Classes";
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				BABD42D8198416E600C4A826 /* GameScene.m in Sources */,
+				BAAD3DD61995DB4D0064AF9A /* Shield.m in Sources */,
 				BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */,
 				BA9D12BB19942211000C05D1 /* Bomb.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,

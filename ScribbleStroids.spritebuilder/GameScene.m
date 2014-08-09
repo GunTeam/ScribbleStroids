@@ -21,6 +21,8 @@ int numberOfLives = 2;
 int startLevel = 1;
 int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 3;
+double howOftenPowerupDropsAreMade = 60;
+int bombLimit = 5;
 
 double smallStarSpeed = .0006;
 double mediumStarSpeed = .001;
@@ -29,43 +31,39 @@ double largeStarSpeed = .0016;
 @implementation GameScene
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+    
     CCLOG(@"Received a touch");
-    mainShip.physicsBody.angularVelocity = 0;
-    CGPoint touchLocation = [touch locationInNode:self];
-    double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
-    double toShip =pow(pow(touchLocation.x -(mainShip.position.x),2) + pow(touchLocation.y - (mainShip.position.y), 2),.5);
-    if (hypotenuse<joystickTouchThreshold) {
-        CCLOG(@"Touch inside threshold");
-        CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
-        mainShip.rotation = point;
-        _joystickArrow.rotation = point;
-    } else if (toShip<shipTouchThreshold && mainShip.numShields > 0 && !mainShip.immune){
-        mainShip.numShields -=1;
-        [mainShip touchShield];
-        [self displayNumberOfShields];
-    } else if (touchLocation.y > 100 && touchLocation.y < (screenHeight - 50)){
-        if (self.numBombs > 0){
-            [self deployBomb:touchLocation];
-            self.numBombs -=1;
-            [self removeChildByName:[NSString stringWithFormat:@"bomb%d",self.numBombs]];
+    if (!self.paused) {
+        mainShip.physicsBody.angularVelocity = 0;
+        CGPoint touchLocation = [touch locationInNode:self];
+        double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
+        if (hypotenuse<joystickTouchThreshold) {
+            CCLOG(@"Touch inside threshold");
+            CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
+            mainShip.rotation = point;
+            _joystickArrow.rotation = point;
+        } else if (touchLocation.y > 100 && touchLocation.y < (screenHeight - 50)){
+            if (self.numBombs > 0){
+                [self deployBomb:touchLocation];
+                self.numBombs -=1;
+                [self removeChildByName:[NSString stringWithFormat:@"bomb%d",self.numBombs]];
+            }
         }
     }
-    
-
 }
 -(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Moved a touch");
-    mainShip.physicsBody.angularVelocity = 0;
-    CGPoint touchLocation = [touch locationInNode:self];
-    double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
-    if (hypotenuse<joystickTouchThreshold) {
-        CCLOG(@"Touch inside threshold");
-        CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
-        //        CGFloat point = ccpAngle(_joystickCenter.position, touchLocation)*180/M_PI;
-        
-        mainShip.rotation = point;
-        _joystickArrow.rotation = point;
-
+    if (!self.paused) {
+        mainShip.physicsBody.angularVelocity = 0;
+        CGPoint touchLocation = [touch locationInNode:self];
+        double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
+        if (hypotenuse<joystickTouchThreshold) {
+            CCLOG(@"Touch inside threshold");
+            CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
+            mainShip.rotation = point;
+            _joystickArrow.rotation = point;
+            
+        }
     }
 }
 
@@ -108,13 +106,8 @@ double largeStarSpeed = .0016;
     self.score = 0;
     
     [[[CCDirector sharedDirector] view] setMultipleTouchEnabled:YES];
-    _leftButton.exclusiveTouch = false;
-    _rightButton.exclusiveTouch = false;
     _boostButton.exclusiveTouch = false;
     _shootButton.exclusiveTouch = false;
-    
-    _leftButton.visible = false;
-    _rightButton.visible = false;
     
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
@@ -131,7 +124,6 @@ double largeStarSpeed = .0016;
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     mainShip.rateOfFire = 1./30.;
-    mainShip.numShields = 2;
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
     
@@ -150,12 +142,13 @@ double largeStarSpeed = .0016;
     
     self.lives = numberOfLives;
     [self displayNumberOfLives];
-    
-    [self displayNumberOfShields];
-    
+        
     self.numBombs = startingNumberOfBombs;
     [self displayNumberOfBombs];
     
+    [self schedule:@selector(powerUpDrop:) interval:howOftenPowerupDropsAreMade];
+    
+    self.paused = false;
 }
 
 -(void) deployBomb:(CGPoint)touch {
@@ -168,6 +161,28 @@ double largeStarSpeed = .0016;
     }
 }
 
+-(void) powerUpDrop:(CCTime) dt {
+    //stuff to drop the bomb
+    int randNumber = arc4random() % 2;
+    CCSprite *powerUp = [[CCSprite alloc]init];
+    if (randNumber == 0) {
+        powerUp = (Bomb *) [CCBReader load:@"Bomb"];
+    } else {
+        powerUp = (Shield *) [CCBReader load:@"ShieldSprite"];
+    }
+    powerUp.scale = .5;
+    int width = screenWidth - 75;
+    int randX = arc4random() % width + 37;
+    int height = screenHeight - 150;
+    int randY = arc4random() % height + 100;
+    powerUp.position = CGPointMake(randX, randY);
+    powerUp.opacity = 0;
+    CCAction *fadeIn = [CCActionFadeIn actionWithDuration:1.];
+    [_physicsNode addChild:powerUp];
+    [powerUp runAction:fadeIn];
+    
+}
+
 -(void) displayNumberOfLives {
     for (int i = 0; i < self.lives; i++) {
         CCLOG(@"Loading ships");
@@ -178,34 +193,13 @@ double largeStarSpeed = .0016;
         [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
     }
 }
-
--(void) displayNumberOfShields {
-    for (int i = 0; i < mainShip.numShields + 1; i++) {
-        //destroy the children
-        [self removeChildByName:[NSString stringWithFormat:@"shield%d",i]];
-    }
-    double scale = .38;
-    for (int i= 0; i < mainShip.numShields; i++) {
-        CCSprite *shield = (CCSprite *) [CCBReader load:@"ShieldSprite"];
-        shield.scale = scale;
-        if (i == 0) {
-            shield.position = CGPointMake(screenWidth/2 - ((mainShip.numShields-1)*.5*shield.contentSizeInPoints.width)*scale, screenHeight - shield.contentSizeInPoints.height*1.5*scale);
-        } else {
-            shield.position = CGPointMake(screenWidth/2 - ((mainShip.numShields-1)*.5*shield.contentSizeInPoints.width)*scale + i*shield.contentSizeInPoints.width*scale, screenHeight - shield.contentSizeInPoints.height*1.5*scale);
-        }
-        
-        [self addChild:shield z:0 name:[NSString stringWithFormat:@"shield%d",i]];
-    }
-}
-
 -(void) displayNumberOfBombs {
-//    for (int i = 0; i < self.numBombs + 1; i++) {
-//        //destroy the children
-//        [self removeChildByName:[NSString stringWithFormat:@"bomb%d",i]];
-//    }
-    double scale = .223;
+    double scale = .28;
+    for (int i = 0; i < self.numBombs + 1; i++) {
+        [self removeChildByName:[NSString stringWithFormat:@"bomb%d",i]];
+    }
     for (int i= 0; i < self.numBombs; i++) {
-        CCSprite *bomb = [CCSprite spriteWithImageNamed:@"LittleNuke.png"];
+        Bomb *bomb = (Bomb *)[CCBReader load:@"Bomb"];
         bomb.scale = scale;
         bomb.anchorPoint = CGPointMake(1, 1);
         bomb.position = CGPointMake(screenWidth - scale * bomb.contentSizeInPoints.width*i, screenHeight - levelLabel.contentSizeInPoints.height);
@@ -247,6 +241,44 @@ double largeStarSpeed = .0016;
     
 }
 
+-(void) Pause {
+    self.paused = !self.paused;
+    if (self.paused) {
+        double opacity = .5;
+        [[CCDirector sharedDirector] pause];
+        _boostButton.enabled = false;
+        _shootButton.enabled = false;
+        mainShip.opacity = opacity;
+        _joystickArrow.opacity = opacity;
+        _joystickCenter.opacity = opacity;
+        scoreLabel.opacity = opacity;
+        levelLabel.opacity = opacity;
+        for (int i = 0; i < self.numBombs; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"bomb%d",i] recursively:false].opacity = opacity;
+        }
+        for (int i = 0; i < self.lives; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
+        }
+    } else {
+        double opacity = 1;
+        [[CCDirector sharedDirector] resume];
+        _boostButton.enabled = true;
+        _shootButton.enabled = true;
+        mainShip.opacity = opacity;
+        _joystickArrow.opacity = opacity;
+        _joystickCenter.opacity = opacity;
+        scoreLabel.opacity = opacity;
+        levelLabel.opacity = opacity;
+        for (int i = 0; i < self.numBombs; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"bomb%d",i] recursively:false].opacity = opacity;
+        }
+        for (int i = 0; i < self.lives; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
+        }
+    }
+    
+}
+
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
@@ -267,31 +299,48 @@ double largeStarSpeed = .0016;
     mainShip.physicsBody.angularVelocity = 0;
     return true;
 }
-
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCSprite *)bullet asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and bullet collided");
-    
-    [self asteroidCollision:asteroid];
-    
-    CCLabelTTF *plusOne = [CCLabelTTF labelWithString:@"+1" fontName:@"Chalkduster" fontSize:22];
-    plusOne.position = asteroid.position;
-    CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
-    CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
-    [self addChild:plusOne];
-    [plusOne runAction:sequence];
-    
-    self.score += 1;
-    scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
-    
+    if (asteroid.key) {
+        asteroid.key = false;
+        [self asteroidCollision:asteroid];
+        
+        CCLabelTTF *plusOne = [CCLabelTTF labelWithString:@"+1" fontName:@"Chalkduster" fontSize:22];
+        plusOne.position = asteroid.position;
+        CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
+        CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
+        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
+        [self addChild:plusOne];
+        [plusOne runAction:sequence];
+        
+        self.score += 1;
+        scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
+    }
     [bullet removeFromParent];
-    
-    
     
     return true;
 }
-
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield bomb:(Bomb *)bomb{
+    if (self.numBombs < bombLimit) {
+        self.numBombs += 1;
+        [bomb removeFromParent];
+        [self displayNumberOfBombs];
+    } else {
+       [bomb removeFromParent];
+    }
+    return true;
+}
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCSprite *)bullet bomb:(Bomb *)bomb {
+    [bullet removeFromParent];
+    bomb.physicsBody.velocity = CGPointMake(0, 0);
+    return true;
+}
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield pickupShield:(Shield *)pickupShield{
+    [mainShip shieldUp:1];
+    [pickupShield removeFromParent];
+    return true;
+}
 -(void) asteroidCollision : (Asteroid *) asteroid{
     if (asteroid.size == 1) {
         Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"AsteroidMedium"];

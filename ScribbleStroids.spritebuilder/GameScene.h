@@ -12,12 +12,13 @@
 #import "Asteroid.h"
 #import "Stars.h"
 #import "Bullet.h"
+#import "Bomb.h"
+#import "Shield.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
     //SB code connections
-    CCButton *_leftButton;
-    CCButton *_rightButton;
+    CCButton *_pauseButton;
     CCButton *_boostButton;
     CCButton *_shootButton;
     CCSprite *_joystickCenter;
@@ -43,5 +44,6 @@
 @property int score;
 @property int lives;
 @property int numBombs;
+@property bool paused;
 
 @end

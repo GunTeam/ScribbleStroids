@@ -23,6 +23,8 @@
     
     self.physicsBody.collisionGroup = @"AsteroidGroup";
     self.physicsBody.collisionType = @"asteroid";
+    
+    self.key = true;
 }
 
 -(void) update:(CCTime)delta {

@@ -22,7 +22,6 @@
 @property double rateOfFire;
 @property bool readyToFire;
 @property bool immune;
-@property int numShields;
 @property bool inMain;
 
 -(void) fire;

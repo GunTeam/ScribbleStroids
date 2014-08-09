@@ -206,14 +206,6 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>backgroundOpacity|Disabled</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.69999998807907104</real>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>labelOpacity|Disabled</string>
 						<key>type</key>
 						<string>Float</string>
@@ -230,14 +222,6 @@
 							<string></string>
 							<string>Art/Buttons/BoostButton400.png</string>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>backgroundOpacity|Selected</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.69999998807907104</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -393,7 +377,7 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_pauseButton</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -451,7 +435,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
+							<string>Pause</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -519,7 +503,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/Buttons/pauseButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -543,7 +527,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/pauseButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -562,7 +546,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/pauseButton.png</string>
 						</array>
 					</dict>
 					<dict>

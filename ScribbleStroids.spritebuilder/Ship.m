@@ -24,8 +24,10 @@ double touchShieldTime = 5;
     
     self.physicsBody.collisionType = @"ship";
     self.physicsBody.collisionGroup = @"ShipGroup";
+    _shield.physicsBody.collisionType = @"shield";
     _shield.physicsBody.collisionGroup = @"ShipGroup";
     _shield.visible = false;
+    _shield.physicsBody.angularVelocity = 1;
     animationManager = _flames.userObject;
     [self schedule:@selector(runFlames:) interval:1./3.];
     [self hideFlames];
