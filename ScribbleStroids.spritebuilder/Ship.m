@@ -11,6 +11,8 @@
 double bulletLaunchImpulse = 3;
 double crashShieldTime = 5;
 double touchShieldTime = 5;
+int shieldDuration = 5;
+int shieldTimeCounter;
 
 @implementation Ship
 
@@ -32,7 +34,21 @@ double touchShieldTime = 5;
     [self schedule:@selector(runFlames:) interval:1./3.];
     [self hideFlames];
     
+    self.shieldDuration = shieldDuration;
+    
+    
     self.immune = false;
+}
+
+-(void) sustainShield:(CCTime) dt {
+    CCLOG(@"Shield is sustained");
+    if (shieldTimeCounter < shieldDuration) {
+        shieldTimeCounter+=1;
+        CCLOG(@"shield time increased by one");
+    } else {
+        [self unschedule:@selector(sustainShield:)];
+        _shield.visible = false;
+    }
 }
 
 -(void)update:(CCTime)delta{
@@ -77,20 +93,10 @@ double touchShieldTime = 5;
     [animationManager runAnimationsForSequenceNamed:@"Animation1"];
 }
 
--(void) shieldUp:(CCTime)dt{
+-(void) raiseShield {
     _shield.visible = true;
-    CCAction *delay = [CCActionDelay actionWithDuration:crashShieldTime];
-    CCAction *toggle = [CCActionToggleVisibility action];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[delay,toggle]];
-    [_shield runAction:sequence];
-}
-
--(void) touchShield {
-    _shield.visible = true;
-    CCAction *delay = [CCActionDelay actionWithDuration:touchShieldTime];
-    CCAction *toggle = [CCActionToggleVisibility action];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[delay,toggle]];
-    [_shield runAction:sequence];
+    shieldTimeCounter = 0;
+    [self schedule:@selector(sustainShield:) interval:1.];
 }
 
 -(void) fire {

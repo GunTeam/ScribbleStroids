@@ -23,10 +23,10 @@
 @property bool readyToFire;
 @property bool immune;
 @property bool inMain;
+@property bool shieldDuration;
 
 -(void) fire;
 -(void) hideFlames;
 -(void) showFlames;
--(void) shieldUp:(CCTime)dt;
--(void) touchShield;
+-(void) raiseShield;
 @end

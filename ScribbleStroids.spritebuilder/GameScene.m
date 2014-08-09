@@ -72,6 +72,7 @@ double largeStarSpeed = .0016;
     smallStarsArray = [[NSMutableArray alloc]init];
     mediumStarsArray = [[NSMutableArray alloc]init];
     largeStarsArray = [[NSMutableArray alloc]init];
+    asteroidArray = [[NSMutableArray alloc]init];
     
     for (int i = 0; i <= 2; i++) {
         for (int j = 0; j <= 2; j++) {
@@ -124,6 +125,7 @@ double largeStarSpeed = .0016;
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     mainShip.rateOfFire = 1./30.;
+    [mainShip raiseShield];
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
     
@@ -259,6 +261,9 @@ double largeStarSpeed = .0016;
         for (int i = 0; i < self.lives; i ++) {
             [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
         }
+        for (Asteroid *asteroid in asteroidArray){
+            asteroid.opacity = opacity;
+        }
     } else {
         double opacity = 1;
         [[CCDirector sharedDirector] resume];
@@ -274,6 +279,9 @@ double largeStarSpeed = .0016;
         }
         for (int i = 0; i < self.lives; i ++) {
             [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
+        }
+        for (Asteroid *asteroid in asteroidArray){
+            asteroid.opacity = opacity;
         }
     }
     
@@ -293,7 +301,7 @@ double largeStarSpeed = .0016;
         mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
         mainShip.physicsBody.velocity = CGPointMake(0, 0);
         mainShip.rotation = 0;
-        [mainShip shieldUp:1];
+        [mainShip raiseShield];
     }
     
     mainShip.physicsBody.angularVelocity = 0;
@@ -337,7 +345,7 @@ double largeStarSpeed = .0016;
     return true;
 }
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield pickupShield:(Shield *)pickupShield{
-    [mainShip shieldUp:1];
+    [mainShip raiseShield];
     [pickupShield removeFromParent];
     return true;
 }
@@ -348,12 +356,14 @@ double largeStarSpeed = .0016;
         asteroid1.position = CGPointMake(asteroid.position.x+1, asteroid.position.y +1);
         asteroid1.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2));
         [_physicsNode addChild:asteroid1];
+        [asteroidArray addObject:asteroid1];
         
         Asteroid *asteroid2 = (Asteroid *) [CCBReader load:@"AsteroidMedium"];
         asteroid2.size = 2;
         asteroid2.position = CGPointMake(asteroid.position.x-1, asteroid.position.y-1);
         asteroid2.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%mediumSpeedIncrease - mediumSpeedIncrease/2));
         [_physicsNode addChild:asteroid2];
+        [asteroidArray addObject:asteroid2];
         
     } else if (asteroid.size == 2){
         Asteroid *asteroid1 = (Asteroid *) [CCBReader load:@"AsteroidSmall"];
@@ -361,12 +371,14 @@ double largeStarSpeed = .0016;
         asteroid1.position = CGPointMake(asteroid.position.x+1, asteroid.position.y +1);
         asteroid1.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2));
         [_physicsNode addChild:asteroid1];
+        [asteroidArray addObject:asteroid1];
         
         Asteroid *asteroid2 = (Asteroid *) [CCBReader load:@"AsteroidSmall"];
         asteroid2.size = 3;
         asteroid2.position = CGPointMake(asteroid.position.x-1, asteroid.position.y-1);
         asteroid2.physicsBody.velocity = CGPointMake(asteroid.physicsBody.velocity.x +(int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2), asteroid.physicsBody.velocity.y + (int)(arc4random()%smallSpeedIncrease - smallSpeedIncrease/2));
         [_physicsNode addChild:asteroid2];
+        [asteroidArray addObject:asteroid2];
         
     } else {
         self.numberOfAsteroidsRemaingingInLevel -= 1;
@@ -374,6 +386,7 @@ double largeStarSpeed = .0016;
             [self levelOver];
         }
     }
+    [asteroidArray removeObject:asteroid];
     [asteroid removeFromParent];
 }
 
@@ -410,7 +423,7 @@ double largeStarSpeed = .0016;
         int asteroidVelocityY = (arc4random()%initialAsteroidVelocity)-initialAsteroidVelocity/2;
         asteroid.physicsBody.velocity = CGPointMake(asteroidVelocityX, asteroidVelocityY);
         [_physicsNode addChild:asteroid];
-        
+        [asteroidArray addObject:asteroid];
     }
     self.numberOfAsteroidsRemaingingInLevel = level*4;
     

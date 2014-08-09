@@ -692,8 +692,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -833,7 +831,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/highscoreButton.png</string>
+							<string>Art/Buttons/blueHighScoreButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1020,6 +1018,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

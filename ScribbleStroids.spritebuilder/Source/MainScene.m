@@ -86,7 +86,8 @@ double LSS = .08;
 }
 
 -(void) playGame{
-    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"]];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:.5];
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"] withTransition:transition];
 }
 
 -(void) howTo{

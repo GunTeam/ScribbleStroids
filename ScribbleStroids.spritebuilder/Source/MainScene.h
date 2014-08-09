@@ -12,7 +12,7 @@
 #import "Ship.h"
 
 @interface MainScene : CCNode
-{
+{    
     CCLabelTTF *_titleLabel;
     
     NSMutableArray *smallStarsArray,*mediumStarsArray,*largeStarsArray;

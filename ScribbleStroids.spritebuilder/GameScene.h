@@ -27,6 +27,7 @@
     
     //background sprites
     NSMutableArray *smallStarsArray,*mediumStarsArray,*largeStarsArray;
+    NSMutableArray *asteroidArray;
     
     CCLabelTTF *levelLabel;
     CCLabelTTF *scoreLabel;
