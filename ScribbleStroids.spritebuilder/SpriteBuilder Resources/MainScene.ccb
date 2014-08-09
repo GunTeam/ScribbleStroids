@@ -179,7 +179,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/Buttons/yellowTriangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -203,7 +203,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/yellowTriangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -222,7 +222,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/yellowTriangle.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -494,7 +494,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/blueQuestionMark.png</string>
+							<string>Art/Buttons/greenDollarSign.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -505,7 +505,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/Buttons/greenDollarSign.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -529,7 +529,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/greenDollarSign.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -548,7 +548,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/greenDollarSign.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -822,7 +822,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/highscoreButton.png</string>
+							<string>Art/Buttons/blueHighScoreButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -833,7 +833,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/Buttons/highscoreButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -857,7 +857,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/blueHighScoreButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -876,7 +876,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/blueHighScoreButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1367,7 +1367,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/Buttons/settingsButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1391,7 +1391,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/settingsButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1410,7 +1410,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/Buttons/settingsButton.png</string>
 						</array>
 					</dict>
 					<dict>
