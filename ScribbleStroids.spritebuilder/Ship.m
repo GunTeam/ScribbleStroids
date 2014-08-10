@@ -89,6 +89,14 @@ int shieldTimeCounter;
     _flames.visible = true;
 }
 
+-(void) dimShield: (double)opacity {
+    _shield.opacity = opacity;
+}
+
+-(void) brightenShield:(double)opacity {
+    _shield.opacity = opacity;
+}
+
 -(void) runFlames:(CCTime)dt{
     [animationManager runAnimationsForSequenceNamed:@"Animation1"];
 }

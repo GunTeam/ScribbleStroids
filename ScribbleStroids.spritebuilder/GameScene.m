@@ -150,7 +150,12 @@ double largeStarSpeed = .0016;
     
     [self schedule:@selector(powerUpDrop:) interval:howOftenPowerupDropsAreMade];
     
+    //start pause menu
     self.paused = false;
+    _pauseMenu.visible = false;
+    _settingsButton.visible = false;
+    _storeButton.visible = false;
+    //end pause menu
 }
 
 -(void) deployBomb:(CGPoint)touch {
@@ -195,6 +200,7 @@ double largeStarSpeed = .0016;
         [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
     }
 }
+
 -(void) displayNumberOfBombs {
     double scale = .28;
     for (int i = 0; i < self.numBombs + 1; i++) {
@@ -239,18 +245,31 @@ double largeStarSpeed = .0016;
         [mainShip hideFlames];
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
+}
 
-    
+-(void) ToStore {
+    [[CCDirector sharedDirector] resume];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.1];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"Store"] withTransition:transition];
+}
+
+-(void) ToSettings {
+    [[CCDirector sharedDirector] resume];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"Settings"] withTransition:transition];
 }
 
 -(void) Pause {
     self.paused = !self.paused;
     if (self.paused) {
-        double opacity = .5;
+        _settingsButton.visible = true;
+        _storeButton.visible = true;
+        _pauseMenu.visible = true;
+        double opacity = .3;
         [[CCDirector sharedDirector] pause];
+        mainShip.visible = false;
         _boostButton.enabled = false;
         _shootButton.enabled = false;
-        mainShip.opacity = opacity;
         _joystickArrow.opacity = opacity;
         _joystickCenter.opacity = opacity;
         scoreLabel.opacity = opacity;
@@ -262,14 +281,17 @@ double largeStarSpeed = .0016;
             [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
         }
         for (Asteroid *asteroid in asteroidArray){
-            asteroid.opacity = opacity;
+            asteroid.visible = false;
         }
     } else {
+        _pauseMenu.visible = false;
+        _settingsButton.visible = false;
+        _storeButton.visible = false;
         double opacity = 1;
         [[CCDirector sharedDirector] resume];
         _boostButton.enabled = true;
         _shootButton.enabled = true;
-        mainShip.opacity = opacity;
+        mainShip.visible = true;
         _joystickArrow.opacity = opacity;
         _joystickCenter.opacity = opacity;
         scoreLabel.opacity = opacity;
@@ -281,7 +303,7 @@ double largeStarSpeed = .0016;
             [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
         }
         for (Asteroid *asteroid in asteroidArray){
-            asteroid.opacity = opacity;
+            asteroid.visible = true;
         }
     }
     

@@ -8,6 +8,8 @@
 
 #import "MainScene.h"
 #import "GameScene.h"
+#import "Store.h"
+
 
 double SSS = .03;
 double MSS = .05;
@@ -17,6 +19,7 @@ double LSS = .08;
 
 -(void) didLoadFromCCB{
     
+    //start load background
     int randX = 0;
     int randY = 0;
     while (randX == 0 || randY == 0) {
@@ -85,17 +88,25 @@ double LSS = .08;
     [self runAnimation:event];
 }
 
--(void) playGame{
-    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:.5];
+-(void) Play{
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:.1];
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"] withTransition:transition];
 }
 
--(void) howTo{
-    
+-(void) ToHighscores{
+    CCLOG(@"Highscores");
 }
 
--(void) highScores{
-    
+-(void) ToStore{
+    CCLOG(@"store");
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.1];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"Store"] withTransition:transition];
+}
+
+-(void) ToSettings{
+    CCLOG(@"Settings");
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"Settings"] withTransition:transition];
 }
 
 -(void) update:(CCTime)delta{

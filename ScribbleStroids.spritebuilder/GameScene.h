@@ -21,8 +21,11 @@
     CCButton *_pauseButton;
     CCButton *_boostButton;
     CCButton *_shootButton;
+    CCButton *_storeButton;
+    CCButton *_settingsButton;
     CCSprite *_joystickCenter;
     CCSprite *_joystickArrow;
+    CCSprite *_pauseMenu;
     //end SB code connections
     
     //background sprites

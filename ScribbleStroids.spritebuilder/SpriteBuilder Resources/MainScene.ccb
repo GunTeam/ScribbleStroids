@@ -111,7 +111,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>playGame</string>
+							<string>Play</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -437,7 +437,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>howTo</string>
+							<string>ToStore</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -763,7 +763,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>highScores</string>
+							<string>ToHighscores</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1299,7 +1299,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
+							<string>ToSettings</string>
 							<integer>1</integer>
 						</array>
 					</dict>

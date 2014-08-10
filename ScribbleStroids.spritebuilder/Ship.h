@@ -11,7 +11,7 @@
 
 @interface Ship : CCSprite {
     CGFloat screenWidth,screenHeight;
-    CCBAnimationManager *animationManager;
+    CCAnimationManager *animationManager;
     CCSprite *_flames;
     CCSprite *_shield;
     
@@ -29,4 +29,6 @@
 -(void) hideFlames;
 -(void) showFlames;
 -(void) raiseShield;
+-(void) dimShield:(double)opacity;
+-(void) brightenShield:(double)opacity;
 @end
