@@ -26,6 +26,7 @@
     CCSprite *_joystickCenter;
     CCSprite *_joystickArrow;
     CCSprite *_pauseMenu;
+    CCSprite *_shipChalkSprite;
     //end SB code connections
     
     //background sprites

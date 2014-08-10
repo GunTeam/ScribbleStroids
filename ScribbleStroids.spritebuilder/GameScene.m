@@ -155,6 +155,7 @@ double largeStarSpeed = .0016;
     _pauseMenu.visible = false;
     _settingsButton.visible = false;
     _storeButton.visible = false;
+    _shipChalkSprite.visible = false;
     //end pause menu
 }
 
@@ -262,6 +263,7 @@ double largeStarSpeed = .0016;
 -(void) Pause {
     self.paused = !self.paused;
     if (self.paused) {
+        _shipChalkSprite.visible = true;
         _settingsButton.visible = true;
         _storeButton.visible = true;
         _pauseMenu.visible = true;
@@ -284,6 +286,7 @@ double largeStarSpeed = .0016;
             asteroid.visible = false;
         }
     } else {
+        _shipChalkSprite.visible = false;
         _pauseMenu.visible = false;
         _settingsButton.visible = false;
         _storeButton.visible = false;
