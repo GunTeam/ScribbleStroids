@@ -23,6 +23,7 @@ int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 3;
 double howOftenPowerupDropsAreMade = 60;
 int bombLimit = 5;
+double coinFlipper = 0;
 
 double smallStarSpeed = .0006;
 double mediumStarSpeed = .001;
@@ -68,6 +69,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) didLoadFromCCB {
+    
     //start load background
     smallStarsArray = [[NSMutableArray alloc]init];
     mediumStarsArray = [[NSMutableArray alloc]init];
@@ -157,6 +159,7 @@ double largeStarSpeed = .0016;
     _storeButton.visible = false;
     _shipChalkSprite.visible = false;
     //end pause menu
+
 }
 
 -(void) deployBomb:(CGPoint)touch {
@@ -217,6 +220,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) update:(CCTime)delta{
+    
     double shipVelocityX = mainShip.physicsBody.velocity.x;
     double shipVelocityY = mainShip.physicsBody.velocity.y;
     

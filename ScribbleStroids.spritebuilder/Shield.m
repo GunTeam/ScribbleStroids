@@ -12,7 +12,7 @@
 @implementation Shield
 
 -(void) didLoadFromCCB {
-    
+
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;
