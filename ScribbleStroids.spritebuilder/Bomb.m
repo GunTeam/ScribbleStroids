@@ -13,7 +13,9 @@
 
 -(void) didLoadFromCCB{
     self.physicsBody.collisionType = @"bomb";
-    self.physicsBody.collisionGroup = @"AsteroidGroup";
+//    self.physicsBody.collisionGroup = @"AsteroidGroup";
+    self.physicsBody.collisionCategories = @[@"bomb"];
+    self.physicsBody.collisionMask = @[@"shield"];
 }
 
 @end

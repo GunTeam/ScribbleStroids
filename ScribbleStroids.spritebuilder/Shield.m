@@ -18,8 +18,11 @@
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
-    self.physicsBody.collisionGroup = @"AsteroidGroup";
+//    self.physicsBody.collisionGroup = @"AsteroidGroup";
     self.physicsBody.collisionType = @"pickupShield";
+    self.physicsBody.collisionCategories = @[@"shield"];
+    self.physicsBody.collisionMask = @[@"shield"];
+    
 }
 
 -(void) update:(CCTime)delta{

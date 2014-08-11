@@ -8,15 +8,20 @@
 
 #import "Coin.h"
 
-double coinSpin = 0;
-
 @implementation Coin
 
 -(void) didLoadFromCCB {
     //custom init stuff here
+//    self.physicsBody.collisionGroup = @"AsteroidGroup";
+    self.physicsBody.collisionCategories = @[@"coin"];
+    self.physicsBody.collisionType = @"coin";
+    self.physicsBody.collisionMask = @[@"shield"];
+    coinSpin = 0;
 }
 
 -(void) update:(CCTime)dt{
+    _coin.scaleX = cos(coinSpin);
+    coinSpin+= 1./15.;
 }
 
 @end

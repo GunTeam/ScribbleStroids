@@ -20,7 +20,9 @@
     
     CCLOG(@"bullet has been spawned");
     self.physicsBody.collisionType = @"bullet";
-    self.physicsBody.collisionGroup = @"ShipGroup";
+//    self.physicsBody.collisionGroup = @"ShipGroup";
+    self.physicsBody.collisionMask = @[@"asteroid"];
+    self.physicsBody.collisionCategories = @[@"bullet"];
 }
 
 -(void) update:(CCTime)delta{

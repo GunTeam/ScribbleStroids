@@ -10,7 +10,10 @@
 #import "cocos2d.h"
 
 @interface Coin : CCSprite {
-    
+    double coinSpin;
+    CCSprite *_coin;
 }
+
+@property int value;
 
 @end

@@ -14,6 +14,7 @@
 #import "Bullet.h"
 #import "Bomb.h"
 #import "Shield.h"
+#import "Coin.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
@@ -26,8 +27,11 @@
     CCSprite *_joystickCenter;
     CCSprite *_joystickArrow;
     CCSprite *_pauseMenu;
-    CCSprite *_shipChalkSprite;
-    CCSprite *_coin;
+    CCLabelTTF *_extraLifeCostLabel;
+    CCLabelTTF *_extraNukeCostLabel;
+    CCLabelTTF *_pauseBankLabel;
+    CCButton *_buyLife;
+    CCButton *_buyNuke;
     //end SB code connections
     
     //background sprites
@@ -51,5 +55,6 @@
 @property int lives;
 @property int numBombs;
 @property bool paused;
+@property int bankRoll;
 
 @end

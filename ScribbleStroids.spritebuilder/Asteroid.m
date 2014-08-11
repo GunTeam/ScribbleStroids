@@ -23,6 +23,7 @@
     
     self.physicsBody.collisionGroup = @"AsteroidGroup";
     self.physicsBody.collisionType = @"asteroid";
+    self.physicsBody.collisionMask = @[@"bullet",@"ship"];
     
     self.key = true;
 }
