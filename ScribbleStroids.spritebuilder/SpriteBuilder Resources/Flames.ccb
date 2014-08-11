@@ -617,7 +617,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/MultiFlame1.png</string>
+										<string>Art/EditedFS/MF1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -635,7 +635,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/OrangeFlame2.png</string>
+										<string>Art/EditedFS/OF2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -653,7 +653,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/RedFlame3.png</string>
+										<string>Art/EditedFS/RF3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -671,7 +671,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/MultiFlame3.png</string>
+										<string>Art/EditedFS/MF3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -689,7 +689,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/OrangeFlame2.png</string>
+										<string>Art/EditedFS/OF2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -707,7 +707,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/RedFlame1.png</string>
+										<string>Art/EditedFS/RF!.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -725,7 +725,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/MultiFlame4.png</string>
+										<string>Art/EditedFS/MF4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -743,7 +743,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/OrangeFlame4.png</string>
+										<string>Art/EditedFS/OF4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -761,7 +761,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>Art/FlameSprites/RedFlame4.png</string>
+										<string>Art/EditedFS/RF4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -846,7 +846,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/FlameSprites/MultiFlame4.png</string>
+							<string>Art/EditedFS/RF4.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -863,6 +863,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -1039,7 +1041,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.10000000149011612</real>
+			<real>0.26666668057441711</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

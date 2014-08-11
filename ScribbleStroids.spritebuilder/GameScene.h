@@ -31,6 +31,7 @@
     CCLabelTTF *_extraLifeCostLabel;
     CCLabelTTF *_extraNukeCostLabel;
     CCLabelTTF *_pauseBankLabel;
+    CCLabelTTF *_pauseBankBalance;
     CCButton *_buyLife;
     CCButton *_buyNuke;
     //end SB code connections

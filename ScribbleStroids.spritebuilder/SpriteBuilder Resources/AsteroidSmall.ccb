@@ -50,7 +50,7 @@
 		<key>physicsBody</key>
 		<dict>
 			<key>affectedByGravity</key>
-			<true/>
+			<false/>
 			<key>allowsRotation</key>
 			<true/>
 			<key>bodyShape</key>
@@ -137,7 +137,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>Art/Asteroids/AsteroidSmall.png</string>
+					<string>Art/Asteroids/SATest.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -154,6 +154,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
