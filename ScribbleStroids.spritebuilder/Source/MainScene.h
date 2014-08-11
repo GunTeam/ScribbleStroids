@@ -2,8 +2,7 @@
 //  MainScene.h
 //  PROJECTNAME
 //
-//  Created by Viktor on 10/10/13.
-//  Copyright (c) 2013 Apportable. All rights reserved.
+//  Created by Jorrie on 7/26/14.
 //
 
 #import <Foundation/Foundation.h>

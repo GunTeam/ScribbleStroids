@@ -15,6 +15,7 @@
 #import "Bomb.h"
 #import "Shield.h"
 #import "Coin.h"
+#import "CoinLabel.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {

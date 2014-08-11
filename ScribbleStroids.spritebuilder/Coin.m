@@ -24,4 +24,18 @@
     coinSpin+= 1./15.;
 }
 
+-(void) onExit {
+    [super onExit];
+    CCLOG(@"Coin was destroyed!");
+    CoinLabel *plusOne = [CoinLabel labelWithString:[NSString stringWithFormat:@"$%d",self.value] fontName:@"Chalkduster" fontSize:22];
+    plusOne.position = self.position;
+    plusOne.color = self.labelColor;
+    CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
+    CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
+    [self.parent addChild:plusOne];
+    [plusOne runAction:sequence];
+    
+}
+
 @end

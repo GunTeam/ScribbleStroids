@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "CoinLabel.h"
 
 @interface Coin : CCSprite {
     double coinSpin;
@@ -15,5 +16,6 @@
 }
 
 @property int value;
+@property CCColor *labelColor;
 
 @end

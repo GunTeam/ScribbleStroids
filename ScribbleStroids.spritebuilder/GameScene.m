@@ -70,6 +70,8 @@ double largeStarSpeed = .0016;
 
 -(void) didLoadFromCCB {
     
+    [[CCDirector sharedDirector] setDisplayStats:true];
+    
     //start load background
     smallStarsArray = [[NSMutableArray alloc]init];
     mediumStarsArray = [[NSMutableArray alloc]init];
@@ -136,7 +138,8 @@ double largeStarSpeed = .0016;
     scoreLabel.anchorPoint = CGPointMake(0, 1);
     scoreLabel.position = CGPointMake(0, screenHeight);
     [self addChild:scoreLabel];
-    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d",self.level] fontName:@"Chalkduster" fontSize:18];
+    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%d",self.bankRoll] fontName:@"Chalkduster" fontSize:18];
+    levelLabel.color = [CCColor colorWithCcColor3b:ccc3(239, 215, 9)];
     levelLabel.anchorPoint = CGPointMake(1, 1);
     levelLabel.position = CGPointMake(screenWidth, screenHeight);
     [self addChild:levelLabel];
@@ -363,7 +366,7 @@ double largeStarSpeed = .0016;
         asteroid.key = false;
         [self asteroidCollision:asteroid];
         
-        CCLabelTTF *plusOne = [CCLabelTTF labelWithString:@"+1" fontName:@"Chalkduster" fontSize:22];
+        CoinLabel *plusOne = [CoinLabel labelWithString:@"+1" fontName:@"Chalkduster" fontSize:22];
         plusOne.position = asteroid.position;
         CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
         CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
@@ -394,27 +397,8 @@ double largeStarSpeed = .0016;
     return true;
 }
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield coin:(Coin *)coin{
-    
-    CCLabelTTF *plusOne = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%d",coin.value] fontName:@"Chalkduster" fontSize:22];
-    plusOne.position = coin.position;
-    //make the label match the color of the coin
-    CCColor *labelColor;
-    if (coin.value == 1) {
-        labelColor = [CCColor colorWithCcColor3b:ccc3(162, 104, 0)];
-    } else if (coin.value == 2) {
-        labelColor = [CCColor colorWithCcColor3b:ccc3(153, 153, 153)];
-    } else {
-        labelColor = [CCColor colorWithCcColor3b:ccc3(239, 215, 9)];
-    }
-    plusOne.color = labelColor;
-    //end color match
-    CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
-    CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
-    [self addChild:plusOne];
-    [plusOne runAction:sequence];
-    
     self.bankRoll += coin.value;
+    levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
     
     [coin removeFromParent];
     
@@ -489,8 +473,8 @@ double largeStarSpeed = .0016;
     //run level over animation
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     self.level += 1;
-    levelLabel.string = [NSString stringWithFormat:@"Level: %d", self.level];
-    CCLabelTTF *levelUpLabel = [CCLabelTTF  labelWithString:@"Level Up!" fontName:@"Chalkduster" fontSize:36];
+    levelLabel.string = [NSString stringWithFormat:@"$%d", self.bankRoll];
+    CoinLabel *levelUpLabel = [CoinLabel  labelWithString:@"Level Up!" fontName:@"Chalkduster" fontSize:36];
     levelUpLabel.scale = 0;
     levelUpLabel.position = CGPointMake(screenWidth/2, screenHeight/2);
     [self addChild:levelUpLabel];
@@ -536,7 +520,16 @@ double largeStarSpeed = .0016;
         coin = (Coin *)[CCBReader load:@"GoldCoin"];
         coin.value = 5;
     }
+    CCColor *labelColor;
+    if (coin.value == 1) {
+        labelColor = [CCColor colorWithCcColor3b:ccc3(162, 104, 0)];
+    } else if (coin.value == 2) {
+        labelColor = [CCColor colorWithCcColor3b:ccc3(153, 153, 153)];
+    } else {
+        labelColor = [CCColor colorWithCcColor3b:ccc3(239, 215, 9)];
+    }
     coin.position = spawnPosition;
+    coin.labelColor = labelColor;
     [_physicsNode addChild:coin];
 }
 
