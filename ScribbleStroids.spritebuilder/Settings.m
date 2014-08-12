@@ -97,9 +97,11 @@ double lss = .08;
 -(void) SFXToggle {
     self.sfx = !self.sfx;
     if (self.sfx) {
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"SFXOn"];
         _SFXToggle.string = @"On";
         _SFXToggle.color = green;
     } else{
+        [[NSUserDefaults standardUserDefaults]setBool:false forKey:@"SFXOn"];
         _SFXToggle.string = @"Off";
         _SFXToggle.color = red;
     }
@@ -108,9 +110,11 @@ double lss = .08;
 -(void) MusicToggle{
     self.music = !self.music;
     if (self.music) {
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"MusicOn"];
         _musicToggle.string = @"On";
         _musicToggle.color = green;
-    } else{
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:false forKey:@"MusicOn"];
         _musicToggle.string = @"Off";
         _musicToggle.color = red;
     }
@@ -119,12 +123,15 @@ double lss = .08;
 -(void) TutorialToggle{
     self.tutorial = (self.tutorial +1)%3;
     if (self.tutorial == 0) {
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"tutorial"];
         _tutorialToggle.color = red;
         _tutorialToggle.string = @"Off";
     } else if (self.tutorial == 1) {
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"tutorial"];
         _tutorialToggle.color = gold;
         _tutorialToggle.string = @"Once";
     } else {
+        [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"tutorial"];
         _tutorialToggle.color = green;
         _tutorialToggle.string = @"On";
     }

@@ -22,6 +22,8 @@
     
     CCColor *green,*red,*gold;
     
+    NSUserDefaults *defaults;
+    
 }
 
 @property bool sfx;

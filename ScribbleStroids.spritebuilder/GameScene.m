@@ -70,6 +70,8 @@ double largeStarSpeed = .0016;
 
 -(void) didLoadFromCCB {
     
+    self.bankRoll = [[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
+    
     [[CCDirector sharedDirector] setDisplayStats:true];
     
     //start load background
@@ -106,7 +108,7 @@ double largeStarSpeed = .0016;
     self.userInteractionEnabled = true;
     self.multipleTouchEnabled =true;
     
-    self.level = startLevel;
+    self.level = [[NSUserDefaults standardUserDefaults]integerForKey:@"startingLevel"];
     
     self.score = 0;
     
@@ -128,7 +130,7 @@ double largeStarSpeed = .0016;
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    mainShip.rateOfFire = 1./30.;
+    mainShip.rateOfFire = [[NSUserDefaults standardUserDefaults]doubleForKey:@"rateOfFire"]/60.;
     [mainShip raiseShield];
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
@@ -147,10 +149,10 @@ double largeStarSpeed = .0016;
     
     [self createLevel:self.level];
     
-    self.lives = numberOfLives;
+    self.lives = [[NSUserDefaults standardUserDefaults]integerForKey:@"startingLives"];
     [self displayNumberOfLives:1];
         
-    self.numBombs = startingNumberOfBombs;
+    self.numBombs = [[NSUserDefaults standardUserDefaults]integerForKey:@"startingBombs"];
     [self displayNumberOfBombs:1];
     
     [self schedule:@selector(powerUpDrop:) interval:howOftenPowerupDropsAreMade];
@@ -167,8 +169,6 @@ double largeStarSpeed = .0016;
     _buyLife.visible = false;
     _buyNuke.visible = false;
     //end pause menu
-    
-    self.bankRoll = 0;
 
 }
 
@@ -205,32 +205,37 @@ double largeStarSpeed = .0016;
 }
 
 -(void) displayNumberOfLives:(double)opacity {
-    for (int i = 0; i < self.lives+ 1; i++) {
-        [self removeChildByName:[NSString stringWithFormat:@"ship%d",i]];
+    if (self.lives < [[NSUserDefaults standardUserDefaults]integerForKey:@"maxLives"]) {
+        for (int i = 0; i < self.lives+ 1; i++) {
+            [self removeChildByName:[NSString stringWithFormat:@"ship%d",i]];
+        }
+        for (int i = 0; i < self.lives; i++) {
+            CCLOG(@"Loading ships");
+            Ship *ship = (Ship *)[CCBReader load:@"Ship"];
+            ship.anchorPoint = CGPointMake(0, 1);
+            ship.scale = .44;
+            ship.opacity = opacity;
+            ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.46, screenHeight - scoreLabel.contentSizeInPoints.height);
+            [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
+        }
     }
-    for (int i = 0; i < self.lives; i++) {
-        CCLOG(@"Loading ships");
-        Ship *ship = (Ship *)[CCBReader load:@"Ship"];
-        ship.anchorPoint = CGPointMake(0, 1);
-        ship.scale = .44;
-        ship.opacity = opacity;
-        ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.46, screenHeight - scoreLabel.contentSizeInPoints.height);
-        [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
-    }
+    
 }
 
 -(void) displayNumberOfBombs:(double)opacity {
-    double scale = .28;
-    for (int i = 0; i < self.numBombs + 1; i++) {
-        [self removeChildByName:[NSString stringWithFormat:@"bomb%d",i]];
-    }
-    for (int i= 0; i < self.numBombs; i++) {
-        Bomb *bomb = (Bomb *)[CCBReader load:@"Bomb"];
-        bomb.scale = scale;
-        bomb.anchorPoint = CGPointMake(1, 1);
-        bomb.opacity = opacity;
-        bomb.position = CGPointMake(screenWidth - scale * bomb.contentSizeInPoints.width*i, screenHeight - levelLabel.contentSizeInPoints.height);
-        [self addChild:bomb z:0 name:[NSString stringWithFormat:@"bomb%d",i]];
+    if (self.lives < [[NSUserDefaults standardUserDefaults]integerForKey:@"maxBombs"]) {
+        double scale = .28;
+        for (int i = 0; i < self.numBombs + 1; i++) {
+            [self removeChildByName:[NSString stringWithFormat:@"bomb%d",i]];
+        }
+        for (int i= 0; i < self.numBombs; i++) {
+            Bomb *bomb = (Bomb *)[CCBReader load:@"Bomb"];
+            bomb.scale = scale;
+            bomb.anchorPoint = CGPointMake(1, 1);
+            bomb.opacity = opacity;
+            bomb.position = CGPointMake(screenWidth - scale * bomb.contentSizeInPoints.width*i, screenHeight - levelLabel.contentSizeInPoints.height);
+            [self addChild:bomb z:0 name:[NSString stringWithFormat:@"bomb%d",i]];
+        }
     }
 }
 
@@ -287,6 +292,7 @@ double largeStarSpeed = .0016;
         _buyNuke.visible = true;
         _pauseBankLabel.visible = true;
         _pauseBankBalance.visible = true;
+        _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
         _extraLifeCostLabel.visible = true;
         _settingsButton.visible = true;
         _storeButton.visible = true;
@@ -300,6 +306,7 @@ double largeStarSpeed = .0016;
         _joystickCenter.opacity = opacity;
         scoreLabel.opacity = opacity;
         levelLabel.opacity = opacity;
+        
         for (int i = 0; i < self.numBombs; i ++) {
             [self getChildByName:[NSString stringWithFormat:@"bomb%d",i] recursively:false].opacity = opacity;
         }
@@ -349,6 +356,11 @@ double largeStarSpeed = .0016;
         mainShip.immune = true;
         self.lives -=1 ;
         if (self.lives < 0) {
+            [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
+            if (self.score > [[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]) {
+                [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
+                //display new high score label on game over screen
+            }
             [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
         }
         [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
@@ -368,13 +380,6 @@ double largeStarSpeed = .0016;
         asteroid.key = false;
         [self asteroidCollision:asteroid];
         
-//        CoinLabel *plusOne = [CoinLabel labelWithString:@"+1" fontName:@"Chalkduster" fontSize:22];
-//        plusOne.position = asteroid.position;
-//        CCAction *rise = [CCActionMoveBy actionWithDuration:.5 position:CGPointMake(0, 20)];
-//        CCAction *fade = [CCActionFadeOut actionWithDuration:.2];
-//        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[rise,fade]];
-//        [self addChild:plusOne];
-//        [plusOne runAction:sequence];
         self.score += self.level-1;
         scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
     }
@@ -400,7 +405,7 @@ double largeStarSpeed = .0016;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield coin:(Coin *)coin{
     self.bankRoll += coin.value;
     levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
-    
+    coin.wasPickedUp = true;
     [coin removeFromParent];
     
     return true;
@@ -457,7 +462,10 @@ double largeStarSpeed = .0016;
         self.lives += 1;
         [self displayNumberOfLives:.3];
         self.bankRoll-=50;
-        _pauseBankLabel.string = [NSString stringWithFormat:@"Bank: %d",self.bankRoll];
+        [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
+        _pauseBankLabel.string = @"Bank:";
+        _pauseBankBalance.string = [NSString stringWithFormat:@"%d",self.bankRoll];
+        levelLabel.string = [NSString stringWithFormat:@"%d",self.bankRoll];
     }
 }
 
@@ -468,7 +476,10 @@ double largeStarSpeed = .0016;
         self.numBombs += 1;
         [self displayNumberOfBombs:.3];
         self.bankRoll-=50;
-        _pauseBankLabel.string = [NSString stringWithFormat:@"Bank: %d",self.bankRoll];
+        [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
+        _pauseBankLabel.string = @"Bank:";
+        _pauseBankBalance.string = [NSString stringWithFormat:@"%d",self.bankRoll];
+        levelLabel.string = [NSString stringWithFormat:@"%d",self.bankRoll];
     }
 }
 

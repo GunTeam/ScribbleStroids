@@ -13,9 +13,11 @@
 @interface Coin : CCSprite {
     double coinSpin;
     CCSprite *_coin;
+    double fadeTime,timePassed;
 }
 
 @property int value;
 @property CCColor *labelColor;
+@property bool wasPickedUp;
 
 @end

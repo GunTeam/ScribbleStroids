@@ -21,6 +21,8 @@
     Ship *ship;
     
     double smallStarSpeedX,smallStarSpeedY,mediumStarSpeedX,mediumStarSpeedY,largeStarSpeedX,largeStarSpeedY;
+    
+    NSUserDefaults *defaults;
 }
 -(void) playGame;
 -(void) howTo;

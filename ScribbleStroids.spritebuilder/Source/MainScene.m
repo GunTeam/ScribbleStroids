@@ -18,6 +18,30 @@ double LSS = .08;
 @implementation MainScene
 
 -(void) didLoadFromCCB{
+    //set defaults for first time users
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"returningUser"]) {
+        CCLOG(@"set new defaults");
+        //game defaults
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"returningUser"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"tutorial"];
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"SFXOn"];
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"MusicOn"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"bank"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"startingLevel"];
+        
+        //ship defaults
+        [[NSUserDefaults standardUserDefaults]setDouble:5 forKey:@"shieldTime"];
+        [[NSUserDefaults standardUserDefaults]setDouble:3. forKey:@"rateOfFire"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"fireType"];
+        [[NSUserDefaults standardUserDefaults]setDouble:2 forKey:@"rateOfFire"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"startingBombs"];
+        [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"maxBombs"];
+        [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"startingLives"];
+        [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"maxLives"];
+    }
+    
+    
     
     //start load background
     int randX = 0;
