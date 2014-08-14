@@ -14,6 +14,19 @@
     NSMutableArray *smallStarsArray,*mediumStarsArray,*largeStarsArray;
     CGFloat screenWidth,screenHeight;
     double smallStarSpeedX,smallStarSpeedY,mediumStarSpeedX,mediumStarSpeedY,largeStarSpeedX,largeStarSpeedY;
+    int bankRoll;
+    
+    //start code connections
+    CCSprite *_ship,*_orangeShield,*_purpleShield,*_blueShield,*_greenShield,*_redShield;
+    CCButton *_shipButton,*_gunButton,*_shieldButton;
+    CCLabelTTF *_bankLabel;
+    
+    //end code connections
+    
 }
+
+@property int shipCost;
+@property int gunCost;
+@property int shieldCost;
 
 @end

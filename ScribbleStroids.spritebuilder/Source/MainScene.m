@@ -39,9 +39,15 @@ double LSS = .08;
         [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"maxBombs"];
         [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"startingLives"];
         [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"maxLives"];
+        
+        //set ship, gun, and shield levels
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
     }
-    
-    
+    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
+    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
+    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
     
     //start load background
     int randX = 0;

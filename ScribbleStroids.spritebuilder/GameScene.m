@@ -45,7 +45,7 @@ double largeStarSpeed = .0016;
             _joystickArrow.rotation = point;
         } else if (touchLocation.y > 100 && touchLocation.y < (screenHeight - 50)){
             if (self.numBombs > 0){
-                [self deployBomb:touchLocation];
+                [self deployBomb:mainShip.position];
                 self.numBombs -=1;
                 [self removeChildByName:[NSString stringWithFormat:@"bomb%d",self.numBombs]];
             }
@@ -70,7 +70,7 @@ double largeStarSpeed = .0016;
 
 -(void) didLoadFromCCB {
     
-    self.bankRoll = [[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
+    self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     
     [[CCDirector sharedDirector] setDisplayStats:true];
     
@@ -108,7 +108,7 @@ double largeStarSpeed = .0016;
     self.userInteractionEnabled = true;
     self.multipleTouchEnabled =true;
     
-    self.level = [[NSUserDefaults standardUserDefaults]integerForKey:@"startingLevel"];
+    self.level = startLevel;
     
     self.score = 0;
     
@@ -130,7 +130,7 @@ double largeStarSpeed = .0016;
     mainShip = (Ship *)[CCBReader load:@"Ship"];
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    mainShip.rateOfFire = [[NSUserDefaults standardUserDefaults]doubleForKey:@"rateOfFire"]/60.;
+    mainShip.rateOfFire = /*[[NSUserDefaults standardUserDefaults]doubleForKey:@"rateOfFire"]*/20./60.;
     [mainShip raiseShield];
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
@@ -149,10 +149,10 @@ double largeStarSpeed = .0016;
     
     [self createLevel:self.level];
     
-    self.lives = [[NSUserDefaults standardUserDefaults]integerForKey:@"startingLives"];
+    self.lives = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingLives"];
     [self displayNumberOfLives:1];
         
-    self.numBombs = [[NSUserDefaults standardUserDefaults]integerForKey:@"startingBombs"];
+    self.numBombs = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingBombs"];
     [self displayNumberOfBombs:1];
     
     [self schedule:@selector(powerUpDrop:) interval:howOftenPowerupDropsAreMade];
@@ -464,8 +464,8 @@ double largeStarSpeed = .0016;
         self.bankRoll-=50;
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
-        _pauseBankBalance.string = [NSString stringWithFormat:@"%d",self.bankRoll];
-        levelLabel.string = [NSString stringWithFormat:@"%d",self.bankRoll];
+        _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
+        levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
     }
 }
 
@@ -478,8 +478,8 @@ double largeStarSpeed = .0016;
         self.bankRoll-=50;
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
-        _pauseBankBalance.string = [NSString stringWithFormat:@"%d",self.bankRoll];
-        levelLabel.string = [NSString stringWithFormat:@"%d",self.bankRoll];
+        _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
+        levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
     }
 }
 

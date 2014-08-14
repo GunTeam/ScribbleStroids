@@ -70,15 +70,13 @@ double lss = .08;
     red = [CCColor colorWithCcColor3b:ccc3(120, 0, 0)];
     gold = [CCColor colorWithCcColor3b:ccc3(120, 120, 0)];
     
-    _SFXToggle.color = green;
-    _musicToggle.color = green;
-    _tutorialToggle.color = gold;
+    self.sfx = [[NSUserDefaults standardUserDefaults]boolForKey:@"SFXOn"];
+    self.music = [[NSUserDefaults standardUserDefaults]boolForKey:@"MusicOn"];
+    self.tutorial = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"tutorial"];
     
-    self.sfx = true;
-    self.music = true;
-    self.tutorial = 1;
-    
-    _tutorialToggle.string = @"Once";
+    [self SFXSet];
+    [self MusicSet];
+    [self TutorialSet];
 }
 
 -(void) update:(CCTime)delta{
@@ -96,6 +94,10 @@ double lss = .08;
 
 -(void) SFXToggle {
     self.sfx = !self.sfx;
+    [self SFXSet];
+}
+
+-(void) SFXSet {
     if (self.sfx) {
         [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"SFXOn"];
         _SFXToggle.string = @"On";
@@ -109,6 +111,10 @@ double lss = .08;
 
 -(void) MusicToggle{
     self.music = !self.music;
+    [self MusicSet];
+}
+
+-(void) MusicSet{
     if (self.music) {
         [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"MusicOn"];
         _musicToggle.string = @"On";
@@ -122,6 +128,10 @@ double lss = .08;
 
 -(void) TutorialToggle{
     self.tutorial = (self.tutorial +1)%3;
+    [self TutorialSet];
+}
+
+-(void) TutorialSet {
     if (self.tutorial == 0) {
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"tutorial"];
         _tutorialToggle.color = red;
@@ -135,7 +145,6 @@ double lss = .08;
         _tutorialToggle.color = green;
         _tutorialToggle.string = @"On";
     }
-    
 }
 
 -(void) GoBack {
