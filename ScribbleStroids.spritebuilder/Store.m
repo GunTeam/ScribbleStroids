@@ -16,14 +16,16 @@ double lexi = .08;
 
 -(void) didLoadFromCCB{
     
-    self.shipCost = [[NSUserDefaults standardUserDefaults]integerForKey:@"shipCost"];
-    self.gunCost = [[NSUserDefaults standardUserDefaults]integerForKey:@"gunCost"];
-    self.shieldCost = [[NSUserDefaults standardUserDefaults]integerForKey:@"shieldGun"];
+    self.shipCost = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shipCost"];
+    self.gunCost = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunCost"];
+    self.shieldCost = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldGun"];
     
+    
+    //THIS IS FOR TESTING
     bankRoll = 1000000/*[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"]*/;
     _bankLabel.string = [NSString stringWithFormat:@"$%d",bankRoll];
     
-    [self shieldAttributes:[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"]];
+    [self shieldAttributes:((int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"])];
     
     int randX = 0;
     int randY = 0;
@@ -118,7 +120,7 @@ double lexi = .08;
         [[NSUserDefaults standardUserDefaults]setInteger:bankRoll forKey:@"bank"];
         _bankLabel.string = [NSString stringWithFormat:@"$%d",bankRoll];
         [[NSUserDefaults standardUserDefaults]setInteger:([[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"]+1) forKey:@"shieldLevel"];
-        [self shieldAttributes:[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"]];
+        [self shieldAttributes:((int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"])];
     }
 }
 

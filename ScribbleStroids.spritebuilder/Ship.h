@@ -14,6 +14,7 @@
     CCAnimationManager *animationManager;
     CCSprite *_flames;
     CCSprite *_shield;
+    double shieldTimer;
     
     double fireRate;
 }
@@ -23,12 +24,12 @@
 @property bool readyToFire;
 @property bool immune;
 @property bool inMain;
-@property bool shieldDuration;
 
--(void) fire;
+//-(void) fire;
 -(void) hideFlames;
 -(void) showFlames;
 -(void) raiseShield;
--(void) dimShield:(double)opacity;
--(void) brightenShield:(double)opacity;
+-(void) didLoadFromCCB;
+-(void) fire;
+
 @end

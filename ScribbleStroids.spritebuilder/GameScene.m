@@ -14,7 +14,7 @@ double shipDampening = .97;
 int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
 int initialAsteroidVelocity = 60;
-bool debugMode = false;
+bool debugMode = true;
 double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
@@ -127,10 +127,9 @@ double largeStarSpeed = .0016;
     
     _physicsNode.collisionDelegate = self;
     
-    mainShip = (Ship *)[CCBReader load:@"Ship"];
+    mainShip = (Ship *)[CCBReader load:@"Level2"];
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    mainShip.rateOfFire = /*[[NSUserDefaults standardUserDefaults]doubleForKey:@"rateOfFire"]*/20./60.;
     [mainShip raiseShield];
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
@@ -146,10 +145,9 @@ double largeStarSpeed = .0016;
     levelLabel.position = CGPointMake(screenWidth, screenHeight);
     [self addChild:levelLabel];
     //end labels
-    
     [self createLevel:self.level];
     
-    self.lives = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingLives"];
+    self.lives = numberOfLives/*int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingLives"]*/;
     [self displayNumberOfLives:1];
         
     self.numBombs = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingBombs"];

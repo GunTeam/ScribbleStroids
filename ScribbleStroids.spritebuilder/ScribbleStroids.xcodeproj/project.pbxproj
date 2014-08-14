@@ -48,6 +48,11 @@
 		BAA28AA919986977000A83D1 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA28AA819986977000A83D1 /* Coin.m */; };
 		BAA28AAD19991BB1000A83D1 /* CoinLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA28AAC19991BB1000A83D1 /* CoinLabel.m */; };
 		BAAD3DD61995DB4D0064AF9A /* Shield.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAD3DD51995DB4D0064AF9A /* Shield.m */; };
+		BAAE87B8199D2924003C48FE /* Level1.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87B7199D2924003C48FE /* Level1.m */; };
+		BAAE87BB199D3368003C48FE /* Level2.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87BA199D3368003C48FE /* Level2.m */; };
+		BAAE87BE199D3370003C48FE /* Level3.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87BD199D3370003C48FE /* Level3.m */; };
+		BAAE87C1199D337B003C48FE /* Level4.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87C0199D337B003C48FE /* Level4.m */; };
+		BAAE87C4199D3384003C48FE /* Level5.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87C3199D3384003C48FE /* Level5.m */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
 		BAE245C71991744B0030F38A /* LargeStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C11991744B0030F38A /* LargeStars.png */; };
 		BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C21991744B0030F38A /* LargeStars@2x.png */; };
@@ -131,6 +136,16 @@
 		BAA28AAC19991BB1000A83D1 /* CoinLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinLabel.m; sourceTree = "<group>"; };
 		BAAD3DD41995DB4D0064AF9A /* Shield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shield.h; sourceTree = "<group>"; };
 		BAAD3DD51995DB4D0064AF9A /* Shield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shield.m; sourceTree = "<group>"; };
+		BAAE87B6199D2924003C48FE /* Level1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1.h; sourceTree = "<group>"; };
+		BAAE87B7199D2924003C48FE /* Level1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level1.m; sourceTree = "<group>"; };
+		BAAE87B9199D3368003C48FE /* Level2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
+		BAAE87BA199D3368003C48FE /* Level2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level2.m; sourceTree = "<group>"; };
+		BAAE87BC199D3370003C48FE /* Level3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
+		BAAE87BD199D3370003C48FE /* Level3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level3.m; sourceTree = "<group>"; };
+		BAAE87BF199D337B003C48FE /* Level4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level4.h; sourceTree = "<group>"; };
+		BAAE87C0199D337B003C48FE /* Level4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level4.m; sourceTree = "<group>"; };
+		BAAE87C2199D3384003C48FE /* Level5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level5.h; sourceTree = "<group>"; };
+		BAAE87C3199D3384003C48FE /* Level5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level5.m; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		BAE245C11991744B0030F38A /* LargeStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeStars.png; path = ../../../../../Desktop/SSArt/Stars/LargeStars.png; sourceTree = "<group>"; };
@@ -177,6 +192,7 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BAAE87B4199D2876003C48FE /* Ship Classes */,
 				BAA28AAA19991B28000A83D1 /* Custom Classes */,
 				BAA28A9C1997C3A4000A83D1 /* Scene Classes */,
 				BA00D8781986DBDC00D3F431 /* Sprite Classes */,
@@ -279,8 +295,6 @@
 			children = (
 				BA00D87A1986DBEE00D3F431 /* Asteroid.h */,
 				BA00D87B1986DBEE00D3F431 /* Asteroid.m */,
-				BA00D87D1986DBF900D3F431 /* Ship.h */,
-				BA00D87E1986DBF900D3F431 /* Ship.m */,
 				BA00D8801988298D00D3F431 /* Bullet.h */,
 				BA00D8811988298D00D3F431 /* Bullet.m */,
 				BAE245D51992AF4E0030F38A /* Stars.h */,
@@ -344,6 +358,25 @@
 				BAA28AAC19991BB1000A83D1 /* CoinLabel.m */,
 			);
 			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		BAAE87B4199D2876003C48FE /* Ship Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BA00D87D1986DBF900D3F431 /* Ship.h */,
+				BA00D87E1986DBF900D3F431 /* Ship.m */,
+				BAAE87B6199D2924003C48FE /* Level1.h */,
+				BAAE87B7199D2924003C48FE /* Level1.m */,
+				BAAE87B9199D3368003C48FE /* Level2.h */,
+				BAAE87BA199D3368003C48FE /* Level2.m */,
+				BAAE87BC199D3370003C48FE /* Level3.h */,
+				BAAE87BD199D3370003C48FE /* Level3.m */,
+				BAAE87BF199D337B003C48FE /* Level4.h */,
+				BAAE87C0199D337B003C48FE /* Level4.m */,
+				BAAE87C2199D3384003C48FE /* Level5.h */,
+				BAAE87C3199D3384003C48FE /* Level5.m */,
+			);
+			name = "Ship Classes";
 			sourceTree = "<group>";
 		};
 		BAE245BF199174390030F38A /* Stars */ = {
@@ -490,17 +523,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAA28AA919986977000A83D1 /* Coin.m in Sources */,
+				BAAE87B8199D2924003C48FE /* Level1.m in Sources */,
 				BA00D8821988298D00D3F431 /* Bullet.m in Sources */,
+				BAAE87C4199D3384003C48FE /* Level5.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				BAA28AA61997C64D000A83D1 /* Store.m in Sources */,
 				BAA28AA31997C409000A83D1 /* Settings.m in Sources */,
+				BAAE87C1199D337B003C48FE /* Level4.m in Sources */,
 				BABD42D8198416E600C4A826 /* GameScene.m in Sources */,
 				BAAD3DD61995DB4D0064AF9A /* Shield.m in Sources */,
 				BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */,
+				BAAE87BE199D3370003C48FE /* Level3.m in Sources */,
 				BAA28AAD19991BB1000A83D1 /* CoinLabel.m in Sources */,
 				BA9D12BB19942211000C05D1 /* Bomb.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				BAAE87BB199D3368003C48FE /* Level2.m in Sources */,
 				BA00D87F1986DBF900D3F431 /* Ship.m in Sources */,
 				BAE245D71992AF4E0030F38A /* Stars.m in Sources */,
 			);

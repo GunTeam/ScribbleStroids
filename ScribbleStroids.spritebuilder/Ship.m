@@ -11,7 +11,7 @@
 double bulletLaunchImpulse = 3;
 double crashShieldTime = 5;
 double touchShieldTime = 5;
-int shieldDuration = 5;
+int shieldDuration;
 int shieldTimeCounter;
 
 @implementation Ship
@@ -36,8 +36,19 @@ int shieldTimeCounter;
     [self schedule:@selector(runFlames:) interval:1./3.];
     [self hideFlames];
     
-    self.shieldDuration = shieldDuration;
-    
+    int shieldLevel = [[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"];
+        
+    if (shieldLevel == 1) {
+        shieldDuration = 5;
+    } else if (shieldLevel == 2) {
+        shieldDuration = 8;
+    } else if (shieldLevel == 3) {
+        shieldDuration = 11;
+    } else if (shieldLevel == 4) {
+        shieldDuration = 15;
+    } else if (shieldLevel == 5) {
+        shieldDuration = 20;
+    }
     
     self.immune = false;
 }
@@ -110,16 +121,6 @@ int shieldTimeCounter;
 }
 
 -(void) fire {
-    fireRate = 1;
-    
-    CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
-    bullet.position = self.position;
-    bullet.physicsBody.velocity = self.physicsBody.velocity;
-    bullet.scale = 2;
-    bullet.physicsBody.velocity = self.physicsBody.velocity;
-    [self.parent addChild:bullet z:-2];
-    [bullet.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos((self.rotation-90)*M_PI/180),
-                                                    bulletLaunchImpulse*-sin((self.rotation-90)*M_PI/180))];
     
 }
 

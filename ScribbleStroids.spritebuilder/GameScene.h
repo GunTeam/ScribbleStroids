@@ -16,6 +16,11 @@
 #import "Shield.h"
 #import "Coin.h"
 #import "CoinLabel.h"
+#import "Level1.h"
+#import "Level2.h"
+#import "Level3.h"
+#import "Level4.h"
+#import "Level5.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
