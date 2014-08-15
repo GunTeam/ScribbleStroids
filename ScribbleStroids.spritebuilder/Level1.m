@@ -20,9 +20,10 @@
     fireRate = 1;
     
     int bulletLaunchImpulse = 3;
+    int positionBoost = 23;
     
     CCSprite *bullet = (CCSprite *)[CCBReader load:@"Bullet"];
-    bullet.position = CGPointMake(self.position.x + 20, self.position.y);
+    bullet.position = CGPointMake(self.position.x + positionBoost*sin(self.rotation*M_PI/180), self.position.y + positionBoost*cos(self.rotation*M_PI/180));
     bullet.physicsBody.velocity = self.physicsBody.velocity;
     bullet.scale = 2;
     [self.parent addChild:bullet z:-2];

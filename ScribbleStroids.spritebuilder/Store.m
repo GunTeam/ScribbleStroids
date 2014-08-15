@@ -15,16 +15,20 @@ double lexi = .08;
 @implementation Store
 
 -(void) didLoadFromCCB{
-    
+        
     self.shipCost = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shipCost"];
     self.gunCost = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunCost"];
     self.shieldCost = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldGun"];
     
-    
-    //THIS IS FOR TESTING
-    bankRoll = 1000000/*[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"]*/;
+    bankRoll = [[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     _bankLabel.string = [NSString stringWithFormat:@"$%d",bankRoll];
     
+//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"shipLevel"];
+//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"gunLevel"];
+//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"shieldLevel"];
+    
+    [self shipAttributes:(int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]];
+    [self gunAttributes:(int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"]];
     [self shieldAttributes:((int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"])];
     
     int randX = 0;
@@ -99,8 +103,11 @@ double lexi = .08;
 
 -(void) UpgradeShip {
     if (bankRoll >= self.shipCost) {
-        //set the new ship attributes
-        
+        bankRoll -= self.shipCost;
+        [[NSUserDefaults standardUserDefaults]setInteger:bankRoll forKey:@"bank"];
+        _bankLabel.string = [NSString stringWithFormat:@"$%d",bankRoll];
+        [[NSUserDefaults standardUserDefaults]setInteger:([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]+1) forKey:@"shipLevel"];
+        [self shipAttributes:((int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"])];
     }
 }
 
@@ -109,8 +116,8 @@ double lexi = .08;
         bankRoll -= self.gunCost;
         [[NSUserDefaults standardUserDefaults]setInteger:bankRoll forKey:@"bank"];
         _bankLabel.string = [NSString stringWithFormat:@"$%d",bankRoll];
-        //change the gun to match which one the player just bought
-        //change the button to match the next cost of the gun
+        [[NSUserDefaults standardUserDefaults]setInteger:([[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"]+1) forKey:@"gunLevel"];
+        [self gunAttributes:((int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"])];
     }
 }
 
@@ -125,10 +132,118 @@ double lexi = .08;
 }
 
 -(void) shipAttributes:(int)level {
-    
+    if (level == 1) {
+        _heart1.visible = true;
+        _heart2.visible = false;
+        _heart3.visible = false;
+        _heart4.visible = false;
+        _heart5.visible = false;
+        self.shipCost = 250;
+        _shipButton.title = [NSString stringWithFormat:@"$%d",self.shipCost];
+    } else if (level == 2) {
+        _heart1.visible = true;
+        _heart2.visible = true;
+        _heart3.visible = false;
+        _heart4.visible = false;
+        _heart5.visible = false;
+        self.shipCost = 1000;
+        _shipButton.title = [NSString stringWithFormat:@"$%d",self.shipCost];
+    } else if (level == 3) {
+        _heart1.visible = true;
+        _heart2.visible = true;
+        _heart3.visible = true;
+        _heart4.visible = false;
+        _heart5.visible = false;
+        self.shipCost = 5000;
+        _shipButton.title = [NSString stringWithFormat:@"$%d",self.shipCost];
+    } else if (level == 4) {
+        _heart1.visible = true;
+        _heart2.visible = true;
+        _heart3.visible = true;
+        _heart4.visible = true;
+        _heart5.visible = false;
+        self.shipCost = 10000;
+        _shipButton.title = [NSString stringWithFormat:@"$%d",self.shipCost];
+    } else if (level == 5){
+        _heart1.visible = true;
+        _heart2.visible = true;
+        _heart3.visible = true;
+        _heart4.visible = true;
+        _heart5.visible = true;
+        self.shipCost = 999999;
+        _shipButton.title = @"MAX";
+        _shipButton.enabled = false;
+    }
 }
 
 -(void) gunAttributes:(int)level {
+    if (level == 1) {
+        _Level1.visible = true;
+        _Level2.visible = false;
+        _Level3.visible = false;
+        _Level4.visible = false;
+        _Level5.visible = false;
+        _star1.visible = true;
+        _star2.visible = false;
+        _star3.visible = false;
+        _star4.visible = false;
+        _star5.visible = false;
+        self.gunCost = 250;
+        _gunButton.title = [NSString stringWithFormat:@"$%d",self.gunCost];
+    } else if (level == 2) {
+        _Level1.visible = false;
+        _Level2.visible = true;
+        _Level3.visible = false;
+        _Level4.visible = false;
+        _Level5.visible = false;
+        _star1.visible = true;
+        _star2.visible = true;
+        _star3.visible = false;
+        _star4.visible = false;
+        _star5.visible = false;
+        self.gunCost = 1000;
+        _gunButton.title = [NSString stringWithFormat:@"$%d",self.gunCost];
+    } else if (level == 3) {
+        _Level1.visible = false;
+        _Level2.visible = false;
+        _Level3.visible = true;
+        _Level4.visible = false;
+        _Level5.visible = false;
+        _star1.visible = true;
+        _star2.visible = true;
+        _star3.visible = true;
+        _star4.visible = false;
+        _star5.visible = false;
+        self.gunCost = 5000;
+        _gunButton.title = [NSString stringWithFormat:@"$%d",self.gunCost];
+    } else if (level == 4) {
+        _Level1.visible = false;
+        _Level2.visible = false;
+        _Level3.visible = false;
+        _Level4.visible = true;
+        _Level5.visible = false;
+        _star1.visible = true;
+        _star2.visible = true;
+        _star3.visible = true;
+        _star4.visible = true;
+        _star5.visible = false;
+        self.gunCost = 10000;
+        _gunButton.title = [NSString stringWithFormat:@"$%d",self.gunCost];
+    } else if (level == 5) {
+        _Level1.visible = false;
+        _Level2.visible = false;
+        _Level3.visible = false;
+        _Level4.visible = false;
+        _Level5.visible = true;
+        _star1.visible = true;
+        _star2.visible = true;
+        _star3.visible = true;
+        _star4.visible = true;
+        _star5.visible = true;
+        self.gunCost = 99999999;
+        _gunButton.title = @"MAX";
+        _gunButton.enabled = false;
+    }
     
 }
 
@@ -139,6 +254,11 @@ double lexi = .08;
         _orangeShield.visible = false;
         _purpleShield.visible = false;
         _redShield.visible = false;
+        _clock1.visible = true;
+        _clock2.visible = false;
+        _clock3.visible = false;
+        _clock4.visible = false;
+        _clock5.visible = false;
         self.shieldCost = 100;
         _shieldButton.title = [NSString stringWithFormat:@"$%d",self.shieldCost];
     } else if (level==2){
@@ -147,6 +267,11 @@ double lexi = .08;
         _orangeShield.visible = false;
         _purpleShield.visible = false;
         _redShield.visible = false;
+        _clock1.visible = true;
+        _clock2.visible = true;
+        _clock3.visible = false;
+        _clock4.visible = false;
+        _clock5.visible = false;
         self.shieldCost = 500;
         _shieldButton.title = [NSString stringWithFormat:@"$%d",self.shieldCost];
     } else if (level==3){
@@ -155,6 +280,11 @@ double lexi = .08;
         _orangeShield.visible = true;
         _purpleShield.visible = false;
         _redShield.visible = false;
+        _clock1.visible = true;
+        _clock2.visible = true;
+        _clock3.visible = true;
+        _clock4.visible = false;
+        _clock5.visible = false;
         self.shieldCost = 1000;
         _shieldButton.title = [NSString stringWithFormat:@"$%d",self.shieldCost];
     } else if (level==4){
@@ -163,6 +293,11 @@ double lexi = .08;
         _orangeShield.visible = false;
         _purpleShield.visible = true;
         _redShield.visible = false;
+        _clock1.visible = true;
+        _clock2.visible = true;
+        _clock3.visible = true;
+        _clock4.visible = true;
+        _clock5.visible = false;
         self.shieldCost = 5000;
         _shieldButton.title = [NSString stringWithFormat:@"$%d",self.shieldCost];
     } else if (level==5) {
@@ -171,6 +306,11 @@ double lexi = .08;
         _orangeShield.visible = false;
         _purpleShield.visible = false;
         _redShield.visible = true;
+        _clock1.visible = true;
+        _clock2.visible = true;
+        _clock3.visible = true;
+        _clock4.visible = true;
+        _clock5.visible = true;
         self.shieldCost = 999999999;
         _shieldButton.title = @"MAX";
         _shieldButton.enabled = false;

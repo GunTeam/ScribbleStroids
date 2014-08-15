@@ -14,7 +14,7 @@ double shipDampening = .97;
 int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
 int initialAsteroidVelocity = 60;
-bool debugMode = true;
+bool debugMode = false;
 double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
@@ -44,10 +44,10 @@ double largeStarSpeed = .0016;
             mainShip.rotation = point;
             _joystickArrow.rotation = point;
         } else if (touchLocation.y > 100 && touchLocation.y < (screenHeight - 50)){
-            if (self.numBombs > 0){
-                [self deployBomb:mainShip.position];
-                self.numBombs -=1;
-                [self removeChildByName:[NSString stringWithFormat:@"bomb%d",self.numBombs]];
+            if (self.numShields > 0){
+                [mainShip raiseShield];
+                self.numShields -=1;
+                [self removeChildByName:[NSString stringWithFormat:@"shield%d",self.numShields]];
             }
         }
     }
@@ -72,7 +72,7 @@ double largeStarSpeed = .0016;
     
     self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     
-    [[CCDirector sharedDirector] setDisplayStats:true];
+    [[CCDirector sharedDirector] setDisplayStats:false];
     
     //start load background
     smallStarsArray = [[NSMutableArray alloc]init];
@@ -127,7 +127,19 @@ double largeStarSpeed = .0016;
     
     _physicsNode.collisionDelegate = self;
     
-    mainShip = (Ship *)[CCBReader load:@"Level2"];
+    
+    int shipLevel = (int) [[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
+    if (shipLevel == 1) {
+        mainShip = (Ship *)[CCBReader load:@"Ship"];
+    } else if (shipLevel == 2) {
+        mainShip = (Ship *)[CCBReader load:@"Level2"];
+    } else if (shipLevel == 3) {
+        mainShip = (Ship *)[CCBReader load:@"Level3"];
+    } else if (shipLevel == 4) {
+        mainShip = (Ship *)[CCBReader load:@"Level4"];
+    } else {
+        mainShip = (Ship *)[CCBReader load:@"Level5"];
+    }
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     [mainShip raiseShield];
@@ -147,13 +159,13 @@ double largeStarSpeed = .0016;
     //end labels
     [self createLevel:self.level];
     
-    self.lives = numberOfLives/*int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingLives"]*/;
+    self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]+1);
     [self displayNumberOfLives:1];
         
-    self.numBombs = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"startingBombs"];
-    [self displayNumberOfBombs:1];
+    self.numShields = 1;
+    [self displayNumberOfShields:1];
     
-    [self schedule:@selector(powerUpDrop:) interval:howOftenPowerupDropsAreMade];
+    [self schedule:@selector(powerUpDrop:) interval:60];
     
     //start pause menu
     self.paused = false;
@@ -165,30 +177,14 @@ double largeStarSpeed = .0016;
     _extraLifeCostLabel.visible = false;
     _extraNukeCostLabel.visible = false;
     _buyLife.visible = false;
-    _buyNuke.visible = false;
+    _buyShield.visible = false;
     //end pause menu
 
 }
 
--(void) deployBomb:(CGPoint)touch {
-    for (int i = 0; i < 360; i +=10) {
-        Bullet *bullet = (Bullet *)[CCBReader load:@"Bullet"];
-        bullet.physicsBody.velocity = CGPointMake(bulletExplosionSpeed*cos(i), bulletExplosionSpeed*sin(i));
-        bullet.scale = 1.2;
-        bullet.position = touch;
-        [_physicsNode addChild:bullet];
-    }
-}
-
 -(void) powerUpDrop:(CCTime) dt {
     //stuff to drop the bomb
-    int randNumber = arc4random() % 2;
-    CCSprite *powerUp = [[CCSprite alloc]init];
-    if (randNumber == 0) {
-        powerUp = (Bomb *) [CCBReader load:@"Bomb"];
-    } else {
-        powerUp = (Shield *) [CCBReader load:@"ShieldSprite"];
-    }
+    Shield *powerUp = (Shield *) [CCBReader load:@"ShieldSprite"];
     powerUp.scale = .5;
     int width = screenWidth - 75;
     int randX = arc4random() % width + 37;
@@ -203,37 +199,35 @@ double largeStarSpeed = .0016;
 }
 
 -(void) displayNumberOfLives:(double)opacity {
-    if (self.lives < [[NSUserDefaults standardUserDefaults]integerForKey:@"maxLives"]) {
-        for (int i = 0; i < self.lives+ 1; i++) {
-            [self removeChildByName:[NSString stringWithFormat:@"ship%d",i]];
-        }
-        for (int i = 0; i < self.lives; i++) {
-            CCLOG(@"Loading ships");
-            Ship *ship = (Ship *)[CCBReader load:@"Ship"];
-            ship.anchorPoint = CGPointMake(0, 1);
-            ship.scale = .44;
-            ship.opacity = opacity;
-            ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.46, screenHeight - scoreLabel.contentSizeInPoints.height);
-            [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
-        }
+    
+    for (int i = 0; i < self.lives+ 1; i++) {
+        [self removeChildByName:[NSString stringWithFormat:@"ship%d",i]];
+    }
+    for (int i = 0; i < self.lives; i++) {
+        CCLOG(@"Loading ships");
+        Ship *ship = (Ship *)[CCBReader load:@"DisplayShip"];
+        ship.anchorPoint = CGPointMake(0, 1);
+        ship.scale = .44;
+        ship.opacity = opacity;
+        ship.position = CGPointMake(0 + ship.contentSizeInPoints.width*i*.46, screenHeight - scoreLabel.contentSizeInPoints.height);
+        [self addChild:ship z:0 name:[NSString stringWithFormat:@"ship%d",i]];
     }
     
 }
 
--(void) displayNumberOfBombs:(double)opacity {
-    if (self.lives < [[NSUserDefaults standardUserDefaults]integerForKey:@"maxBombs"]) {
-        double scale = .28;
-        for (int i = 0; i < self.numBombs + 1; i++) {
-            [self removeChildByName:[NSString stringWithFormat:@"bomb%d",i]];
-        }
-        for (int i= 0; i < self.numBombs; i++) {
-            Bomb *bomb = (Bomb *)[CCBReader load:@"Bomb"];
-            bomb.scale = scale;
-            bomb.anchorPoint = CGPointMake(1, 1);
-            bomb.opacity = opacity;
-            bomb.position = CGPointMake(screenWidth - scale * bomb.contentSizeInPoints.width*i, screenHeight - levelLabel.contentSizeInPoints.height);
-            [self addChild:bomb z:0 name:[NSString stringWithFormat:@"bomb%d",i]];
-        }
+-(void) displayNumberOfShields:(double)opacity {
+    double scale = .28;
+    for (int i = 0; i < self.numShields + 1; i++) {
+        [self removeChildByName:[NSString stringWithFormat:@"shield%d",i]];
+    }
+    for (int i= 0; i < self.numShields; i++) {
+        Shield *shield = (Shield *)[CCBReader load:@"ShieldSprite"];
+        shield.displayShield = true;
+        shield.scale = scale;
+        shield.anchorPoint = CGPointMake(1, 1);
+        shield.opacity = opacity;
+        shield.position = CGPointMake(screenWidth - scale * shield.contentSizeInPoints.width*i, screenHeight - levelLabel.contentSizeInPoints.height);
+        [self addChild:shield z:0 name:[NSString stringWithFormat:@"shield%d",i]];
     }
 }
 
@@ -284,10 +278,22 @@ double largeStarSpeed = .0016;
 
 -(void) Pause {
     self.paused = !self.paused;
+    if (!(self.numShields < 3)) {
+        _buyShield.enabled = false;
+    } else {
+        _buyShield.enabled = true;
+    }
+    
+    if (!(self.lives < 6)) {
+        _buyLife.enabled = false;
+    } else {
+        _buyLife.enabled = true;
+    }
+    
     if (self.paused) {
         _extraNukeCostLabel.visible = true;
         _buyLife.visible = true;
-        _buyNuke.visible = true;
+        _buyShield.visible = true;
         _pauseBankLabel.visible = true;
         _pauseBankBalance.visible = true;
         _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
@@ -305,8 +311,8 @@ double largeStarSpeed = .0016;
         scoreLabel.opacity = opacity;
         levelLabel.opacity = opacity;
         
-        for (int i = 0; i < self.numBombs; i ++) {
-            [self getChildByName:[NSString stringWithFormat:@"bomb%d",i] recursively:false].opacity = opacity;
+        for (int i = 0; i < self.numShields; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"shield%d",i] recursively:false].opacity = opacity;
         }
         for (int i = 0; i < self.lives; i ++) {
             [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
@@ -317,7 +323,7 @@ double largeStarSpeed = .0016;
     } else {
         _extraNukeCostLabel.visible = false;
         _buyLife.visible = false;
-        _buyNuke.visible = false;
+        _buyShield.visible = false;
         _pauseBankLabel.visible = false;
         _pauseBankBalance.visible = false;
         _extraLifeCostLabel.visible = false;
@@ -333,8 +339,8 @@ double largeStarSpeed = .0016;
         _joystickCenter.opacity = opacity;
         scoreLabel.opacity = opacity;
         levelLabel.opacity = opacity;
-        for (int i = 0; i < self.numBombs; i ++) {
-            [self getChildByName:[NSString stringWithFormat:@"bomb%d",i] recursively:false].opacity = opacity;
+        for (int i = 0; i < self.numShields; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"shield%d",i] recursively:false].opacity = opacity;
         }
         for (int i = 0; i < self.lives; i ++) {
             [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
@@ -385,18 +391,14 @@ double largeStarSpeed = .0016;
     
     return true;
 }
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield bomb:(Bomb *)bomb{
-    if (self.numBombs < bombLimit) {
-        self.numBombs += 1;
-        [bomb removeFromParent];
-        [self displayNumberOfBombs:1];
-    } else {
-       [bomb removeFromParent];
-    }
-    return true;
-}
+
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield pickupShield:(Shield *)pickupShield{
-    [mainShip raiseShield];
+    if (self.numShields < 3) {
+        self.numShields += 1;
+        [self displayNumberOfShields:1.];
+    } else {
+        [mainShip raiseShield];
+    }
     [pickupShield removeFromParent];
     return true;
 }
@@ -458,6 +460,9 @@ double largeStarSpeed = .0016;
     if (self.bankRoll >= 50){
         //do extra life stuff
         self.lives += 1;
+        if (!(self.lives < 6)) {
+            _buyLife.enabled = false;
+        }
         [self displayNumberOfLives:.3];
         self.bankRoll-=50;
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
@@ -467,12 +472,14 @@ double largeStarSpeed = .0016;
     }
 }
 
--(void) BuyExtraNuke{
-    CCLOG(@"Death");
+-(void) BuyExtraShield{
     if (self.bankRoll >= 50){
         //do extra nuke stuff
-        self.numBombs += 1;
-        [self displayNumberOfBombs:.3];
+        self.numShields += 1;
+        if (!(self.numShields < 3)){
+            _buyShield.enabled = false;
+        }
+        [self displayNumberOfShields:.3];
         self.bankRoll-=50;
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
@@ -485,6 +492,7 @@ double largeStarSpeed = .0016;
     
     //run level over animation
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+    mainShip.physicsBody.velocity = CGPointMake(0,0);
     self.level += 1;
     levelLabel.string = [NSString stringWithFormat:@"$%d", self.bankRoll];
     CoinLabel *levelUpLabel = [CoinLabel  labelWithString:@"Level Up!" fontName:@"Chalkduster" fontSize:36];

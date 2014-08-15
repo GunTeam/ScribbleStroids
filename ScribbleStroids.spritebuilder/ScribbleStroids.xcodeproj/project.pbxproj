@@ -429,6 +429,9 @@
 							com.apple.GameCenter = {
 								enabled = 0;
 							};
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
 						};
 					};
 				};

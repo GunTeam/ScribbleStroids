@@ -11,8 +11,8 @@
 double bulletLaunchImpulse = 3;
 double crashShieldTime = 5;
 double touchShieldTime = 5;
-int shieldDuration;
-int shieldTimeCounter;
+double shieldDuration;
+double shieldTimeCounter;
 
 @implementation Ship
 
@@ -23,6 +23,46 @@ int shieldTimeCounter;
     screenHeight = screenSize.height;
     
     fireRate = 0;
+    
+    
+    int shieldLevel = [[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"];
+    
+    if (shieldLevel == 1) {
+        [_greenShield removeFromParent];
+        [_orangeShield removeFromParent];
+        [_purpleShield removeFromParent];
+        [_redShield removeFromParent];
+        _shield = _blueShield;
+        shieldDuration = 5;
+    } else if (shieldLevel == 2) {
+        [_blueShield removeFromParent];
+        [_orangeShield removeFromParent];
+        [_purpleShield removeFromParent];
+        [_redShield removeFromParent];
+        _shield = _greenShield;
+        shieldDuration = 8;
+    } else if (shieldLevel == 3) {
+        [_greenShield removeFromParent];
+        [_blueShield removeFromParent];
+        [_purpleShield removeFromParent];
+        [_redShield removeFromParent];
+        _shield = _orangeShield;
+        shieldDuration = 11;
+    } else if (shieldLevel == 4) {
+        [_greenShield removeFromParent];
+        [_orangeShield removeFromParent];
+        [_blueShield removeFromParent];
+        [_redShield removeFromParent];
+        _shield = _purpleShield;
+        shieldDuration = 15;
+    } else if (shieldLevel == 5) {
+        [_greenShield removeFromParent];
+        [_orangeShield removeFromParent];
+        [_purpleShield removeFromParent];
+        [_blueShield removeFromParent];
+        _shield = _redShield;
+        shieldDuration = 20;
+    }
     
     self.physicsBody.collisionType = @"ship";
     self.physicsBody.collisionCategories = @[@"ship"];
@@ -36,19 +76,6 @@ int shieldTimeCounter;
     [self schedule:@selector(runFlames:) interval:1./3.];
     [self hideFlames];
     
-    int shieldLevel = [[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"];
-        
-    if (shieldLevel == 1) {
-        shieldDuration = 5;
-    } else if (shieldLevel == 2) {
-        shieldDuration = 8;
-    } else if (shieldLevel == 3) {
-        shieldDuration = 11;
-    } else if (shieldLevel == 4) {
-        shieldDuration = 15;
-    } else if (shieldLevel == 5) {
-        shieldDuration = 20;
-    }
     
     self.immune = false;
 }
@@ -81,18 +108,29 @@ int shieldTimeCounter;
     }
     if (!self.inMain) {
         if (self.position.x > screenWidth){
-        self.position = CGPointMake(0, self.position.y);
-    } else if (self.position.x < 0){
-        self.position = CGPointMake(screenWidth, self.position.y);
-    }
+            self.position = CGPointMake(0, self.position.y);
+        } else if (self.position.x < 0){
+            self.position = CGPointMake(screenWidth, self.position.y);
+        }
         if (self.position.y > screenHeight){
-        self.position = CGPointMake(self.position.x, 0);
-    } else if (self.position.y < 0) {
-        self.position = CGPointMake(self.position.x, screenHeight);
+            self.position = CGPointMake(self.position.x, 0);
+        } else if (self.position.y < 0) {
+            self.position = CGPointMake(self.position.x, screenHeight);
+        }
+    } else {
+        _shield.visible = false;
     }
-    }
+    
 
-    }
+}
+
+-(void) takeDownShield {
+    [_greenShield removeFromParent];
+    [_orangeShield removeFromParent];
+    [_purpleShield removeFromParent];
+    [_blueShield removeFromParent];
+    [_redShield removeFromParent];
+}
 
 -(void) hideFlames{
     _flames.visible = false;
@@ -121,7 +159,6 @@ int shieldTimeCounter;
 }
 
 -(void) fire {
-    
 }
 
 @end

@@ -11,7 +11,7 @@
 #import "Ship.h"
 
 @interface Level2 : Ship {
-
+    CCSprite *_star;
 }
 
 @end

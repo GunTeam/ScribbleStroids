@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>12</integer>
+	<integer>19</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -41,19 +41,53 @@
 		<array>
 			<dict>
 				<key>UUID</key>
-				<integer>3</integer>
+				<integer>18</integer>
 				<key>baseClass</key>
-				<string>CCBFile</string>
+				<string>CCSprite</string>
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCBFile</string>
+				<string>Purple</string>
 				<key>memberVarAssignmentName</key>
-				<string>_flames</string>
+				<string>_purpleShield</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
+				<key>physicsBody</key>
+				<dict>
+					<key>affectedByGravity</key>
+					<false/>
+					<key>allowsRotation</key>
+					<true/>
+					<key>bodyShape</key>
+					<integer>1</integer>
+					<key>collisionCategories</key>
+					<array/>
+					<key>collisionMask</key>
+					<array/>
+					<key>collisionType</key>
+					<string></string>
+					<key>cornerRadius</key>
+					<real>46.020000457763672</real>
+					<key>density</key>
+					<real>1</real>
+					<key>dynamic</key>
+					<true/>
+					<key>elasticity</key>
+					<real>0.30000001192092896</real>
+					<key>friction</key>
+					<real>0.30000001192092896</real>
+					<key>points</key>
+					<array>
+						<array>
+							<real>50</real>
+							<real>50</real>
+						</array>
+					</array>
+					<key>polygons</key>
+					<array/>
+				</dict>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -71,11 +105,22 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.47999998927116394</real>
-							<real>0.10999999940395355</real>
+							<real>0.46000000834465027</real>
+							<real>0.43799999356269836</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -85,33 +130,418 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.64999997615814209</real>
-							<real>0.64999997615814209</real>
+							<real>0.94999998807907104</real>
+							<real>0.94999998807907104</real>
 							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>rotation</string>
+						<string>spriteFrame</string>
 						<key>type</key>
-						<string>Degrees</string>
+						<string>SpriteFrame</string>
 						<key>value</key>
-						<real>180</real>
+						<array>
+							<string></string>
+							<string>Art/Ships/purpleCircle.png</string>
+						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>ccbFile</string>
+						<string>color</string>
 						<key>type</key>
-						<string>CCBFile</string>
+						<string>Color3</string>
 						<key>value</key>
-						<string>Flames.ccb</string>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>5</integer>
+				<integer>17</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>Green</string>
+				<key>memberVarAssignmentName</key>
+				<string>_greenShield</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>physicsBody</key>
+				<dict>
+					<key>affectedByGravity</key>
+					<false/>
+					<key>allowsRotation</key>
+					<true/>
+					<key>bodyShape</key>
+					<integer>1</integer>
+					<key>collisionCategories</key>
+					<array/>
+					<key>collisionMask</key>
+					<array/>
+					<key>collisionType</key>
+					<string></string>
+					<key>cornerRadius</key>
+					<real>46.020000457763672</real>
+					<key>density</key>
+					<real>1</real>
+					<key>dynamic</key>
+					<true/>
+					<key>elasticity</key>
+					<real>0.30000001192092896</real>
+					<key>friction</key>
+					<real>0.30000001192092896</real>
+					<key>points</key>
+					<array>
+						<array>
+							<real>50</real>
+							<real>50</real>
+						</array>
+					</array>
+					<key>polygons</key>
+					<array/>
+				</dict>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>0.46000000834465027</real>
+							<real>0.43799999356269836</real>
+							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.94999998807907104</real>
+							<real>0.94999998807907104</real>
+							<true/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>Art/Ships/greenCircle.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+				<key>selected</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>16</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>Red</string>
+				<key>memberVarAssignmentName</key>
+				<string>_redShield</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>physicsBody</key>
+				<dict>
+					<key>affectedByGravity</key>
+					<false/>
+					<key>allowsRotation</key>
+					<true/>
+					<key>bodyShape</key>
+					<integer>1</integer>
+					<key>collisionCategories</key>
+					<array/>
+					<key>collisionMask</key>
+					<array/>
+					<key>collisionType</key>
+					<string></string>
+					<key>cornerRadius</key>
+					<real>46.020000457763672</real>
+					<key>density</key>
+					<real>1</real>
+					<key>dynamic</key>
+					<true/>
+					<key>elasticity</key>
+					<real>0.30000001192092896</real>
+					<key>friction</key>
+					<real>0.30000001192092896</real>
+					<key>points</key>
+					<array>
+						<array>
+							<real>50</real>
+							<real>50</real>
+						</array>
+					</array>
+					<key>polygons</key>
+					<array/>
+				</dict>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>0.46000000834465027</real>
+							<real>0.43799999356269836</real>
+							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.94999998807907104</real>
+							<real>0.94999998807907104</real>
+							<true/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>Art/Ships/redCircle.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+				<key>selected</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>15</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>Orange</string>
+				<key>memberVarAssignmentName</key>
+				<string>_orangeShield</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>physicsBody</key>
+				<dict>
+					<key>affectedByGravity</key>
+					<false/>
+					<key>allowsRotation</key>
+					<true/>
+					<key>bodyShape</key>
+					<integer>1</integer>
+					<key>collisionCategories</key>
+					<array/>
+					<key>collisionMask</key>
+					<array/>
+					<key>collisionType</key>
+					<string></string>
+					<key>cornerRadius</key>
+					<real>46.020000457763672</real>
+					<key>density</key>
+					<real>1</real>
+					<key>dynamic</key>
+					<true/>
+					<key>elasticity</key>
+					<real>0.30000001192092896</real>
+					<key>friction</key>
+					<real>0.30000001192092896</real>
+					<key>points</key>
+					<array>
+						<array>
+							<real>50</real>
+							<real>50</real>
+						</array>
+					</array>
+					<key>polygons</key>
+					<array/>
+				</dict>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>0.46000000834465027</real>
+							<real>0.43799999356269836</real>
+							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.94999998807907104</real>
+							<real>0.94999998807907104</real>
+							<true/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>Art/Ships/orangeCircle.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+				<key>selected</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>14</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
 				<key>children</key>
@@ -236,422 +666,19 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>8</integer>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>Orange</string>
-				<key>memberVarAssignmentName</key>
-				<string>_orangeShield</string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>physicsBody</key>
-				<dict>
-					<key>affectedByGravity</key>
-					<false/>
-					<key>allowsRotation</key>
-					<true/>
-					<key>bodyShape</key>
-					<integer>1</integer>
-					<key>collisionCategories</key>
-					<array/>
-					<key>collisionMask</key>
-					<array/>
-					<key>collisionType</key>
-					<string></string>
-					<key>cornerRadius</key>
-					<real>46.020000457763672</real>
-					<key>density</key>
-					<real>1</real>
-					<key>dynamic</key>
-					<true/>
-					<key>elasticity</key>
-					<real>0.30000001192092896</real>
-					<key>friction</key>
-					<real>0.30000001192092896</real>
-					<key>points</key>
-					<array>
-						<array>
-							<real>50</real>
-							<real>50</real>
-						</array>
-					</array>
-					<key>polygons</key>
-					<array/>
-				</dict>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.46000000834465027</real>
-							<real>0.43799999356269836</real>
-							<integer>0</integer>
-							<integer>2</integer>
-							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>0.94999998807907104</real>
-							<real>0.94999998807907104</real>
-							<true/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Art/Ships/orangeCircle.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
-				<integer>9</integer>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>Red</string>
-				<key>memberVarAssignmentName</key>
-				<string>_redShield</string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>physicsBody</key>
-				<dict>
-					<key>affectedByGravity</key>
-					<false/>
-					<key>allowsRotation</key>
-					<true/>
-					<key>bodyShape</key>
-					<integer>1</integer>
-					<key>collisionCategories</key>
-					<array/>
-					<key>collisionMask</key>
-					<array/>
-					<key>collisionType</key>
-					<string></string>
-					<key>cornerRadius</key>
-					<real>46.020000457763672</real>
-					<key>density</key>
-					<real>1</real>
-					<key>dynamic</key>
-					<true/>
-					<key>elasticity</key>
-					<real>0.30000001192092896</real>
-					<key>friction</key>
-					<real>0.30000001192092896</real>
-					<key>points</key>
-					<array>
-						<array>
-							<real>50</real>
-							<real>50</real>
-						</array>
-					</array>
-					<key>polygons</key>
-					<array/>
-				</dict>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.46000000834465027</real>
-							<real>0.43799999356269836</real>
-							<integer>0</integer>
-							<integer>2</integer>
-							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>0.94999998807907104</real>
-							<real>0.94999998807907104</real>
-							<true/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Art/Ships/redCircle.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
-				<integer>10</integer>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>Green</string>
-				<key>memberVarAssignmentName</key>
-				<string>_greenShield</string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>physicsBody</key>
-				<dict>
-					<key>affectedByGravity</key>
-					<false/>
-					<key>allowsRotation</key>
-					<true/>
-					<key>bodyShape</key>
-					<integer>1</integer>
-					<key>collisionCategories</key>
-					<array/>
-					<key>collisionMask</key>
-					<array/>
-					<key>collisionType</key>
-					<string></string>
-					<key>cornerRadius</key>
-					<real>46.020000457763672</real>
-					<key>density</key>
-					<real>1</real>
-					<key>dynamic</key>
-					<true/>
-					<key>elasticity</key>
-					<real>0.30000001192092896</real>
-					<key>friction</key>
-					<real>0.30000001192092896</real>
-					<key>points</key>
-					<array>
-						<array>
-							<real>50</real>
-							<real>50</real>
-						</array>
-					</array>
-					<key>polygons</key>
-					<array/>
-				</dict>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.46000000834465027</real>
-							<real>0.43799999356269836</real>
-							<integer>0</integer>
-							<integer>2</integer>
-							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>0.94999998807907104</real>
-							<real>0.94999998807907104</real>
-							<true/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>Art/Ships/greenCircle.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
 				<integer>11</integer>
 				<key>baseClass</key>
-				<string>CCSprite</string>
+				<string>CCBFile</string>
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>Purple</string>
+				<string>CCBFile</string>
 				<key>memberVarAssignmentName</key>
-				<string>_purpleShield</string>
+				<string>_flames</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
-				<key>physicsBody</key>
-				<dict>
-					<key>affectedByGravity</key>
-					<false/>
-					<key>allowsRotation</key>
-					<true/>
-					<key>bodyShape</key>
-					<integer>1</integer>
-					<key>collisionCategories</key>
-					<array/>
-					<key>collisionMask</key>
-					<array/>
-					<key>collisionType</key>
-					<string></string>
-					<key>cornerRadius</key>
-					<real>46.020000457763672</real>
-					<key>density</key>
-					<real>1</real>
-					<key>dynamic</key>
-					<true/>
-					<key>elasticity</key>
-					<real>0.30000001192092896</real>
-					<key>friction</key>
-					<real>0.30000001192092896</real>
-					<key>points</key>
-					<array>
-						<array>
-							<real>50</real>
-							<real>50</real>
-						</array>
-					</array>
-					<key>polygons</key>
-					<array/>
-				</dict>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -669,22 +696,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.46000000834465027</real>
-							<real>0.43799999356269836</real>
+							<real>0.47999998927116394</real>
+							<real>0.10999999940395355</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -694,41 +710,35 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.94999998807907104</real>
-							<real>0.94999998807907104</real>
+							<real>0.64999997615814209</real>
+							<real>0.64999997615814209</real>
 							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>spriteFrame</string>
+						<string>rotation</string>
 						<key>type</key>
-						<string>SpriteFrame</string>
+						<string>Degrees</string>
 						<key>value</key>
-						<array>
-							<string></string>
-							<string>Art/Ships/purpleCircle.png</string>
-						</array>
+						<real>180</real>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>color</string>
+						<string>ccbFile</string>
 						<key>type</key>
-						<string>Color3</string>
+						<string>CCBFile</string>
 						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
+						<string>Flames.ccb</string>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string>Level2</string>
+		<string>Level3</string>
 		<key>displayName</key>
 		<string>CCSprite</string>
 		<key>memberVarAssignmentName</key>
@@ -762,158 +772,158 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>2.8976576328277588</real>
-					<real>1.482114315032959</real>
+					<real>3.0373499393463135</real>
+					<real>2.2554333209991455</real>
 				</array>
 				<array>
-					<real>1.7344541549682617</real>
-					<real>18.486471176147461</real>
+					<real>2.229569673538208</real>
+					<real>21.07209587097168</real>
 				</array>
 				<array>
-					<real>13.550726890563965</real>
-					<real>23.539375305175781</real>
+					<real>13.658107757568359</real>
+					<real>23.20245361328125</real>
 				</array>
 				<array>
-					<real>15.977429389953613</real>
-					<real>43.596187591552734</real>
+					<real>15.85584545135498</real>
+					<real>42.801914215087891</real>
 				</array>
 				<array>
-					<real>20.751251220703125</real>
-					<real>50.250541687011719</real>
+					<real>20.729782104492188</real>
+					<real>50.022727966308594</real>
 				</array>
 				<array>
-					<real>21.938438415527344</real>
-					<real>56.771892547607422</real>
+					<real>22.495996475219727</real>
+					<real>56.520549774169922</real>
 				</array>
 				<array>
-					<real>24.270296096801758</real>
-					<real>51.143383026123047</real>
+					<real>23.716373443603516</real>
+					<real>51.007659912109375</real>
 				</array>
 				<array>
-					<real>31.650697708129883</real>
-					<real>43.204818725585938</real>
+					<real>29.893960952758789</real>
+					<real>45.091255187988281</real>
 				</array>
 				<array>
-					<real>36.374370574951172</real>
-					<real>24.576120376586914</real>
+					<real>36.516700744628906</real>
+					<real>24.261577606201172</real>
 				</array>
 				<array>
-					<real>47.147357940673828</real>
-					<real>19.961462020874023</real>
+					<real>46.590862274169922</real>
+					<real>20.778356552124023</real>
 				</array>
 				<array>
-					<real>49.377834320068359</real>
-					<real>2.4861540794372559</real>
+					<real>48.306354522705078</real>
+					<real>4.3161435127258301</real>
 				</array>
 				<array>
-					<real>35.960109710693359</real>
-					<real>14.484484672546387</real>
+					<real>35.708160400390625</real>
+					<real>14.759750366210938</real>
 				</array>
 				<array>
-					<real>31.803319931030273</real>
-					<real>9.5634899139404297</real>
+					<real>31.752536773681641</real>
+					<real>9.7858829498291016</real>
 				</array>
 				<array>
-					<real>20.120046615600586</real>
-					<real>9.5166130065917969</real>
+					<real>20.374721527099609</real>
+					<real>10.400613784790039</real>
 				</array>
 				<array>
-					<real>15.962166786193848</real>
-					<real>13.588370323181152</real>
+					<real>15.635541915893555</real>
+					<real>14.676473617553711</real>
 				</array>
 			</array>
 			<key>polygons</key>
 			<array>
 				<array>
 					<array>
-						<real>13.550726890563965</real>
-						<real>23.539375305175781</real>
+						<real>13.658107757568359</real>
+						<real>23.20245361328125</real>
 					</array>
 					<array>
-						<real>1.7344541549682617</real>
-						<real>18.486471176147461</real>
+						<real>2.229569673538208</real>
+						<real>21.07209587097168</real>
 					</array>
 					<array>
-						<real>2.8976576328277588</real>
-						<real>1.482114315032959</real>
+						<real>3.0373499393463135</real>
+						<real>2.2554333209991455</real>
 					</array>
 					<array>
-						<real>15.962166786193848</real>
-						<real>13.588370323181152</real>
-					</array>
-				</array>
-				<array>
-					<array>
-						<real>35.960109710693359</real>
-						<real>14.484484672546387</real>
-					</array>
-					<array>
-						<real>49.377834320068359</real>
-						<real>2.4861540794372559</real>
-					</array>
-					<array>
-						<real>47.147357940673828</real>
-						<real>19.961462020874023</real>
-					</array>
-					<array>
-						<real>36.374370574951172</real>
-						<real>24.576120376586914</real>
+						<real>15.635541915893555</real>
+						<real>14.676473617553711</real>
 					</array>
 				</array>
 				<array>
 					<array>
-						<real>24.270296096801758</real>
-						<real>51.143383026123047</real>
+						<real>35.708160400390625</real>
+						<real>14.759750366210938</real>
 					</array>
 					<array>
-						<real>21.938438415527344</real>
-						<real>56.771892547607422</real>
+						<real>48.306354522705078</real>
+						<real>4.3161435127258301</real>
 					</array>
 					<array>
-						<real>20.751251220703125</real>
-						<real>50.250541687011719</real>
+						<real>46.590862274169922</real>
+						<real>20.778356552124023</real>
+					</array>
+					<array>
+						<real>36.516700744628906</real>
+						<real>24.261577606201172</real>
 					</array>
 				</array>
 				<array>
 					<array>
-						<real>20.751251220703125</real>
-						<real>50.250541687011719</real>
+						<real>23.716373443603516</real>
+						<real>51.007659912109375</real>
 					</array>
 					<array>
-						<real>15.977429389953613</real>
-						<real>43.596187591552734</real>
+						<real>22.495996475219727</real>
+						<real>56.520549774169922</real>
 					</array>
 					<array>
-						<real>13.550726890563965</real>
-						<real>23.539375305175781</real>
+						<real>20.729782104492188</real>
+						<real>50.022727966308594</real>
+					</array>
+				</array>
+				<array>
+					<array>
+						<real>20.729782104492188</real>
+						<real>50.022727966308594</real>
 					</array>
 					<array>
-						<real>15.962166786193848</real>
-						<real>13.588370323181152</real>
+						<real>15.85584545135498</real>
+						<real>42.801914215087891</real>
 					</array>
 					<array>
-						<real>20.120046615600586</real>
-						<real>9.5166130065917969</real>
+						<real>13.658107757568359</real>
+						<real>23.20245361328125</real>
 					</array>
 					<array>
-						<real>31.803319931030273</real>
-						<real>9.5634899139404297</real>
+						<real>15.635541915893555</real>
+						<real>14.676473617553711</real>
 					</array>
 					<array>
-						<real>35.960109710693359</real>
-						<real>14.484484672546387</real>
+						<real>20.374721527099609</real>
+						<real>10.400613784790039</real>
 					</array>
 					<array>
-						<real>36.374370574951172</real>
-						<real>24.576120376586914</real>
+						<real>31.752536773681641</real>
+						<real>9.7858829498291016</real>
 					</array>
 					<array>
-						<real>31.650697708129883</real>
-						<real>43.204818725585938</real>
+						<real>35.708160400390625</real>
+						<real>14.759750366210938</real>
 					</array>
 					<array>
-						<real>24.270296096801758</real>
-						<real>51.143383026123047</real>
+						<real>36.516700744628906</real>
+						<real>24.261577606201172</real>
+					</array>
+					<array>
+						<real>29.893960952758789</real>
+						<real>45.091255187988281</real>
+					</array>
+					<array>
+						<real>23.716373443603516</real>
+						<real>51.007659912109375</real>
 					</array>
 				</array>
 			</array>
@@ -1067,6 +1077,6 @@
 	<key>stageBorder</key>
 	<integer>3</integer>
 	<key>stageColor</key>
-	<integer>2</integer>
+	<integer>0</integer>
 </dict>
 </plist>

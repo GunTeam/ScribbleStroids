@@ -11,6 +11,10 @@
 
 @interface Shield : CCSprite {
     CGFloat screenWidth,screenHeight;
+    double timeLimit;
+    bool timeToGo;
 }
+
+@property bool displayShield;
 
 @end

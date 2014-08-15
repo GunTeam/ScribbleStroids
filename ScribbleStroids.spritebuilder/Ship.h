@@ -13,8 +13,9 @@
     CGFloat screenWidth,screenHeight;
     CCAnimationManager *animationManager;
     CCSprite *_flames;
-    CCSprite *_shield;
+    CCSprite *_shield,*_orangeShield,*_redShield,*_blueShield,*_greenShield,*_purpleShield;
     double shieldTimer;
+    
     
     double fireRate;
 }
@@ -31,5 +32,6 @@
 -(void) raiseShield;
 -(void) didLoadFromCCB;
 -(void) fire;
+-(void) takeDownShield;
 
 @end

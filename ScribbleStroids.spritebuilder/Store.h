@@ -20,7 +20,10 @@
     CCSprite *_ship,*_orangeShield,*_purpleShield,*_blueShield,*_greenShield,*_redShield;
     CCButton *_shipButton,*_gunButton,*_shieldButton;
     CCLabelTTF *_bankLabel;
-    
+    CCSprite *_Level1,*_Level2,*_Level3,*_Level4,*_Level5;
+    CCSprite *_heart1,*_heart2,*_heart3,*_heart4,*_heart5;
+    CCSprite *_star1,*_star2,*_star3,*_star4,*_star5;
+    CCSprite *_clock1,*_clock2,*_clock3,*_clock4,*_clock5;
     //end code connections
     
 }

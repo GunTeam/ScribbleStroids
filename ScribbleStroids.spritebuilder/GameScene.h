@@ -38,7 +38,7 @@
     CCLabelTTF *_pauseBankLabel;
     CCLabelTTF *_pauseBankBalance;
     CCButton *_buyLife;
-    CCButton *_buyNuke;
+    CCButton *_buyShield;
     //end SB code connections
     
     //background sprites
@@ -60,7 +60,7 @@
 @property int level;
 @property int score;
 @property int lives;
-@property int numBombs;
+@property int numShields;
 @property bool paused;
 @property int bankRoll;
 

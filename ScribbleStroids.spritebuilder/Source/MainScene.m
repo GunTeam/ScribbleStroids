@@ -28,26 +28,16 @@ double LSS = .08;
         [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"MusicOn"];
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"bank"];
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"highScore"];
-        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"startingLevel"];
-        
-        //ship defaults
-        [[NSUserDefaults standardUserDefaults]setDouble:5 forKey:@"shieldTime"];
-        [[NSUserDefaults standardUserDefaults]setDouble:3. forKey:@"rateOfFire"];
-        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"fireType"];
-        [[NSUserDefaults standardUserDefaults]setDouble:2 forKey:@"rateOfFire"];
-        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"startingBombs"];
-        [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"maxBombs"];
-        [[NSUserDefaults standardUserDefaults]setInteger:2 forKey:@"startingLives"];
-        [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"maxLives"];
         
         //set ship, gun, and shield levels
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
     }
-    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
-    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
-    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
+//    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
+//    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
+//    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
+//    [[NSUserDefaults standardUserDefaults]setInteger:50000 forKey:@"bank"];
     
     //start load background
     int randX = 0;
@@ -105,6 +95,7 @@ double LSS = .08;
     ship.position = CGPointMake(-45, 0);
     ship.inMain = true;
     [ship showFlames];
+    [ship takeDownShield];
     [self addChild:ship z:-1];
     
     int event = arc4random() % 6;

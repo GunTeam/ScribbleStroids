@@ -14,6 +14,8 @@
 -(void) didLoadFromCCB{
     [super didLoadFromCCB];
     self.rateOfFire = 1./15.;
+//    _star.visible = false;
+    [_star removeFromParentAndCleanup:true];
 }
 
 -(void) fire {

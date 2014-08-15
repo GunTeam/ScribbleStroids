@@ -23,12 +23,29 @@
     self.physicsBody.collisionCategories = @[@"shield"];
     self.physicsBody.collisionMask = @[@"shield"];
     
+    timeToGo = false;
+    self.displayShield = false;
+    
 }
 
 -(void) update:(CCTime)delta{
-    if (self.position.x > screenWidth || self.position.x < 0 || self.position.y > screenHeight || self.position.y < 0){
-        [self removeFromParent];
+    if (!self.displayShield) {
+        if (self.opacity == 0 && timeToGo) {
+            [self removeFromParent];
+        }
+        timeLimit+=1./60;
+        if (timeLimit > 8) {
+            timeLimit = 0;
+            [self fadeOut];
+            timeToGo = true;
+        }
     }
+    
+    
+}
+
+-(void) fadeOut{
+    [self runAction:[CCActionFadeOut actionWithDuration:3]];
 }
 
 @end
