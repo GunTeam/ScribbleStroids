@@ -10,12 +10,25 @@
 #import <iAd/iAd.h>
 #import "cocos2d.h"
 #import "CCNode.h"
+#import "GADBannerView.h"
 
-@interface MainScene : CCNode <ADBannerViewDelegate>
+typedef enum _bannerType
+{
+    kBanner_Portrait_Top,
+    kBanner_Portrait_Bottom,
+}CocosBannerType;
+
+#define BANNER_TYPE  kBanner_Portrait_Bottom
+
+@interface MainScene : CCNode <GADBannerViewDelegate, ADBannerViewDelegate>
 {
     CCLabelTTF *_titleLabel;
     ADBannerView *_bannerView;
     ADBannerView *_adView;
+    
+    GADBannerView *mBannerView;
+    CocosBannerType mBannerType;
+    float on_x, on_y, off_x, off_y;
 }
 -(void) playGame;
 -(void) howTo;

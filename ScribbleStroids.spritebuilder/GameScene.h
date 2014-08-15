@@ -12,6 +12,7 @@
 #import "Ship.h"
 #import "Asteroid.h"
 #import "MainScene.h"
+#import "GADInterstitial.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
@@ -30,6 +31,9 @@
     CCPhysicsNode *_physicsNode;
     
     Ship *mainShip;
+    
+    GADInterstitial *interstitial_;
+    GADRequest *request;
 }
 
 @property int numberOfAsteroidsRemaingingInLevel;

@@ -6,6 +6,8 @@
 //  Copyright 2014 Apportable. All rights reserved.
 //
 
+#define MY_INTERSITIAL_UNIT_ID "ca-app-pub-1792769022487207/2338898176";
+
 #import "GameScene.h"
 
 double missileLaunchImpulse = 3;
@@ -46,6 +48,8 @@ int initialAsteroidVelocity = 40;
     _physicsNode.debugDraw = true;
     
     [self createLevel:self.level];
+    
+    [self interstitialAds];
 
 }
 
@@ -165,7 +169,14 @@ int initialAsteroidVelocity = 40;
         
     }
     self.numberOfAsteroidsRemaingingInLevel = level*4;
-    
+}
+
+-(void)interstitialAds
+{
+    interstitial_ = [[GADInterstitial alloc] init];
+    interstitial_.adUnitID = @MY_INTERSITIAL_UNIT_ID;
+    request.testDevices = @[ GAD_SIMULATOR_ID ];
+    [interstitial_ loadRequest:request];
 }
 
 @end

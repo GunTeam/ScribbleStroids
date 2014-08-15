@@ -13,8 +13,8 @@
 
 -(void) didLoadFromCCB{
     //any custom initialization needed goes here
-    
 }
+
 
 -(void) playGame{
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"]];
@@ -62,8 +62,6 @@
     CGRect contentFrame = [CCDirector sharedDirector].view.bounds;
     if (contentFrame.size.width < contentFrame.size.height) {
         _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    } else {
-        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
     }
     
     CGRect bannerFrame = _bannerView.frame;
@@ -86,7 +84,6 @@
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     [self layoutAnimated:YES];
 }
-
 
 
 
