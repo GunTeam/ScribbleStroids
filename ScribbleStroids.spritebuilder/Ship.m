@@ -17,6 +17,8 @@ double shieldTimeCounter;
 @implementation Ship
 
 -(void) didLoadFromCCB {
+    bulletScale = 1.2;
+    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     screenWidth = screenSize.width;

@@ -121,6 +121,10 @@ double largeStarSpeed = .0016;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
+    Explosion *explosion = (Explosion *)[CCBReader load:@"Explosion"];
+    explosion.position = CGPointMake(screenWidth/2, screenHeight/2);
+    [self addChild:explosion z:1];
+    
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
     [self addChild:_physicsNode z:-1];
@@ -387,7 +391,15 @@ double largeStarSpeed = .0016;
         self.score += self.level-1;
         scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
     }
+    
+    Explosion *explosion = (Explosion *)[CCBReader load:@"Explosion"];
+    explosion.position = bullet.position;
+    CGPoint point = bullet.position;
+    
+    [self addChild:explosion];
+    
     [bullet removeFromParent];
+
     
     return true;
 }

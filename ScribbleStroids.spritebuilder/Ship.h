@@ -15,6 +15,7 @@
     CCSprite *_flames;
     CCSprite *_shield,*_orangeShield,*_redShield,*_blueShield,*_greenShield,*_purpleShield;
     double shieldTimer;
+    double bulletScale;
     
     
     double fireRate;

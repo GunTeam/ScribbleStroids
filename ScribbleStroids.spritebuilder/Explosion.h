@@ -1,19 +1,17 @@
 //
-//  Bullet.h
+//  Explosion.h
 //  ScribbleStroids
 //
-//  Created by Jorrie Brettin on 7/29/14.
+//  Created by Jorrie Brettin on 8/16/14.
 //  Copyright 2014 Apportable. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "Explosion.h"
 
-@interface Bullet : CCSprite {
-    CGFloat screenWidth,screenHeight;
-    CCSprite *_explosion;
+@interface Explosion : CCSprite {
     CCAnimationManager *animationManager;
+    double timer;
 }
 
 @end
