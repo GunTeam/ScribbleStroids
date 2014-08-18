@@ -170,7 +170,6 @@ double lexi = .08;
         _heart3.visible = true;
         _heart4.visible = true;
         _heart5.visible = true;
-        self.shipCost = 999999;
         _shipButton.title = @"MAX";
         _shipButton.enabled = false;
     }
@@ -240,7 +239,6 @@ double lexi = .08;
         _star3.visible = true;
         _star4.visible = true;
         _star5.visible = true;
-        self.gunCost = 99999999;
         _gunButton.title = @"MAX";
         _gunButton.enabled = false;
     }
@@ -311,7 +309,6 @@ double lexi = .08;
         _clock3.visible = true;
         _clock4.visible = true;
         _clock5.visible = true;
-        self.shieldCost = 999999999;
         _shieldButton.title = @"MAX";
         _shieldButton.enabled = false;
     }

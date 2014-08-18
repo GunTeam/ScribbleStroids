@@ -12,39 +12,27 @@
 
 -(void) didLoadFromCCB {
     //custom init stuff here
-//    self.physicsBody.collisionGroup = @"AsteroidGroup";
     self.physicsBody.collisionCategories = @[@"coin"];
     self.physicsBody.collisionType = @"coin";
     self.physicsBody.collisionMask = @[@"shield"];
     coinSpin = 0;
     self.wasPickedUp = false;
-    fadeTime = 10;
+    fadeTime = 5;
     timePassed = 0;
     [self schedule:@selector(stableState:) interval:1];
 }
 
 -(void) stableState:(CCTime)dt{
     if (timePassed < fadeTime) {
-        CCLOG(@"time has passed");
         timePassed += 1;
     } else {
         [self removeFromParentAndCleanup:true];
     }
 }
 
--(void) fadeCoin{
-    CCAction *coinfade = [CCActionFadeOut actionWithDuration:3.];
-    [self runAction:coinfade];
-}
-
 -(void) update:(CCTime)dt{
     _coin.scaleX = cos(coinSpin);
     coinSpin+= 1./15.;
-    
-    if (self.opacity < 0) {
-        [self removeFromParentAndCleanup:true];
-    }
-    
 }
 
 -(void) onExit {

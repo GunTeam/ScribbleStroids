@@ -13,7 +13,7 @@
 
 -(void) didLoadFromCCB{
     [super didLoadFromCCB];
-    self.rateOfFire = 1./12.;
+//    self.rateOfFire = 1./12.;
 }
 
 -(void) fire {

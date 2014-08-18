@@ -9,7 +9,7 @@
 #import "GameScene.h"
 
 double missileLaunchImpulse = 3;
-double shipThrust = 10;
+double shipThrust = 8;
 double shipDampening = .97;
 int smallSpeedIncrease = 80;
 int mediumSpeedIncrease = 120;
@@ -18,7 +18,7 @@ bool debugMode = false;
 double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
-int startLevel = 1;
+int startLevel = 8;
 int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 1;
 double howOftenPowerupDropsAreMade = 60;
@@ -34,7 +34,10 @@ double largeStarSpeed = .0016;
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     
     CCLOG(@"Received a touch");
-    if (!self.paused) {
+    if (self.tutorial) {
+        tutorialStep += 1;
+        [self tutorial:tutorialStep];
+    } else if (!self.paused) {
         mainShip.physicsBody.angularVelocity = 0;
         CGPoint touchLocation = [touch locationInNode:self];
         double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
@@ -121,10 +124,6 @@ double largeStarSpeed = .0016;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
-    Explosion *explosion = (Explosion *)[CCBReader load:@"Explosion"];
-    explosion.position = CGPointMake(screenWidth/2, screenHeight/2);
-    [self addChild:explosion z:1];
-    
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
     [self addChild:_physicsNode z:-1];
@@ -132,7 +131,133 @@ double largeStarSpeed = .0016;
     _physicsNode.collisionDelegate = self;
     
     
-    int shipLevel = (int) [[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
+//    int shipLevel = (int) [[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
+//    int shipLevel = 5;
+//    if (shipLevel == 1) {
+//        mainShip = (Ship *)[CCBReader load:@"Ship"];
+//    } else if (shipLevel == 2) {
+//        mainShip = (Ship *)[CCBReader load:@"Level2"];
+//    } else if (shipLevel == 3) {
+//        mainShip = (Ship *)[CCBReader load:@"Level3"];
+//    } else if (shipLevel == 4) {
+//        mainShip = (Ship *)[CCBReader load:@"Level4"];
+//    } else {
+//        mainShip = (Ship *)[CCBReader load:@"Level5"];
+//    }
+//    mainShip.inMain = false; //since it's not in the main menu, we set this to false
+//    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+//    [mainShip raiseShield];
+//    [_physicsNode addChild:mainShip z:-1];
+//    _physicsNode.debugDraw = debugMode;
+    
+    //labels
+    scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Chalkduster" fontSize:18];
+    scoreLabel.anchorPoint = CGPointMake(0, 1);
+    scoreLabel.position = CGPointMake(0, screenHeight);
+    [self addChild:scoreLabel];
+    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%d",self.bankRoll] fontName:@"Chalkduster" fontSize:18];
+    levelLabel.color = [CCColor colorWithCcColor3b:ccc3(239, 215, 9)];
+    levelLabel.anchorPoint = CGPointMake(1, 1);
+    levelLabel.position = CGPointMake(screenWidth, screenHeight);
+    [self addChild:levelLabel];
+    //end labels
+//    [self createLevel:self.level];
+    
+    self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]+1);
+    [self displayNumberOfLives:1];
+        
+    self.numShields = 1;
+    [self displayNumberOfShields:1];
+    
+//    [self schedule:@selector(powerUpDrop:) interval:30];
+    
+    //start pause menu
+    self.paused = false;
+    _pauseMenu.visible = false;
+    _settingsButton.visible = false;
+    _storeButton.visible = false;
+    _pauseBankLabel.visible = false;
+    _pauseBankBalance.visible = false;
+    _extraLifeCostLabel.visible = false;
+    _extraNukeCostLabel.visible = false;
+    _buyLife.visible = false;
+    _buyShield.visible = false;
+    self.extraLifeCost = 100;
+    self.extraShieldCost = 50;
+    //end pause menu
+    
+    
+    tutorialStep = 0;
+    int tutorialInt = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"tutorial"];
+    if (tutorialInt != 0) {
+        self.tutorial = true;
+        //this needs to happen if there is a tutorial
+//        [[CCDirector sharedDirector] pause];
+        double opacity = .3;
+        _boostButton.enabled = false;
+        _shootButton.enabled = false;
+        _joystickArrow.opacity = opacity;
+        _joystickCenter.opacity = opacity;
+        scoreLabel.opacity = opacity;
+        levelLabel.opacity = opacity;
+        for (int i = 0; i < self.numShields; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"shield%d",i] recursively:false].opacity = opacity;
+        }
+        for (int i = 0; i < self.lives; i ++) {
+            [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
+        }
+        //now we need to check if it's a one-time tutorial
+        if (tutorialInt == 1 /*this is the setting for "once"*/){
+            [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"tutorial"];
+        }
+        [self tutorial:(int)tutorialStep];
+    } else {
+        self.tutorial = false;
+        [self startGame];
+    }
+    
+
+}
+
+-(void) startGame {
+    self.tutorial = false;
+    double opacity = 1;
+    _boostButton.enabled = true;
+    _shootButton.enabled = true;
+    _joystickArrow.opacity = opacity;
+    _joystickCenter.opacity = opacity;
+    scoreLabel.opacity = opacity;
+    levelLabel.opacity = opacity;
+    for (int i = 0; i < self.numShields; i ++) {
+        [self getChildByName:[NSString stringWithFormat:@"shield%d",i] recursively:false].opacity = opacity;
+    }
+    for (int i = 0; i < self.lives; i ++) {
+        [self getChildByName:[NSString stringWithFormat:@"ship%d",i] recursively:false].opacity = opacity;
+    }
+    
+    [_tutCoin1 removeFromParent];
+    [_tutCoin2 removeFromParent];
+    [_tutCoin3 removeFromParent];
+    [_tutLabel11 removeFromParent];
+    [_tutLabel12 removeFromParent];
+    [_tutLabel21 removeFromParent];
+    [_tutLabel22 removeFromParent];
+    [_tutLabel23 removeFromParent];
+    [_tutLabel24 removeFromParent];
+    [_tutLabel31 removeFromParent];
+    [_tutLabel41 removeFromParent];
+    [_tutLabel42 removeFromParent];
+    [_tutLabel43 removeFromParent];
+    [_tutLabel44 removeFromParent];
+    [_tutLabel51 removeFromParent];
+    [_tutSprite removeFromParent];
+    [_tutStroid3 removeFromParent];
+    [_tutStroid2 removeFromParent];
+    [_tutStroid1 removeFromParent];
+    
+    [self createLevel:self.level];
+    
+    int shipLevel = 5;
     if (shipLevel == 1) {
         mainShip = (Ship *)[CCBReader load:@"Ship"];
     } else if (shipLevel == 2) {
@@ -150,39 +275,7 @@ double largeStarSpeed = .0016;
     [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
     
-    //labels
-    scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Chalkduster" fontSize:18];
-    scoreLabel.anchorPoint = CGPointMake(0, 1);
-    scoreLabel.position = CGPointMake(0, screenHeight);
-    [self addChild:scoreLabel];
-    levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%d",self.bankRoll] fontName:@"Chalkduster" fontSize:18];
-    levelLabel.color = [CCColor colorWithCcColor3b:ccc3(239, 215, 9)];
-    levelLabel.anchorPoint = CGPointMake(1, 1);
-    levelLabel.position = CGPointMake(screenWidth, screenHeight);
-    [self addChild:levelLabel];
-    //end labels
-    [self createLevel:self.level];
-    
-    self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]+1);
-    [self displayNumberOfLives:1];
-        
-    self.numShields = 1;
-    [self displayNumberOfShields:1];
-    
-    [self schedule:@selector(powerUpDrop:) interval:60];
-    
-    //start pause menu
-    self.paused = false;
-    _pauseMenu.visible = false;
-    _settingsButton.visible = false;
-    _storeButton.visible = false;
-    _pauseBankLabel.visible = false;
-    _pauseBankBalance.visible = false;
-    _extraLifeCostLabel.visible = false;
-    _extraNukeCostLabel.visible = false;
-    _buyLife.visible = false;
-    _buyShield.visible = false;
-    //end pause menu
+    [self schedule:@selector(powerUpDrop:) interval:30];
 
 }
 
@@ -281,6 +374,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) Pause {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.bankRoll forKey:@"bank"];
     self.paused = !self.paused;
     if (!(self.numShields < 3)) {
         _buyShield.enabled = false;
@@ -363,24 +457,44 @@ double largeStarSpeed = .0016;
         [self asteroidCollision:asteroid];
         mainShip.immune = true;
         self.lives -=1 ;
+        Explosion *explosion = (Explosion *)[CCBReader load:@"Explosion"];
+        explosion.position = mainShip.position;
+        explosion.rotation = mainShip.rotation;
+        explosion.scale += .8;
+        [self addChild:explosion];
         if (self.lives < 0) {
             [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
             if (self.score > [[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]) {
                 [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
                 //display new high score label on game over screen
             }
-            [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
+            mainShip.visible = false;
+            [self scheduleOnce:@selector(gameOver) delay:1];
+        } else{
+            [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
+            mainShip.visible = false;
+            [mainShip raiseShield];
+            [self scheduleOnce:@selector(resetShip) delay:1];
         }
-        [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
-        mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-        mainShip.physicsBody.velocity = CGPointMake(0, 0);
-        mainShip.rotation = 0;
-        [mainShip raiseShield];
     }
     
     mainShip.physicsBody.angularVelocity = 0;
     return true;
 }
+
+-(void) gameOver {
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
+}
+
+-(void) resetShip{
+    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+    mainShip.physicsBody.velocity = CGPointMake(0, 0);
+    mainShip.rotation = 0;
+    mainShip.visible = true;
+    [mainShip raiseShield];
+}
+
+         
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair bullet:(CCSprite *)bullet asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and bullet collided");
@@ -393,9 +507,7 @@ double largeStarSpeed = .0016;
     }
     
     Explosion *explosion = (Explosion *)[CCBReader load:@"Explosion"];
-    explosion.position = bullet.position;
-    CGPoint point = bullet.position;
-    
+    explosion.position = bullet.position;    
     [self addChild:explosion];
     
     [bullet removeFromParent];
@@ -476,7 +588,9 @@ double largeStarSpeed = .0016;
             _buyLife.enabled = false;
         }
         [self displayNumberOfLives:.3];
-        self.bankRoll-=50;
+        self.bankRoll-=self.extraLifeCost;
+        self.extraLifeCost = self.extraLifeCost*2;
+        
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
         _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
@@ -492,7 +606,8 @@ double largeStarSpeed = .0016;
             _buyShield.enabled = false;
         }
         [self displayNumberOfShields:.3];
-        self.bankRoll-=50;
+        self.bankRoll-=self.extraShieldCost;
+        self.extraShieldCost = self.extraShieldCost*2;
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
         _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
@@ -564,6 +679,72 @@ double largeStarSpeed = .0016;
     coin.position = spawnPosition;
     coin.labelColor = labelColor;
     [_physicsNode addChild:coin];
+}
+
+-(void) tutorial:(int)step {
+    if (step == 0) {
+        _tutLabel21.visible = false;
+        _tutLabel22.visible = false;
+        _tutLabel23.visible = false;
+        _tutLabel24.visible = false;
+        _tutLabel31.visible = false;
+        _tutLabel41.visible = false;
+        _tutLabel42.visible = false;
+        _tutLabel43.visible = false;
+        _tutLabel44.visible = false;
+        _tutLabel51.visible = false;
+        _tutCoin1.visible = false;
+        _tutCoin2.visible = false;
+        _tutCoin3.visible = false;
+        _tutSprite.visible = false;
+        _tutStroid1.visible = false;
+        _tutStroid2.visible = false;
+        _tutStroid3.visible = false;
+    } else if (step == 1) {
+        _tutLabel11.visible = false;
+        _tutLabel12.visible = false;
+        _tutLabel21.visible = true;
+        _tutLabel22.visible = true;
+        _tutLabel23.visible = true;
+        _tutLabel24.visible = true;
+    } else if (step ==2) {
+        _tutLabel21.visible = false;
+        _tutLabel22.visible = false;
+        _tutLabel23.visible = false;
+        _tutLabel24.visible = false;
+        _tutLabel31.visible = true;
+        _tutStroid1.visible = true;
+        _tutStroid2.visible = true;
+        _tutStroid3.visible = true;
+    } else if (step == 3) {
+        _tutLabel31.visible = false;
+        _tutStroid1.visible = false;
+        _tutStroid2.visible = false;
+        _tutStroid3.visible = false;
+        _tutLabel41.visible = true;
+        _tutLabel42.visible = true;
+        _tutLabel43.visible = true;
+        _tutLabel44.visible = true;
+        _tutCoin1.visible = true;
+        _tutCoin2.visible = true;
+        _tutCoin3.visible = true;
+    } else if (step == 4) {
+        _tutLabel41.visible = false;
+        _tutLabel42.visible = false;
+        _tutLabel43.visible = false;
+        _tutLabel44.visible = false;
+        _tutLabel51.visible = true;
+        _tutCoin1.visible = false;
+        _tutCoin2.visible = false;
+        _tutCoin3.visible = false;
+        _tutSprite.visible = true;
+    } else {
+        [self startGame];
+    }
+    
+    
+    
+
 }
 
 @end

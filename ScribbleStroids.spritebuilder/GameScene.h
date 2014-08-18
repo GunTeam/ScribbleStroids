@@ -22,6 +22,7 @@
 #import "Level4.h"
 #import "Level5.h"
 #import "Explosion.h"
+#import "ShipExplosion.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
@@ -40,6 +41,9 @@
     CCLabelTTF *_pauseBankBalance;
     CCButton *_buyLife;
     CCButton *_buyShield;
+    CCLabelTTF *_tutLabel11,*_tutLabel12,*_tutLabel21,*_tutLabel22,*_tutLabel23,*_tutLabel24,*_tutLabel31,*_tutLabel41,*_tutLabel42,*_tutLabel43,*_tutLabel44,*_tutLabel51;
+    CCSprite *_tutSprite,*_tutStroid1,*_tutStroid2,*_tutStroid3;
+    Coin *_tutCoin1,*_tutCoin2,*_tutCoin3;
     //end SB code connections
     
     //background sprites
@@ -55,6 +59,8 @@
     CCPhysicsNode *_physicsNode;
     
     Ship *mainShip;
+    
+    int tutorialStep;
 }
 
 @property int numberOfAsteroidsRemaingingInLevel;
@@ -64,5 +70,8 @@
 @property int numShields;
 @property bool paused;
 @property int bankRoll;
+@property int extraShieldCost;
+@property int extraLifeCost;
+@property bool tutorial;
 
 @end

@@ -13,13 +13,14 @@
 
 -(void) didLoadFromCCB{
     [super didLoadFromCCB];
-    self.rateOfFire = 1./8.;
+//    self.rateOfFire = 1./8.;
 }
 
 -(void) fire {
     fireRate = 1;
     int bulletLaunchImpulse = 3;
     int positionBoost = 17;
+    int topBoost = 25;
     
     CCSprite *bullet1 = (CCSprite *)[CCBReader load:@"Bullet"];
     bullet1.position = CGPointMake(self.position.x - positionBoost*cos(self.rotation*M_PI/180), self.position.y + positionBoost*sin(self.rotation*M_PI/180));
@@ -38,7 +39,7 @@
                                                    bulletLaunchImpulse*-sin((self.rotation-90)*M_PI/180))];
     
     CCSprite *bullet3 = (CCSprite *)[CCBReader load:@"Bullet"];
-    bullet3.position = CGPointMake(self.position.x - positionBoost*sin(self.rotation*M_PI/180), self.position.y + positionBoost*cos(self.rotation*M_PI/180));
+    bullet3.position = CGPointMake(self.position.x + topBoost*sin(self.rotation*M_PI/180), self.position.y + topBoost*cos(self.rotation*M_PI/180));
     bullet3.physicsBody.velocity = self.physicsBody.velocity;
     bullet3.scale = bulletScale;
     [self.parent addChild:bullet3 z:-2];
@@ -55,19 +56,19 @@
     
     CCSprite *bullet5 = (CCSprite *)[CCBReader load:@"Bullet"];
     bullet5.position = CGPointMake(self.position.x, self.position.y);
-    bullet5.physicsBody.velocity = CGPointMake(-self.physicsBody.velocity.x,-self.physicsBody.velocity.y);
+    bullet5.physicsBody.velocity = CGPointMake(self.physicsBody.velocity.x,self.physicsBody.velocity.y);
     bullet5.scale = bulletScale;
     [self.parent addChild:bullet5 z:-2];
-    [bullet5.physicsBody applyImpulse: CGPointMake(-bulletLaunchImpulse*cos((self.rotation-75)*M_PI/180),
-                                                   bulletLaunchImpulse*sin((self.rotation-75)*M_PI/180))];
+    [bullet5.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos((self.rotation-75)*M_PI/180),
+                                                   -bulletLaunchImpulse*sin((self.rotation-75)*M_PI/180))];
     
     CCSprite *bullet6= (CCSprite *)[CCBReader load:@"Bullet"];
     bullet6.position = CGPointMake(self.position.x, self.position.y);
-    bullet6.physicsBody.velocity = CGPointMake(-self.physicsBody.velocity.x,-self.physicsBody.velocity.y);
+    bullet6.physicsBody.velocity = CGPointMake(self.physicsBody.velocity.x,self.physicsBody.velocity.y);
     bullet6.scale = bulletScale;
     [self.parent addChild:bullet6 z:-2];
-    [bullet6.physicsBody applyImpulse: CGPointMake(-bulletLaunchImpulse*cos((self.rotation-105)*M_PI/180),
-                                                   bulletLaunchImpulse*sin((self.rotation-105)*M_PI/180))];
+    [bullet6.physicsBody applyImpulse: CGPointMake(bulletLaunchImpulse*cos((self.rotation-105)*M_PI/180),
+                                                   -bulletLaunchImpulse*sin((self.rotation-105)*M_PI/180))];
     
     
 }

@@ -35,35 +35,35 @@ double shieldTimeCounter;
         [_purpleShield removeFromParent];
         [_redShield removeFromParent];
         _shield = _blueShield;
-        shieldDuration = 5;
+        shieldDuration = 1;
     } else if (shieldLevel == 2) {
         [_blueShield removeFromParent];
         [_orangeShield removeFromParent];
         [_purpleShield removeFromParent];
         [_redShield removeFromParent];
         _shield = _greenShield;
-        shieldDuration = 8;
+        shieldDuration = 2;
     } else if (shieldLevel == 3) {
         [_greenShield removeFromParent];
         [_blueShield removeFromParent];
         [_purpleShield removeFromParent];
         [_redShield removeFromParent];
         _shield = _orangeShield;
-        shieldDuration = 11;
+        shieldDuration = 3;
     } else if (shieldLevel == 4) {
         [_greenShield removeFromParent];
         [_orangeShield removeFromParent];
         [_blueShield removeFromParent];
         [_redShield removeFromParent];
         _shield = _purpleShield;
-        shieldDuration = 15;
+        shieldDuration = 4;
     } else if (shieldLevel == 5) {
         [_greenShield removeFromParent];
         [_orangeShield removeFromParent];
         [_purpleShield removeFromParent];
         [_blueShield removeFromParent];
         _shield = _redShield;
-        shieldDuration = 20;
+        shieldDuration = 5;
     }
     
     self.physicsBody.collisionType = @"ship";
@@ -80,6 +80,9 @@ double shieldTimeCounter;
     
     
     self.immune = false;
+    
+    self.rateOfFire = 1./20;
+
 }
 
 -(void) sustainShield:(CCTime) dt {
@@ -102,10 +105,10 @@ double shieldTimeCounter;
         self.readyToFire = true;
     }
     if (_shield.visible) {
-        _shield.physicsBody.density = 5;
+//        _shield.physicsBody.density = 50;
         self.immune = true;
     } else {
-        _shield.physicsBody.density = .01;
+//        _shield.physicsBody.density = .01;
         self.immune = false;
     }
     if (!self.inMain) {

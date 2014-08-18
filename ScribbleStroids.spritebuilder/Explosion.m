@@ -14,13 +14,13 @@
 -(void) didLoadFromCCB{
 //    [self.userObject runAnimationsForSequenceNamed:@"Explosion"];
     timer = 0;
-    self.scale = .2;
+    self.scale = .1;
     [self.userObject runAnimationsForSequenceNamed:@"Animation"];
 }
 
 -(void) update:(CCTime)delta{
     timer +=1;
-    self.scale+=.1;
+    self.scale+=.04;
     if (timer>7) {
         [self removeFromParent];
     }
