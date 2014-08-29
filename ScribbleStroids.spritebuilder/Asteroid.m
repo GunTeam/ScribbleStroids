@@ -26,6 +26,9 @@
     self.physicsBody.collisionMask = @[@"bullet",@"ship"];
     
     self.key = true;
+    
+    destroyed =  [OALSimpleAudio sharedInstance];
+
 }
 
 -(void) update:(CCTime)delta {
@@ -41,6 +44,18 @@
         } else if (self.position.y < 0) {
             self.position = CGPointMake(self.position.x, screenHeight);
         }
+    }
+    
+}
+
+-(void) onExit {
+    [super onExit];
+
+    int effect = arc4random() % 2;
+    if (effect == 0) {
+        [destroyed playEffect:@"bulletAsteroid5.mp3"];
+    } else if (effect == 1){
+        [destroyed playEffect:@"bulletAsteroid6.mp3"];
     }
     
 }

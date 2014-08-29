@@ -16,12 +16,15 @@
     CCSprite *_shield,*_orangeShield,*_redShield,*_blueShield,*_greenShield,*_purpleShield;
     double shieldTimer;
     double bulletScale;
+    OALSimpleAudio *shipfiresound, *thrustsound;
+    
+    int thrustSoundTimer;
     
     
     double fireRate;
 }
 
-@property CCSprite* flames;
+@property bool flamesVisible;
 @property double rateOfFire;
 @property bool readyToFire;
 @property bool immune;

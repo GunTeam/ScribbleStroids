@@ -23,10 +23,6 @@ double lexi = .08;
     bankRoll = [[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     _bankLabel.string = [NSString stringWithFormat:@"$%d",bankRoll];
     
-//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"shipLevel"];
-//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"gunLevel"];
-//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"shieldLevel"];
-    
     [self shipAttributes:(int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]];
     [self gunAttributes:(int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"]];
     [self shieldAttributes:((int)[[NSUserDefaults standardUserDefaults]integerForKey:@"shieldLevel"])];
@@ -36,7 +32,6 @@ double lexi = .08;
     while (randX == 0 || randY == 0) {
         randX = arc4random() % 10 - 5;
         randY = arc4random() % 10 - 5;
-        
     }
     smallStarSpeedX = randX * jorrie;
     smallStarSpeedY = randY * jorrie;

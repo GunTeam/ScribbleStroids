@@ -22,7 +22,6 @@
 #import "Level4.h"
 #import "Level5.h"
 #import "Explosion.h"
-#import "ShipExplosion.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {

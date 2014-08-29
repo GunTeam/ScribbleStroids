@@ -17,7 +17,7 @@
 }
 
 -(void) fire {
-    fireRate = 1;
+    [super fire];
     int bulletLaunchImpulse = 3;
     int positionBoost = 17;
     int topBoost = 25;

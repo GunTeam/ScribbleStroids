@@ -78,10 +78,15 @@ double shieldTimeCounter;
     [self schedule:@selector(runFlames:) interval:1./3.];
     [self hideFlames];
     
+    self.flamesVisible = _flames.visible;
     
     self.immune = false;
     
     self.rateOfFire = 1./20;
+    
+    shipfiresound =  [OALSimpleAudio sharedInstance];
+    thrustsound = [OALSimpleAudio sharedInstance];
+
 
 }
 
@@ -139,10 +144,23 @@ double shieldTimeCounter;
 
 -(void) hideFlames{
     _flames.visible = false;
+    self.flamesVisible = false;
+    [self unschedule:@selector(makeThrustSound:)];
+    [thrustsound stopAllEffects];
 }
 
 -(void) showFlames{
     _flames.visible = true;
+    self.flamesVisible = true;
+    if (!self.inMain) {
+//        [thrustsound playEffect:@"rocketBlubber.mp3"];
+        [self schedule:@selector(makeThrustSound:) interval:1.6 repeat:10 delay:0];
+    }
+}
+
+-(void) makeThrustSound:(CCTime)dt{
+    CCLOG(@"sound made");
+    [thrustsound playEffect:@"rocketBlubber.mp3"];
 }
 
 -(void) dimShield: (double)opacity {
@@ -164,6 +182,23 @@ double shieldTimeCounter;
 }
 
 -(void) fire {
+    fireRate = 1;
+    // access audio object
+    // play sound effect
+    int effect = arc4random() % 6;
+    if (effect == 0) {
+        [shipfiresound playEffect:@"pew4.mp3"];
+    } else if (effect == 1){
+        [shipfiresound playEffect:@"ping1.mp3"];
+    }else if (effect == 2){
+        [shipfiresound playEffect:@"pew3.mp3"];
+    } else if (effect == 3) {
+        [shipfiresound playEffect:@"pew5.mp3"];
+    } else if (effect == 4){
+        [shipfiresound playEffect:@"pew6.mp3"];
+    } else {
+        [shipfiresound playEffect:@"ping2.mp3"];
+    }
 }
 
 @end

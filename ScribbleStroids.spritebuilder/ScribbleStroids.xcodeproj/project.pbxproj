@@ -39,6 +39,27 @@
 		BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87B1986DBEE00D3F431 /* Asteroid.m */; };
 		BA00D87F1986DBF900D3F431 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D87E1986DBF900D3F431 /* Ship.m */; };
 		BA00D8821988298D00D3F431 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA00D8811988298D00D3F431 /* Bullet.m */; };
+		BA143A7919AD1D34002E3762 /* rocketBlubber.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A7819AD1D34002E3762 /* rocketBlubber.mp3 */; };
+		BA143A8219B0BAB4002E3762 /* bulletAsteroid6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A7C19B0BAB4002E3762 /* bulletAsteroid6.mp3 */; };
+		BA143A8319B0BAB4002E3762 /* bulletAsteroid5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A7D19B0BAB4002E3762 /* bulletAsteroid5.mp3 */; };
+		BA143A8419B0BAB4002E3762 /* bulletAsteroid4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A7E19B0BAB4002E3762 /* bulletAsteroid4.mp3 */; };
+		BA143A8519B0BAB4002E3762 /* bulletAsteroid3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A7F19B0BAB4002E3762 /* bulletAsteroid3.mp3 */; };
+		BA143A8619B0BAB4002E3762 /* bulletAsteroid2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A8019B0BAB4002E3762 /* bulletAsteroid2.mp3 */; };
+		BA143A8719B0BAB4002E3762 /* bulletAsteroid1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A8119B0BAB4002E3762 /* bulletAsteroid1.mp3 */; };
+		BA1FCE8119A3F2B500BCF9B4 /* Pew1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCE8019A3F2B500BCF9B4 /* Pew1.mp3 */; };
+		BA1FCECB19AAE6CB00BCF9B4 /* ping1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCECA19AAE6CB00BCF9B4 /* ping1.mp3 */; };
+		BA1FCECD19AAE90300BCF9B4 /* pew2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCECC19AAE90300BCF9B4 /* pew2.mp3 */; };
+		BA1FCED019AAEA5800BCF9B4 /* pew3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCECE19AAEA5800BCF9B4 /* pew3.mp3 */; };
+		BA1FCED119AAEA5800BCF9B4 /* pew4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCECF19AAEA5800BCF9B4 /* pew4.mp3 */; };
+		BA1FCED319AAEC0500BCF9B4 /* pew5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCED219AAEC0500BCF9B4 /* pew5.mp3 */; };
+		BA1FCED519AAECCD00BCF9B4 /* pew6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCED419AAECCD00BCF9B4 /* pew6.mp3 */; };
+		BA1FCED719AAEDC700BCF9B4 /* ping2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCED619AAEDC700BCF9B4 /* ping2.mp3 */; };
+		BA1FCEDD19AAEF6F00BCF9B4 /* bloophigh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEDA19AAEF6F00BCF9B4 /* bloophigh.mp3 */; };
+		BA1FCEDE19AAEF6F00BCF9B4 /* blooplow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEDB19AAEF6F00BCF9B4 /* blooplow.mp3 */; };
+		BA1FCEDF19AAEF6F00BCF9B4 /* bloopmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEDC19AAEF6F00BCF9B4 /* bloopmed.mp3 */; };
+		BA1FCEE119AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEE019AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 */; };
+		BA1FCEE319AAF82600BCF9B4 /* rocketThrust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */; };
+		BA1FCEE619AB01A700BCF9B4 /* HighScores.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FCEE519AB01A700BCF9B4 /* HighScores.m */; };
 		BA9D12B81993F727000C05D1 /* whiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12B71993F727000C05D1 /* whiteCircle.png */; };
 		BA9D12BB19942211000C05D1 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D12BA19942211000C05D1 /* Bomb.m */; };
 		BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12BC19942357000C05D1 /* LittleNuke.png */; };
@@ -54,7 +75,6 @@
 		BAAE87C1199D337B003C48FE /* Level4.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87C0199D337B003C48FE /* Level4.m */; };
 		BAAE87C4199D3384003C48FE /* Level5.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87C3199D3384003C48FE /* Level5.m */; };
 		BAAE87C7199FB4B8003C48FE /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87C6199FB4B8003C48FE /* Explosion.m */; };
-		BAAE87CA199FD7FE003C48FE /* ShipExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE87C9199FD7FE003C48FE /* ShipExplosion.m */; };
 		BABD42D8198416E600C4A826 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BABD42D7198416E600C4A826 /* GameScene.m */; };
 		BAE245C71991744B0030F38A /* LargeStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C11991744B0030F38A /* LargeStars.png */; };
 		BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C21991744B0030F38A /* LargeStars@2x.png */; };
@@ -123,6 +143,28 @@
 		BA00D87E1986DBF900D3F431 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		BA00D8801988298D00D3F431 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		BA00D8811988298D00D3F431 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
+		BA143A7819AD1D34002E3762 /* rocketBlubber.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rocketBlubber.mp3; path = ../../../../../Desktop/SSAudio/rocketBlubber.mp3; sourceTree = "<group>"; };
+		BA143A7C19B0BAB4002E3762 /* bulletAsteroid6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid6.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid6.mp3; sourceTree = "<group>"; };
+		BA143A7D19B0BAB4002E3762 /* bulletAsteroid5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid5.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid5.mp3; sourceTree = "<group>"; };
+		BA143A7E19B0BAB4002E3762 /* bulletAsteroid4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid4.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid4.mp3; sourceTree = "<group>"; };
+		BA143A7F19B0BAB4002E3762 /* bulletAsteroid3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid3.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid3.mp3; sourceTree = "<group>"; };
+		BA143A8019B0BAB4002E3762 /* bulletAsteroid2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid2.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid2.mp3; sourceTree = "<group>"; };
+		BA143A8119B0BAB4002E3762 /* bulletAsteroid1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid1.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid1.mp3; sourceTree = "<group>"; };
+		BA1FCE8019A3F2B500BCF9B4 /* Pew1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Pew1.mp3; path = ../../../../../Music/GarageBand/Pew1.mp3; sourceTree = "<group>"; };
+		BA1FCECA19AAE6CB00BCF9B4 /* ping1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ping1.mp3; path = ../../../../../Desktop/SSAudio/ping1.mp3; sourceTree = "<group>"; };
+		BA1FCECC19AAE90300BCF9B4 /* pew2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pew2.mp3; path = ../../../../../Desktop/SSAudio/pew2.mp3; sourceTree = "<group>"; };
+		BA1FCECE19AAEA5800BCF9B4 /* pew3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pew3.mp3; path = ../../../../../Desktop/SSAudio/pew3.mp3; sourceTree = "<group>"; };
+		BA1FCECF19AAEA5800BCF9B4 /* pew4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pew4.mp3; path = ../../../../../Desktop/SSAudio/pew4.mp3; sourceTree = "<group>"; };
+		BA1FCED219AAEC0500BCF9B4 /* pew5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pew5.mp3; path = ../../../../../Desktop/SSAudio/pew5.mp3; sourceTree = "<group>"; };
+		BA1FCED419AAECCD00BCF9B4 /* pew6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pew6.mp3; path = ../../../../../Desktop/SSAudio/pew6.mp3; sourceTree = "<group>"; };
+		BA1FCED619AAEDC700BCF9B4 /* ping2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ping2.mp3; path = ../../../../../Desktop/SSAudio/ping2.mp3; sourceTree = "<group>"; };
+		BA1FCEDA19AAEF6F00BCF9B4 /* bloophigh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bloophigh.mp3; path = ../../../../../Desktop/SSAudio/coins/bloophigh.mp3; sourceTree = "<group>"; };
+		BA1FCEDB19AAEF6F00BCF9B4 /* blooplow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blooplow.mp3; path = ../../../../../Desktop/SSAudio/coins/blooplow.mp3; sourceTree = "<group>"; };
+		BA1FCEDC19AAEF6F00BCF9B4 /* bloopmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bloopmed.mp3; path = ../../../../../Desktop/SSAudio/coins/bloopmed.mp3; sourceTree = "<group>"; };
+		BA1FCEE019AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SoftRocketThrust.mp3; path = ../../../../../Desktop/SSAudio/SoftRocketThrust.mp3; sourceTree = "<group>"; };
+		BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rocketThrust.mp3; path = ../../../../../Desktop/SSAudio/rocketThrust.mp3; sourceTree = "<group>"; };
+		BA1FCEE419AB01A700BCF9B4 /* HighScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScores.h; sourceTree = "<group>"; };
+		BA1FCEE519AB01A700BCF9B4 /* HighScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScores.m; sourceTree = "<group>"; };
 		BA9D12B71993F727000C05D1 /* whiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteCircle.png; path = ../../../../../Desktop/SSArt/whiteCircle.png; sourceTree = "<group>"; };
 		BA9D12B919942211000C05D1 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
 		BA9D12BA19942211000C05D1 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
@@ -150,8 +192,6 @@
 		BAAE87C3199D3384003C48FE /* Level5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level5.m; sourceTree = "<group>"; };
 		BAAE87C5199FB4B8003C48FE /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
 		BAAE87C6199FB4B8003C48FE /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
-		BAAE87C8199FD7FE003C48FE /* ShipExplosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipExplosion.h; sourceTree = "<group>"; };
-		BAAE87C9199FD7FE003C48FE /* ShipExplosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipExplosion.m; sourceTree = "<group>"; };
 		BABD42D6198416E600C4A826 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BABD42D7198416E600C4A826 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		BAE245C11991744B0030F38A /* LargeStars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeStars.png; path = ../../../../../Desktop/SSArt/Stars/LargeStars.png; sourceTree = "<group>"; };
@@ -279,6 +319,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA1FCE7C19A3F25800BCF9B4 /* Audio */,
 				BA10FE611988C7840023D1F2 /* Art */,
 				B73789911807667A0076A88C /* Icons */,
 				B737893A180761570076A88C /* Published-iOS */,
@@ -335,6 +376,57 @@
 			name = FlameSprites;
 			sourceTree = "<group>";
 		};
+		BA143A7B19B0BA99002E3762 /* Explosions */ = {
+			isa = PBXGroup;
+			children = (
+				BA143A7C19B0BAB4002E3762 /* bulletAsteroid6.mp3 */,
+				BA143A7D19B0BAB4002E3762 /* bulletAsteroid5.mp3 */,
+				BA143A7E19B0BAB4002E3762 /* bulletAsteroid4.mp3 */,
+				BA143A7F19B0BAB4002E3762 /* bulletAsteroid3.mp3 */,
+				BA143A8019B0BAB4002E3762 /* bulletAsteroid2.mp3 */,
+				BA143A8119B0BAB4002E3762 /* bulletAsteroid1.mp3 */,
+			);
+			name = Explosions;
+			sourceTree = "<group>";
+		};
+		BA1FCE7C19A3F25800BCF9B4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				BA143A7B19B0BA99002E3762 /* Explosions */,
+				BA1FCED919AAEF5A00BCF9B4 /* Ship */,
+				BA1FCED819AAEF5300BCF9B4 /* Coins */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		BA1FCED819AAEF5300BCF9B4 /* Coins */ = {
+			isa = PBXGroup;
+			children = (
+				BA1FCEDA19AAEF6F00BCF9B4 /* bloophigh.mp3 */,
+				BA1FCEDB19AAEF6F00BCF9B4 /* blooplow.mp3 */,
+				BA1FCEDC19AAEF6F00BCF9B4 /* bloopmed.mp3 */,
+			);
+			name = Coins;
+			sourceTree = "<group>";
+		};
+		BA1FCED919AAEF5A00BCF9B4 /* Ship */ = {
+			isa = PBXGroup;
+			children = (
+				BA143A7819AD1D34002E3762 /* rocketBlubber.mp3 */,
+				BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */,
+				BA1FCEE019AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 */,
+				BA1FCED619AAEDC700BCF9B4 /* ping2.mp3 */,
+				BA1FCED419AAECCD00BCF9B4 /* pew6.mp3 */,
+				BA1FCED219AAEC0500BCF9B4 /* pew5.mp3 */,
+				BA1FCECE19AAEA5800BCF9B4 /* pew3.mp3 */,
+				BA1FCECF19AAEA5800BCF9B4 /* pew4.mp3 */,
+				BA1FCECC19AAE90300BCF9B4 /* pew2.mp3 */,
+				BA1FCECA19AAE6CB00BCF9B4 /* ping1.mp3 */,
+				BA1FCE8019A3F2B500BCF9B4 /* Pew1.mp3 */,
+			);
+			name = Ship;
+			sourceTree = "<group>";
+		};
 		BA70A8E71989E35900CFEABB /* Asteroids */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +445,8 @@
 				BAA28AA21997C409000A83D1 /* Settings.m */,
 				BAA28AA41997C64D000A83D1 /* Store.h */,
 				BAA28AA51997C64D000A83D1 /* Store.m */,
+				BA1FCEE419AB01A700BCF9B4 /* HighScores.h */,
+				BA1FCEE519AB01A700BCF9B4 /* HighScores.m */,
 			);
 			name = "Scene Classes";
 			sourceTree = "<group>";
@@ -364,8 +458,6 @@
 				BAA28AAC19991BB1000A83D1 /* CoinLabel.m */,
 				BAAE87C5199FB4B8003C48FE /* Explosion.h */,
 				BAAE87C6199FB4B8003C48FE /* Explosion.m */,
-				BAAE87C8199FD7FE003C48FE /* ShipExplosion.h */,
-				BAAE87C9199FD7FE003C48FE /* ShipExplosion.m */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
@@ -484,30 +576,50 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1FCEE119AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 in Resources */,
+				BA143A8719B0BAB4002E3762 /* bulletAsteroid1.mp3 in Resources */,
 				BAE245CB1991744B0030F38A /* SmallStars.png in Resources */,
+				BA143A8619B0BAB4002E3762 /* bulletAsteroid2.mp3 in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */,
+				BA1FCED119AAEA5800BCF9B4 /* pew4.mp3 in Resources */,
+				BA1FCED719AAEDC700BCF9B4 /* ping2.mp3 in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */,
+				BA1FCED019AAEA5800BCF9B4 /* pew3.mp3 in Resources */,
+				BA143A7919AD1D34002E3762 /* rocketBlubber.mp3 in Resources */,
+				BA1FCED319AAEC0500BCF9B4 /* pew5.mp3 in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
+				BA1FCECB19AAE6CB00BCF9B4 /* ping1.mp3 in Resources */,
+				BA143A8319B0BAB4002E3762 /* bulletAsteroid5.mp3 in Resources */,
 				BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				BAE245C91991744B0030F38A /* MediumStars.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				BAE245C71991744B0030F38A /* LargeStars.png in Resources */,
+				BA1FCEE319AAF82600BCF9B4 /* rocketThrust.mp3 in Resources */,
+				BA143A8419B0BAB4002E3762 /* bulletAsteroid4.mp3 in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				BA1FCEDE19AAEF6F00BCF9B4 /* blooplow.mp3 in Resources */,
+				BA1FCECD19AAE90300BCF9B4 /* pew2.mp3 in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				BAE245CA1991744B0030F38A /* MediumStars@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				BA1FCE8119A3F2B500BCF9B4 /* Pew1.mp3 in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				BA1FCED519AAECCD00BCF9B4 /* pew6.mp3 in Resources */,
 				BA9D12B81993F727000C05D1 /* whiteCircle.png in Resources */,
+				BA1FCEDF19AAEF6F00BCF9B4 /* bloopmed.mp3 in Resources */,
+				BA1FCEDD19AAEF6F00BCF9B4 /* bloophigh.mp3 in Resources */,
+				BA143A8219B0BAB4002E3762 /* bulletAsteroid6.mp3 in Resources */,
+				BA143A8519B0BAB4002E3762 /* bulletAsteroid3.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,13 +653,13 @@
 				BAAE87C4199D3384003C48FE /* Level5.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
-				BAAE87CA199FD7FE003C48FE /* ShipExplosion.m in Sources */,
 				BAA28AA61997C64D000A83D1 /* Store.m in Sources */,
 				BAAE87C7199FB4B8003C48FE /* Explosion.m in Sources */,
 				BAA28AA31997C409000A83D1 /* Settings.m in Sources */,
 				BAAE87C1199D337B003C48FE /* Level4.m in Sources */,
 				BABD42D8198416E600C4A826 /* GameScene.m in Sources */,
 				BAAD3DD61995DB4D0064AF9A /* Shield.m in Sources */,
+				BA1FCEE619AB01A700BCF9B4 /* HighScores.m in Sources */,
 				BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */,
 				BAAE87BE199D3370003C48FE /* Level3.m in Sources */,
 				BAA28AAD19991BB1000A83D1 /* CoinLabel.m in Sources */,

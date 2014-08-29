@@ -34,10 +34,6 @@ double LSS = .08;
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
     }
-//    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
-//    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
-//    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
-//    [[NSUserDefaults standardUserDefaults]setInteger:50000 forKey:@"bank"];
     
     //start load background
     int randX = 0;
@@ -102,6 +98,10 @@ double LSS = .08;
     [self runAnimation:event];
     
     [self schedule:@selector(randomEvent:) interval:6];
+    
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"Main"]) {
+        _titleLabel.string = [NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
+    }
 }
 
 -(void) randomEvent:(CCTime) dt{
@@ -116,6 +116,8 @@ double LSS = .08;
 
 -(void) ToHighscores{
     CCLOG(@"Highscores");
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.1];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"HighScoreScene"] withTransition:transition];
 }
 
 -(void) ToStore{

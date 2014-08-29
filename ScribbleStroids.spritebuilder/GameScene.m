@@ -18,7 +18,7 @@ bool debugMode = false;
 double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
-int startLevel = 8;
+int startLevel = 3;
 int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 1;
 double howOftenPowerupDropsAreMade = 60;
@@ -33,7 +33,7 @@ double largeStarSpeed = .0016;
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     
-    CCLOG(@"Received a touch");
+//    CCLOG(@"Received a touch");
     if (self.tutorial) {
         tutorialStep += 1;
         [self tutorial:tutorialStep];
@@ -42,7 +42,7 @@ double largeStarSpeed = .0016;
         CGPoint touchLocation = [touch locationInNode:self];
         double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
         if (hypotenuse<joystickTouchThreshold) {
-            CCLOG(@"Touch inside threshold");
+//            CCLOG(@"Touch inside threshold");
             CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
             mainShip.rotation = point;
             _joystickArrow.rotation = point;
@@ -56,13 +56,13 @@ double largeStarSpeed = .0016;
     }
 }
 -(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
-    CCLOG(@"Moved a touch");
+//    CCLOG(@"Moved a touch");
     if (!self.paused) {
         mainShip.physicsBody.angularVelocity = 0;
         CGPoint touchLocation = [touch locationInNode:self];
         double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
         if (hypotenuse<joystickTouchThreshold) {
-            CCLOG(@"Touch inside threshold");
+//            CCLOG(@"Touch inside threshold");
             CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
             mainShip.rotation = point;
             _joystickArrow.rotation = point;
@@ -72,6 +72,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) didLoadFromCCB {
+    
     
     self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     
@@ -186,14 +187,16 @@ double largeStarSpeed = .0016;
     self.extraShieldCost = 50;
     //end pause menu
     
+    _extraLifeCostLabel.string = [NSString stringWithFormat:@"$%d",self.extraLifeCost];
+    _extraNukeCostLabel.string = [NSString stringWithFormat:@"$%d",self.extraShieldCost];
+    
     
     tutorialStep = 0;
     int tutorialInt = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"tutorial"];
     if (tutorialInt != 0) {
         self.tutorial = true;
-        //this needs to happen if there is a tutorial
-//        [[CCDirector sharedDirector] pause];
         double opacity = .3;
+        _pauseButton.enabled = false;
         _boostButton.enabled = false;
         _shootButton.enabled = false;
         _joystickArrow.opacity = opacity;
@@ -222,6 +225,7 @@ double largeStarSpeed = .0016;
 -(void) startGame {
     self.tutorial = false;
     double opacity = 1;
+    _pauseButton.enabled = true;
     _boostButton.enabled = true;
     _shootButton.enabled = true;
     _joystickArrow.opacity = opacity;
@@ -257,22 +261,23 @@ double largeStarSpeed = .0016;
     
     [self createLevel:self.level];
     
-    int shipLevel = 5;
-    if (shipLevel == 1) {
-        mainShip = (Ship *)[CCBReader load:@"Ship"];
-    } else if (shipLevel == 2) {
-        mainShip = (Ship *)[CCBReader load:@"Level2"];
-    } else if (shipLevel == 3) {
-        mainShip = (Ship *)[CCBReader load:@"Level3"];
-    } else if (shipLevel == 4) {
-        mainShip = (Ship *)[CCBReader load:@"Level4"];
-    } else {
-        mainShip = (Ship *)[CCBReader load:@"Level5"];
-    }
-    mainShip.inMain = false; //since it's not in the main menu, we set this to false
-    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    [mainShip raiseShield];
-    [_physicsNode addChild:mainShip z:-1];
+    [self resetShip];
+//    int shipLevel = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
+//    if (shipLevel == 1) {
+//        mainShip = (Ship *)[CCBReader load:@"Ship"];
+//    } else if (shipLevel == 2) {
+//        mainShip = (Ship *)[CCBReader load:@"Level2"];
+//    } else if (shipLevel == 3) {
+//        mainShip = (Ship *)[CCBReader load:@"Level3"];
+//    } else if (shipLevel == 4) {
+//        mainShip = (Ship *)[CCBReader load:@"Level4"];
+//    } else {
+//        mainShip = (Ship *)[CCBReader load:@"Level5"];
+//    }
+//    mainShip.inMain = false; //since it's not in the main menu, we set this to false
+//    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+//    [mainShip raiseShield];
+//    [_physicsNode addChild:mainShip z:-1];
     _physicsNode.debugDraw = debugMode;
     
     [self schedule:@selector(powerUpDrop:) interval:30];
@@ -351,12 +356,17 @@ double largeStarSpeed = .0016;
         CGFloat shipDirection = mainShip.rotation;
         CGPoint thrust = CGPointMake(shipThrust*cos((shipDirection-90)*M_PI/180), shipThrust*-sin((shipDirection-90)*M_PI/180));
         [mainShip.physicsBody applyImpulse:thrust];
-        [mainShip showFlames];
+        if (!mainShip.flamesVisible){
+            [mainShip showFlames];
+        }
+       
         
     } else {
         mainShip.physicsBody.velocity = CGPointMake(mainShip.physicsBody.velocity.x*shipDampening,
                                                     mainShip.physicsBody.velocity.y*shipDampening);
-        [mainShip hideFlames];
+        if (mainShip.flamesVisible){
+            [mainShip hideFlames];
+        }
     }
     mainShip.physicsBody.angularVelocity = mainShip.physicsBody.angularVelocity*.995;
 }
@@ -468,30 +478,61 @@ double largeStarSpeed = .0016;
                 [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
                 //display new high score label on game over screen
             }
-            mainShip.visible = false;
+//            mainShip.visible = false;
+            [_physicsNode removeChild:mainShip];
             [self scheduleOnce:@selector(gameOver) delay:1];
         } else{
             [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
-            mainShip.visible = false;
-            [mainShip raiseShield];
+//            mainShip.visible = false;
+//            [mainShip raiseShield];
+//            _boostButton.enabled = false;
+            _boostButton.userInteractionEnabled = false;
+            _boostButton.state = false;
+            _shootButton.userInteractionEnabled = false;
+            _shootButton.state = false;
+            [_physicsNode removeChild:mainShip];
             [self scheduleOnce:@selector(resetShip) delay:1];
         }
     }
     
-    mainShip.physicsBody.angularVelocity = 0;
+//    mainShip.physicsBody.angularVelocity = 0;
     return true;
 }
 
 -(void) gameOver {
+    [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"score"];
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"Main"];
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
 }
 
 -(void) resetShip{
+    int shipLevel = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
+    mainShip = [[Ship alloc]init];
+    if (shipLevel == 1) {
+        mainShip = (Ship *)[CCBReader load:@"Ship"];
+    } else if (shipLevel == 2) {
+        mainShip = (Ship *)[CCBReader load:@"Level2"];
+    } else if (shipLevel == 3) {
+        mainShip = (Ship *)[CCBReader load:@"Level3"];
+    } else if (shipLevel == 4) {
+        mainShip = (Ship *)[CCBReader load:@"Level4"];
+    } else {
+        mainShip = (Ship *)[CCBReader load:@"Level5"];
+    }
+    mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-    mainShip.physicsBody.velocity = CGPointMake(0, 0);
-    mainShip.rotation = 0;
-    mainShip.visible = true;
     [mainShip raiseShield];
+    [_physicsNode addChild:mainShip z:-1];
+//    _boostButton.enabled = true;
+    _boostButton.userInteractionEnabled = true;
+    _shootButton.userInteractionEnabled = true;
+
+    
+//    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
+//    mainShip.physicsBody.velocity = CGPointMake(0, 0);
+//    mainShip.rotation = 0;
+//    mainShip.visible = true;
+//    [mainShip raiseShield];
 }
 
          
@@ -581,7 +622,7 @@ double largeStarSpeed = .0016;
 
 -(void) BuyExtraLife{
     CCLOG(@"Life");
-    if (self.bankRoll >= 50){
+    if (self.bankRoll >= self.extraLifeCost){
         //do extra life stuff
         self.lives += 1;
         if (!(self.lives < 6)) {
@@ -590,7 +631,7 @@ double largeStarSpeed = .0016;
         [self displayNumberOfLives:.3];
         self.bankRoll-=self.extraLifeCost;
         self.extraLifeCost = self.extraLifeCost*2;
-        
+        _extraLifeCostLabel.string = [NSString stringWithFormat:@"$%d",self.extraLifeCost];
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
         _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
@@ -599,7 +640,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) BuyExtraShield{
-    if (self.bankRoll >= 50){
+    if (self.bankRoll >= self.extraShieldCost){
         //do extra nuke stuff
         self.numShields += 1;
         if (!(self.numShields < 3)){
@@ -608,6 +649,7 @@ double largeStarSpeed = .0016;
         [self displayNumberOfShields:.3];
         self.bankRoll-=self.extraShieldCost;
         self.extraShieldCost = self.extraShieldCost*2;
+        _extraNukeCostLabel.string = [NSString stringWithFormat:@"$%d",self.extraShieldCost];
         [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
         _pauseBankLabel.string = @"Bank:";
         _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];

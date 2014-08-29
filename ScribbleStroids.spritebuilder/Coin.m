@@ -38,6 +38,14 @@
 -(void) onExit {
     [super onExit];
     if (self.wasPickedUp) {
+        OALSimpleAudio *audio1 = [OALSimpleAudio sharedInstance];
+        if (self.value == 1){
+            [audio1 playEffect:@"blooplow.mp3"];
+        } else if (self.value == 2) {
+            [audio1 playEffect:@"bloopmed.mp3"];
+        } else {
+            [audio1 playEffect:@"bloophigh.mp3"];
+        }
         CoinLabel *plusOne = [CoinLabel labelWithString:[NSString stringWithFormat:@"$%d",self.value] fontName:@"Chalkduster" fontSize:22];
         plusOne.position = self.position;
         plusOne.color = self.labelColor;
