@@ -46,6 +46,7 @@
 		BA143A8519B0BAB4002E3762 /* bulletAsteroid3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A7F19B0BAB4002E3762 /* bulletAsteroid3.mp3 */; };
 		BA143A8619B0BAB4002E3762 /* bulletAsteroid2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A8019B0BAB4002E3762 /* bulletAsteroid2.mp3 */; };
 		BA143A8719B0BAB4002E3762 /* bulletAsteroid1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A8119B0BAB4002E3762 /* bulletAsteroid1.mp3 */; };
+		BA143A8919B2109F002E3762 /* shipAsteroid.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA143A8819B2109F002E3762 /* shipAsteroid.mp3 */; };
 		BA1FCE8119A3F2B500BCF9B4 /* Pew1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCE8019A3F2B500BCF9B4 /* Pew1.mp3 */; };
 		BA1FCECB19AAE6CB00BCF9B4 /* ping1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCECA19AAE6CB00BCF9B4 /* ping1.mp3 */; };
 		BA1FCECD19AAE90300BCF9B4 /* pew2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCECC19AAE90300BCF9B4 /* pew2.mp3 */; };
@@ -83,6 +84,7 @@
 		BAE245CB1991744B0030F38A /* SmallStars.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C51991744B0030F38A /* SmallStars.png */; };
 		BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C61991744B0030F38A /* SmallStars@2x.png */; };
 		BAE245D71992AF4E0030F38A /* Stars.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE245D61992AF4E0030F38A /* Stars.m */; };
+		BAE6957C19BE509F00E7811F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE6957B19BE509F00E7811F /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,7 @@
 		BA143A7F19B0BAB4002E3762 /* bulletAsteroid3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid3.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid3.mp3; sourceTree = "<group>"; };
 		BA143A8019B0BAB4002E3762 /* bulletAsteroid2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid2.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid2.mp3; sourceTree = "<group>"; };
 		BA143A8119B0BAB4002E3762 /* bulletAsteroid1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletAsteroid1.mp3; path = ../../../../../Desktop/SSAudio/Explosions/bulletAsteroid1.mp3; sourceTree = "<group>"; };
+		BA143A8819B2109F002E3762 /* shipAsteroid.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = shipAsteroid.mp3; path = ../../../../../Desktop/SSAudio/Explosions/shipAsteroid.mp3; sourceTree = "<group>"; };
 		BA1FCE8019A3F2B500BCF9B4 /* Pew1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Pew1.mp3; path = ../../../../../Music/GarageBand/Pew1.mp3; sourceTree = "<group>"; };
 		BA1FCECA19AAE6CB00BCF9B4 /* ping1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ping1.mp3; path = ../../../../../Desktop/SSAudio/ping1.mp3; sourceTree = "<group>"; };
 		BA1FCECC19AAE90300BCF9B4 /* pew2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pew2.mp3; path = ../../../../../Desktop/SSAudio/pew2.mp3; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		BAE245D419917F500030F38A /* ScribbleStroids.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ScribbleStroids.entitlements; sourceTree = "<group>"; };
 		BAE245D51992AF4E0030F38A /* Stars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stars.h; sourceTree = "<group>"; };
 		BAE245D61992AF4E0030F38A /* Stars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stars.m; sourceTree = "<group>"; };
+		BAE6957B19BE509F00E7811F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,7 @@
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B737898A1807642B0076A88C /* libcocos2d.a in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
+				BAE6957C19BE509F00E7811F /* GameKit.framework in Frameworks */,
 				B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */,
 				B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */,
 				B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */,
@@ -301,6 +306,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAE6957B19BE509F00E7811F /* GameKit.framework */,
 				8392007918EE8E3300B6C429 /* GLKit.framework */,
 				B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */,
 				B77F1B3117B978D7009739AE /* QuartzCore.framework */,
@@ -379,6 +385,7 @@
 		BA143A7B19B0BA99002E3762 /* Explosions */ = {
 			isa = PBXGroup;
 			children = (
+				BA143A8819B2109F002E3762 /* shipAsteroid.mp3 */,
 				BA143A7C19B0BAB4002E3762 /* bulletAsteroid6.mp3 */,
 				BA143A7D19B0BAB4002E3762 /* bulletAsteroid5.mp3 */,
 				BA143A7E19B0BAB4002E3762 /* bulletAsteroid4.mp3 */,
@@ -529,7 +536,7 @@
 						DevelopmentTeam = X93K6M4D6X;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
@@ -619,6 +626,7 @@
 				BA1FCEDF19AAEF6F00BCF9B4 /* bloopmed.mp3 in Resources */,
 				BA1FCEDD19AAEF6F00BCF9B4 /* bloophigh.mp3 in Resources */,
 				BA143A8219B0BAB4002E3762 /* bulletAsteroid6.mp3 in Resources */,
+				BA143A8919B2109F002E3762 /* shipAsteroid.mp3 in Resources */,
 				BA143A8519B0BAB4002E3762 /* bulletAsteroid3.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

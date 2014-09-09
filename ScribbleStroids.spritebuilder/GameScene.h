@@ -56,10 +56,12 @@
     CGFloat screenHeight;
     
     CCPhysicsNode *_physicsNode;
-    
+
     Ship *mainShip;
     
     int tutorialStep;
+    
+    OALSimpleAudio *shipDestroyed;
 }
 
 @property int numberOfAsteroidsRemaingingInLevel;

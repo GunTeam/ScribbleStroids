@@ -16,7 +16,7 @@
     CCSprite *_shield,*_orangeShield,*_redShield,*_blueShield,*_greenShield,*_purpleShield;
     double shieldTimer;
     double bulletScale;
-    OALSimpleAudio *shipfiresound, *thrustsound;
+    OALSimpleAudio *shipfiresound, *thrustsound,*shipdestroyed;
     
     int thrustSoundTimer;
     

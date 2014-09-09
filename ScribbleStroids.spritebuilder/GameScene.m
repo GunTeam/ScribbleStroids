@@ -72,7 +72,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) didLoadFromCCB {
-    
+    shipDestroyed = [OALSimpleAudio sharedInstance];
     
     self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     
@@ -130,26 +130,6 @@ double largeStarSpeed = .0016;
     [self addChild:_physicsNode z:-1];
     
     _physicsNode.collisionDelegate = self;
-    
-    
-//    int shipLevel = (int) [[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
-//    int shipLevel = 5;
-//    if (shipLevel == 1) {
-//        mainShip = (Ship *)[CCBReader load:@"Ship"];
-//    } else if (shipLevel == 2) {
-//        mainShip = (Ship *)[CCBReader load:@"Level2"];
-//    } else if (shipLevel == 3) {
-//        mainShip = (Ship *)[CCBReader load:@"Level3"];
-//    } else if (shipLevel == 4) {
-//        mainShip = (Ship *)[CCBReader load:@"Level4"];
-//    } else {
-//        mainShip = (Ship *)[CCBReader load:@"Level5"];
-//    }
-//    mainShip.inMain = false; //since it's not in the main menu, we set this to false
-//    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-//    [mainShip raiseShield];
-//    [_physicsNode addChild:mainShip z:-1];
-//    _physicsNode.debugDraw = debugMode;
     
     //labels
     scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Chalkduster" fontSize:18];
@@ -262,22 +242,7 @@ double largeStarSpeed = .0016;
     [self createLevel:self.level];
     
     [self resetShip];
-//    int shipLevel = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
-//    if (shipLevel == 1) {
-//        mainShip = (Ship *)[CCBReader load:@"Ship"];
-//    } else if (shipLevel == 2) {
-//        mainShip = (Ship *)[CCBReader load:@"Level2"];
-//    } else if (shipLevel == 3) {
-//        mainShip = (Ship *)[CCBReader load:@"Level3"];
-//    } else if (shipLevel == 4) {
-//        mainShip = (Ship *)[CCBReader load:@"Level4"];
-//    } else {
-//        mainShip = (Ship *)[CCBReader load:@"Level5"];
-//    }
-//    mainShip.inMain = false; //since it's not in the main menu, we set this to false
-//    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-//    [mainShip raiseShield];
-//    [_physicsNode addChild:mainShip z:-1];
+
     _physicsNode.debugDraw = debugMode;
     
     [self schedule:@selector(powerUpDrop:) interval:30];
@@ -464,6 +429,7 @@ double largeStarSpeed = .0016;
     // collision handling
     CCLOG(@"Asteroid and ship collided");
     if (!mainShip.immune) {
+        [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
         [self asteroidCollision:asteroid];
         mainShip.immune = true;
         self.lives -=1 ;
@@ -472,30 +438,25 @@ double largeStarSpeed = .0016;
         explosion.rotation = mainShip.rotation;
         explosion.scale += .8;
         [self addChild:explosion];
+        _boostButton.userInteractionEnabled = false;
+        _boostButton.state = false;
+        _shootButton.userInteractionEnabled = false;
+        _shootButton.state = false;
         if (self.lives < 0) {
             [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
             if (self.score > [[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]) {
                 [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
                 //display new high score label on game over screen
             }
-//            mainShip.visible = false;
             [_physicsNode removeChild:mainShip];
             [self scheduleOnce:@selector(gameOver) delay:1];
         } else{
             [self removeChildByName:[NSString stringWithFormat:@"ship%d",self.lives]];
-//            mainShip.visible = false;
-//            [mainShip raiseShield];
-//            _boostButton.enabled = false;
-            _boostButton.userInteractionEnabled = false;
-            _boostButton.state = false;
-            _shootButton.userInteractionEnabled = false;
-            _shootButton.state = false;
             [_physicsNode removeChild:mainShip];
             [self scheduleOnce:@selector(resetShip) delay:1];
         }
+        
     }
-    
-//    mainShip.physicsBody.angularVelocity = 0;
     return true;
 }
 
@@ -523,16 +484,8 @@ double largeStarSpeed = .0016;
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     [mainShip raiseShield];
     [_physicsNode addChild:mainShip z:-1];
-//    _boostButton.enabled = true;
     _boostButton.userInteractionEnabled = true;
     _shootButton.userInteractionEnabled = true;
-
-    
-//    mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
-//    mainShip.physicsBody.velocity = CGPointMake(0, 0);
-//    mainShip.rotation = 0;
-//    mainShip.visible = true;
-//    [mainShip raiseShield];
 }
 
          
@@ -572,7 +525,6 @@ double largeStarSpeed = .0016;
     levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
     coin.wasPickedUp = true;
     [coin removeFromParent];
-    
     return true;
 }
 -(void) asteroidCollision : (Asteroid *) asteroid{

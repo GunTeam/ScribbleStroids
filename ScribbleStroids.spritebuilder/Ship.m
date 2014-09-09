@@ -86,6 +86,7 @@ double shieldTimeCounter;
     
     shipfiresound =  [OALSimpleAudio sharedInstance];
     thrustsound = [OALSimpleAudio sharedInstance];
+    shipdestroyed = [OALSimpleAudio sharedInstance];
 
 
 }
@@ -110,10 +111,8 @@ double shieldTimeCounter;
         self.readyToFire = true;
     }
     if (_shield.visible) {
-//        _shield.physicsBody.density = 50;
         self.immune = true;
     } else {
-//        _shield.physicsBody.density = .01;
         self.immune = false;
     }
     if (!self.inMain) {
@@ -153,7 +152,7 @@ double shieldTimeCounter;
     _flames.visible = true;
     self.flamesVisible = true;
     if (!self.inMain) {
-//        [thrustsound playEffect:@"rocketBlubber.mp3"];
+        [thrustsound playEffect:@"rocketBlubber.mp3"];
         [self schedule:@selector(makeThrustSound:) interval:1.6 repeat:10 delay:0];
     }
 }
@@ -199,6 +198,11 @@ double shieldTimeCounter;
     } else {
         [shipfiresound playEffect:@"ping2.mp3"];
     }
+}
+
+-(void) onExit {
+    [super onExit];
+//    [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
 }
 
 @end
