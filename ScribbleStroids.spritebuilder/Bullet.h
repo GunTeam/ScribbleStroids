@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Explosion.h"
 
 @interface Bullet : CCSprite {
     CGFloat screenWidth,screenHeight;
+    CCSprite *_explosion;
+    CCAnimationManager *animationManager;
 }
 
 @end

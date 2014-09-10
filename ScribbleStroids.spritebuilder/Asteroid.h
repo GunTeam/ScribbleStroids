@@ -11,8 +11,11 @@
 
 @interface Asteroid : CCSprite {
     CGFloat screenWidth,screenHeight;
+    OALSimpleAudio *destroyed;
 }
 
 @property int size;
+@property bool isMain;
+@property bool key;
 
 @end

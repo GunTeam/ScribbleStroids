@@ -11,14 +11,31 @@
 
 @interface Ship : CCSprite {
     CGFloat screenWidth,screenHeight;
-    CCBAnimationManager *animationManager;
+    CCAnimationManager *animationManager;
     CCSprite *_flames;
+    CCSprite *_shield,*_orangeShield,*_redShield,*_blueShield,*_greenShield,*_purpleShield;
+    double shieldTimer;
+    double bulletScale;
+    OALSimpleAudio *shipfiresound, *thrustsound,*shipdestroyed;
+    
+    int thrustSoundTimer;
+    
+    
+    double fireRate;
 }
 
-@property CCSprite* flames;
+@property bool flamesVisible;
+@property double rateOfFire;
+@property bool readyToFire;
+@property bool immune;
+@property bool inMain;
 
--(void) fire;
+//-(void) fire;
 -(void) hideFlames;
 -(void) showFlames;
+-(void) raiseShield;
+-(void) didLoadFromCCB;
+-(void) fire;
+-(void) takeDownShield;
 
 @end
