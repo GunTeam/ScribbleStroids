@@ -152,7 +152,6 @@ double shieldTimeCounter;
     _flames.visible = true;
     self.flamesVisible = true;
     if (!self.inMain) {
-        [thrustsound playEffect:@"rocketBlubber.mp3"];
         [self schedule:@selector(makeThrustSound:) interval:1.6 repeat:10 delay:0];
     }
 }

@@ -72,6 +72,8 @@ double largeStarSpeed = .0016;
 }
 
 -(void) didLoadFromCCB {
+    [[OALSimpleAudio sharedInstance]setEffectsMuted:![[NSUserDefaults standardUserDefaults]boolForKey:@"SFXOn"]];
+    
     shipDestroyed = [OALSimpleAudio sharedInstance];
     
     self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
@@ -349,6 +351,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) Pause {
+    [[OALSimpleAudio sharedInstance]setEffectsMuted:![[NSUserDefaults standardUserDefaults]boolForKey:@"SFXOn"]];
     [[NSUserDefaults standardUserDefaults] setInteger:self.bankRoll forKey:@"bank"];
     self.paused = !self.paused;
     if (!(self.numShields < 3)) {
@@ -428,8 +431,7 @@ double largeStarSpeed = .0016;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
-    if (!mainShip.immune) {
-        [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
+    if (!mainShip.immune) {            [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
         [self asteroidCollision:asteroid];
         mainShip.immune = true;
         self.lives -=1 ;
@@ -463,7 +465,8 @@ double largeStarSpeed = .0016;
 -(void) gameOver {
     [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"score"];
     [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"Main"];
-    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]];
+    CCTransition *transition = [CCTransition transitionFadeWithDuration:1.];
+    [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]withTransition:transition];
 }
 
 -(void) resetShip{
