@@ -5,6 +5,7 @@
 //  Created by Jorrie Brettin on 9/16/14.
 //  Copyright 2014 Apportable. All rights reserved.
 //
+#define k_Save @"Saveitem"
 
 #import "InAppPurchaseScene.h"
 
@@ -88,21 +89,180 @@
 }
 
 //purchase button selectors
+//**********************************************************************************************
 -(void) iAd{
     CCLOG(@"iad");
+    
+    self.productID = @"com.ScribbleStroids.RemoveAds";
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
+    [self getProductInfo:self];
 }
 
 -(void) SmallCoin{
     CCLOG(@"small");
+    numberOfAdditionalCoins = 5000;
+    
+    self.productID = @"com.ScribbleStroids.Tier1coins";
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
+    [self getProductInfo:self];
 }
 
 -(void) MediumCoin{
     CCLOG(@"medium");
+    numberOfAdditionalCoins = 25000;
+    
+    self.productID = @"com.ScribbleStroids.Tier3coins";
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
+    [self getProductInfo:self];
 }
 
 -(void) LargeCoin{
     CCLOG(@"large");
+    numberOfAdditionalCoins = 50000;
+    
+    self.productID = @"com.ScribbleStroids.Tier5coins";
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
+    [self getProductInfo:self];
 }
-//end purchase button selectors
+//**********************************************************************************************
+
+
+
+
+//**********************************************************************************************
+-(void)Purchased
+{
+    if ([self.productID isEqualToString:@"com.ScribbleStroids.RemoveAds"]) {
+        NSUserDefaults *saveapp = [NSUserDefaults standardUserDefaults];
+        [saveapp setBool:TRUE forKey:k_Save];
+        
+        [saveapp synchronize];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"]+ numberOfAdditionalCoins forKey:@"bank"];        
+    }
+}
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    [self unlockFeature];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Restored" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+-(void)unlockFeature
+{
+    [self Purchased];
+}
+
+-(void) getProductInfo:(InAppPurchaseScene *)viewController
+{
+    if ([SKPaymentQueue canMakePayments]) {
+        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:self.productID]];
+        
+        request.delegate = self;
+        
+        [request start];
+    }
+    else {
+    }
+}
+//**********************************************************************************************
+
+
+//Displaying the in-app purchase on the screen
+//**********************************************************************************************
+#pragma mark -
+#pragma mark SKProductsRequestDelegate
+
+-(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSArray *products = response.products;
+    
+    if (products.count != 0) {
+        _product = products[0];
+        
+        //Initial alertview displaying product info and asking to buy, restore, or cancel
+        if ([_productID isEqualToString:@"com.ScribbleStroids.RemoveAds"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_product.localizedTitle message:_product.localizedDescription delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", @"Restore Previous Purchase", nil];
+            [alert show];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_product.localizedTitle message:_product.localizedDescription delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+            [alert show];
+        }
+    }
+    else {
+        //Error message if product cannot be found
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Product not found" message:@"Are you connected to the internet?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    products = response.invalidProductIdentifiers;
+    
+    for (SKProduct *product in products)
+    {
+        NSLog(@"Product Not found: %@", product);
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //Cancel
+    if (buttonIndex == 0) {
+        NSLog(@"button at 0 clicked");
+    }
+    //Purchase
+    else if (buttonIndex == 1) {
+        SKPayment *payment = [SKPayment paymentWithProduct:_product];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    }
+    //Restore
+    else if (buttonIndex == 2) {
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+    }
+}
+
+#pragma mark -
+#pragma mark SKPaymentTransactionObserver
+
+//Confirms whether the payment goes through or not
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchased:
+            {
+                [self unlockFeature];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                break;
+            }
+                
+            case SKPaymentTransactionStateFailed:
+            {
+                NSLog(@"Transaction Failed");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Transaction Failed" message:@"Try again or restore purchase if you have already bought it. You will not be charged twice." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }
+}
+//**********************************************************************************************
+
 
 @end

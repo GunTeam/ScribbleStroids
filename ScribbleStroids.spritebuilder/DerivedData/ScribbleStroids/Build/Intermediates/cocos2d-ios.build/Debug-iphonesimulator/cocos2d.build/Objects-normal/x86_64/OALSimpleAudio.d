@@ -1,0 +1,23 @@
+dependencies: \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.m \
+  external/ObjectAL/OALSimpleAudio.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/Support/SynthesizeSingleton.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/OpenAL/ALDevice.h \
+  external/ObjectAL/OpenAL/ALContext.h \
+  external/ObjectAL/OpenAL/ALListener.h \
+  external/ObjectAL/OpenAL/ALTypes.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/Session/OALSuspendHandler.h \
+  external/ObjectAL/OpenAL/ALSource.h \
+  external/ObjectAL/OpenAL/ALSoundSource.h \
+  external/ObjectAL/OpenAL/ALBuffer.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/Actions/OALAction.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/ObjectALConfig.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/OpenAL/ALChannelSource.h \
+  external/ObjectAL/OpenAL/ALSoundSourcePool.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/AudioTrack/OALAudioTrack.h \
+  external/ObjectAL/AudioTrack/OALAudioTrackNotifications.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/Support/ObjectALMacros.h \
+  external/ObjectAL/Support/OALTools.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/Support/ARCSafe_MemMgmt.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/Session/OALAudioSession.h \
+  /Users/adambirdsall/GitHub/ScribbleStroids/ScribbleStroids.spritebuilder/Source/libs/cocos2d-iphone/external/ObjectAL/OpenAL/OpenALManager.h
