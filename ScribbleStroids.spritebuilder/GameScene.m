@@ -68,6 +68,13 @@ double largeStarSpeed = .0016;
 }
 
 -(void) didLoadFromCCB {
+    //stats variables
+    asteroidsDestroyed = 0;
+    numDeaths = 0;
+    bulletsFired = 0;
+    
+    
+    
     [[OALSimpleAudio sharedInstance]setEffectsMuted:![[NSUserDefaults standardUserDefaults]boolForKey:@"SFXOn"]];
     
     shipDestroyed = [OALSimpleAudio sharedInstance];
@@ -317,6 +324,7 @@ double largeStarSpeed = .0016;
     
     if (_shootButton.state && mainShip.readyToFire) {
         [mainShip fire];
+        bulletsFired += numbBulletsPerFire;
     }
     
     if (_boostButton.state) {
@@ -432,6 +440,7 @@ double largeStarSpeed = .0016;
     // collision handling
     CCLOG(@"Asteroid and ship collided");
     if (!mainShip.immune && self.collisionCounter >= 60) {
+        numDeaths +=1;
         self.collisionCounter = 0;
         [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
         [self asteroidCollision:asteroid];
@@ -448,10 +457,6 @@ double largeStarSpeed = .0016;
         _shootButton.state = false;
         if (self.lives < 0) {
             [[NSUserDefaults standardUserDefaults]setInteger:self.bankRoll forKey:@"bank"];
-            if (self.score > [[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]) {
-                [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
-                //display new high score label on game over screen
-            }
             [_physicsNode removeChild:mainShip];
             [self scheduleOnce:@selector(gameOver) delay:1];
         } else{
@@ -465,7 +470,20 @@ double largeStarSpeed = .0016;
 }
 
 -(void) gameOver {
-    [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"score"];
+    if (self.score > [[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]) {
+        [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
+    }
+    
+    if ((self.level-3)/2+1 > [[NSUserDefaults standardUserDefaults]integerForKey:@"highestLevel"] ) {
+        [[NSUserDefaults standardUserDefaults]setInteger:(self.level-3)/2 + 1 forKey:@"highestLevel"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"asteroidsDestroyed"] +asteroidsDestroyed forKey:@"asteroidsDestroyed"];
+    
+    [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"deaths"] + numDeaths forKey:@"deaths"];
+    
+    [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"bulletsFired"] +bulletsFired forKey:@"bulletsFired"];
+    
     [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"Main"];
     CCTransition *transition = [CCTransition transitionFadeWithDuration:1.];
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"MainScene"]withTransition:transition];
@@ -477,14 +495,19 @@ double largeStarSpeed = .0016;
     mainShip.immune = true;
     if (shipLevel == 1) {
         mainShip = (Ship *)[CCBReader load:@"Ship"];
+        numbBulletsPerFire = 1;
     } else if (shipLevel == 2) {
         mainShip = (Ship *)[CCBReader load:@"Level2"];
+        numbBulletsPerFire = 2;
     } else if (shipLevel == 3) {
         mainShip = (Ship *)[CCBReader load:@"Level3"];
+        numbBulletsPerFire = 3;
     } else if (shipLevel == 4) {
         mainShip = (Ship *)[CCBReader load:@"Level4"];
+        numbBulletsPerFire = 4;
     } else {
         mainShip = (Ship *)[CCBReader load:@"Level5"];
+        numbBulletsPerFire = 6;
     }
     mainShip.inMain = false; //since it's not in the main menu, we set this to false
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
@@ -499,6 +522,7 @@ double largeStarSpeed = .0016;
     // collision handling
     CCLOG(@"Asteroid and bullet collided");
     if (asteroid.key) {
+        asteroidsDestroyed += 1;
         asteroid.key = false;
         [self asteroidCollision:asteroid];
         

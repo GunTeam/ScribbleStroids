@@ -62,6 +62,10 @@
     int tutorialStep;
     
     OALSimpleAudio *shipDestroyed;
+    
+    //stats variables
+    int asteroidsDestroyed,numDeaths,bulletsFired,numbBulletsPerFire;
+    
 }
 
 @property int numberOfAsteroidsRemaingingInLevel;

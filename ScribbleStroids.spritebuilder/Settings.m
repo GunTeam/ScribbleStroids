@@ -148,7 +148,7 @@ double lss = .08;
 }
 
 -(void) GoBack {
-    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.1];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.15];
     [[CCDirector sharedDirector] popSceneWithTransition:transition];
 }
 

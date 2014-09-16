@@ -31,7 +31,7 @@
     
     int x = arc4random_uniform(5) - 2;
     
-    self.physicsBody.angularVelocity = x * .6;
+    self.physicsBody.angularVelocity = x * .8;
     
 
 }

@@ -27,12 +27,19 @@ double LSS = .08;
         [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"SFXOn"];
         [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"MusicOn"];
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"bank"];
-        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"highScore"];
         
         //set ship, gun, and shield levels
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shipLevel"];
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"gunLevel"];
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"shieldLevel"];
+        
+        //display stats
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"highestLevel"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"asteroidsDestroyed"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"deaths"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"bulletsFired"];
+        
     }
     
     //start load background
@@ -119,13 +126,13 @@ double LSS = .08;
 }
 
 -(void) Play{
-    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:.1];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:.15];
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"] withTransition:transition];
 }
 
 -(void) ToHighscores{
     CCLOG(@"Highscores");
-    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.1];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
     [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"HighScoreScene"] withTransition:transition];
 }
 
@@ -137,7 +144,7 @@ double LSS = .08;
 
 -(void) ToSettings{
     CCLOG(@"Settings");
-    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.15];
     [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"Settings"] withTransition:transition];
 }
 
