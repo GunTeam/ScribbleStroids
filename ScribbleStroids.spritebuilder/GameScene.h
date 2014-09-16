@@ -74,5 +74,6 @@
 @property int extraShieldCost;
 @property int extraLifeCost;
 @property bool tutorial;
+@property int collisionCounter;
 
 @end

@@ -18,7 +18,7 @@ bool debugMode = false;
 double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
-int startLevel = 3;
+int startLevel = 30;
 int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 1;
 double howOftenPowerupDropsAreMade = 60;
@@ -33,7 +33,6 @@ double largeStarSpeed = .0016;
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     
-//    CCLOG(@"Received a touch");
     if (self.tutorial) {
         tutorialStep += 1;
         [self tutorial:tutorialStep];
@@ -42,7 +41,6 @@ double largeStarSpeed = .0016;
         CGPoint touchLocation = [touch locationInNode:self];
         double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
         if (hypotenuse<joystickTouchThreshold) {
-//            CCLOG(@"Touch inside threshold");
             CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
             mainShip.rotation = point;
             _joystickArrow.rotation = point;
@@ -56,13 +54,11 @@ double largeStarSpeed = .0016;
     }
 }
 -(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event{
-//    CCLOG(@"Moved a touch");
     if (!self.paused) {
         mainShip.physicsBody.angularVelocity = 0;
         CGPoint touchLocation = [touch locationInNode:self];
         double hypotenuse = pow(pow(touchLocation.x - screenWidth*(_joystickCenter.position.x),2) + pow(touchLocation.y - screenHeight*(_joystickCenter.position.y), 2),.5);
         if (hypotenuse<joystickTouchThreshold) {
-//            CCLOG(@"Touch inside threshold");
             CGFloat point = -atan2((-_joystickCenter.position.y*screenHeight+touchLocation.y),(-_joystickCenter.position.x*screenWidth+touchLocation.x))*180/M_PI+90;
             mainShip.rotation = point;
             _joystickArrow.rotation = point;
@@ -302,6 +298,10 @@ double largeStarSpeed = .0016;
 
 -(void) update:(CCTime)delta{
     
+    if (self.collisionCounter < 60){
+        self.collisionCounter += 1;
+    }
+    
     double shipVelocityX = mainShip.physicsBody.velocity.x;
     double shipVelocityY = mainShip.physicsBody.velocity.y;
     
@@ -431,7 +431,9 @@ double largeStarSpeed = .0016;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
-    if (!mainShip.immune) {            [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
+    if (!mainShip.immune && self.collisionCounter >= 60) {
+        self.collisionCounter = 0;
+        [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];
         [self asteroidCollision:asteroid];
         mainShip.immune = true;
         self.lives -=1 ;
@@ -472,6 +474,7 @@ double largeStarSpeed = .0016;
 -(void) resetShip{
     int shipLevel = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"gunLevel"];
     mainShip = [[Ship alloc]init];
+    mainShip.immune = true;
     if (shipLevel == 1) {
         mainShip = (Ship *)[CCBReader load:@"Ship"];
     } else if (shipLevel == 2) {
@@ -617,7 +620,7 @@ double largeStarSpeed = .0016;
     //run level over animation
     mainShip.position = CGPointMake(screenWidth/2, screenHeight/4);
     mainShip.physicsBody.velocity = CGPointMake(0,0);
-    self.level += 1;
+    self.level += 2;
     levelLabel.string = [NSString stringWithFormat:@"$%d", self.bankRoll];
     CoinLabel *levelUpLabel = [CoinLabel  labelWithString:@"Level Up!" fontName:@"Chalkduster" fontSize:36];
     levelUpLabel.scale = 0;

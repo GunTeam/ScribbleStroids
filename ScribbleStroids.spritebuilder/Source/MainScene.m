@@ -101,11 +101,14 @@ double LSS = .08;
     
     if (![[NSUserDefaults standardUserDefaults]boolForKey:@"Main"]) {
         _scoreLabel.string = [NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
-        _newLabel.position = CGPointMake(_scoreLabel.position.x - _scoreLabel.contentSizeInPoints.width/2, _scoreLabel.position.y - _scoreLabel.contentSizeInPoints.height/2);
+        _newLabel.position = CGPointMake(_scoreLabel.position.x*screenWidth - _scoreLabel.contentSizeInPoints.width/2, _scoreLabel.position.y*screenHeight - _scoreLabel.contentSizeInPoints.height/2);
+        CGPoint point = _scoreLabel.position;
         
         _scoreLabel.visible = true;
         _gameOverLabel.visible = true;
         _titleLabel.visible = false;
+        _newLabel.visible = true;
+
         
     } else{
         _scoreLabel.visible = false;
