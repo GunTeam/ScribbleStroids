@@ -12,7 +12,7 @@
 
 @interface MainScene : CCNode
 {    
-    CCLabelTTF *_titleLabel,*_gameOverLabel,*_scoreLabel,*_newLabel;
+    CCLabelTTF *_titleLabel,*_gameOverLabel,*_scoreLabel;
     
     NSMutableArray *smallStarsArray,*mediumStarsArray,*largeStarsArray;
     

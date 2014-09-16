@@ -28,6 +28,11 @@
     self.key = true;
     
     destroyed =  [OALSimpleAudio sharedInstance];
+    
+    int x = arc4random_uniform(5) - 2;
+    
+    self.physicsBody.angularVelocity = x * .6;
+    
 
 }
 

@@ -126,6 +126,11 @@ double lexi = .08;
     }
 }
 
+-(void) ToExtras{
+    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:.1];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"InAppPurchaseMenu"] withTransition:transition];
+}
+
 -(void) shipAttributes:(int)level {
     if (level == 1) {
         _heart1.visible = true;

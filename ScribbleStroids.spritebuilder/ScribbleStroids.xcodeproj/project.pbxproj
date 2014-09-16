@@ -85,6 +85,7 @@
 		BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE245C61991744B0030F38A /* SmallStars@2x.png */; };
 		BAE245D71992AF4E0030F38A /* Stars.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE245D61992AF4E0030F38A /* Stars.m */; };
 		BAE6957C19BE509F00E7811F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE6957B19BE509F00E7811F /* GameKit.framework */; };
+		BAE6958419C7FE2900E7811F /* InAppPurchaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE6958319C7FE2900E7811F /* InAppPurchaseScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +208,8 @@
 		BAE245D51992AF4E0030F38A /* Stars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stars.h; sourceTree = "<group>"; };
 		BAE245D61992AF4E0030F38A /* Stars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stars.m; sourceTree = "<group>"; };
 		BAE6957B19BE509F00E7811F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		BAE6958219C7FE2900E7811F /* InAppPurchaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseScene.h; sourceTree = "<group>"; };
+		BAE6958319C7FE2900E7811F /* InAppPurchaseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +457,8 @@
 				BAA28AA51997C64D000A83D1 /* Store.m */,
 				BA1FCEE419AB01A700BCF9B4 /* HighScores.h */,
 				BA1FCEE519AB01A700BCF9B4 /* HighScores.m */,
+				BAE6958219C7FE2900E7811F /* InAppPurchaseScene.h */,
+				BAE6958319C7FE2900E7811F /* InAppPurchaseScene.m */,
 			);
 			name = "Scene Classes";
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 				BAAE87B8199D2924003C48FE /* Level1.m in Sources */,
 				BA00D8821988298D00D3F431 /* Bullet.m in Sources */,
 				BAAE87C4199D3384003C48FE /* Level5.m in Sources */,
+				BAE6958419C7FE2900E7811F /* InAppPurchaseScene.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				BAA28AA61997C64D000A83D1 /* Store.m in Sources */,
