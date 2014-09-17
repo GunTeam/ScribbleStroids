@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>36</integer>
+	<integer>37</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -72,7 +72,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.89999997615814209</real>
+							<real>0.80000001192092896</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1709,7 +1709,7 @@
 						<key>value</key>
 						<array>
 							<real>0.05000000074505806</real>
-							<real>0.67500001192092896</real>
+							<real>0.55000001192092896</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -2034,7 +2034,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.05000000074505806</real>
+							<real>0.0</real>
 							<real>0.47499999403953552</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -2048,7 +2048,7 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
+							<real>1</real>
 							<real>0.5</real>
 						</array>
 					</dict>
@@ -2361,7 +2361,7 @@
 						<key>value</key>
 						<array>
 							<real>0.05000000074505806</real>
-							<real>0.27500000596046448</real>
+							<real>0.30000001192092896</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -2687,7 +2687,7 @@
 						<key>value</key>
 						<array>
 							<real>0.94999998807907104</real>
-							<real>0.67500001192092896</real>
+							<real>0.55000001192092896</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -2860,8 +2860,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2896,7 +2894,7 @@
 						<key>value</key>
 						<array>
 							<real>0.94999998807907104</real>
-							<real>0.27500000596046448</real>
+							<real>0.30000001192092896</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -3102,7 +3100,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.94999998807907104</real>
+							<real>1</real>
 							<real>0.47499999403953552</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -3116,7 +3114,7 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>0.0</real>
 							<real>0.5</real>
 						</array>
 					</dict>

@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>6</integer>
+	<integer>7</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.22812509536743164</real>
-							<real>0.827464759349823</real>
+							<real>0.5</real>
+							<real>0.81499999761581421</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -98,7 +98,7 @@
 						<array>
 							<real>1</real>
 							<real>1</real>
-							<false/>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -120,8 +120,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>320</real>
+							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -154,7 +154,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>iAd</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -166,7 +166,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/iAdFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -364,8 +364,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -399,8 +397,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.2156250923871994</real>
-							<real>0.62676054239273071</real>
+							<real>0.5</real>
+							<real>0.61000001430511475</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -426,7 +424,7 @@
 						<array>
 							<real>1</real>
 							<real>1</real>
-							<false/>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -448,8 +446,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>320</real>
+							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -482,7 +480,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>$.99</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -494,7 +492,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/smallCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -725,8 +723,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.2156250923871994</real>
-							<real>0.44190141558647156</real>
+							<real>0.5</real>
+							<real>0.4050000011920929</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -752,7 +750,7 @@
 						<array>
 							<real>1</real>
 							<real>1</real>
-							<false/>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -774,8 +772,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>320</real>
+							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -808,7 +806,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>$2.99</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -820,7 +818,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/mediumCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1051,8 +1049,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.22500009834766388</real>
-							<real>0.22887323796749115</real>
+							<real>0.5</real>
+							<real>0.20000000298023224</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1078,7 +1076,7 @@
 						<array>
 							<real>1</real>
 							<real>1</real>
-							<false/>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1100,8 +1098,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>320</real>
+							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1134,7 +1132,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>$4.99</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -1146,7 +1144,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/largeCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>

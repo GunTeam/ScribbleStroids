@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>13</integer>
+	<integer>15</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -74,7 +74,7 @@
 						<key>value</key>
 						<array>
 							<real>0.30000001192092896</real>
-							<real>0.5</real>
+							<real>0.37999999523162842</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -400,7 +400,7 @@
 						<key>value</key>
 						<array>
 							<real>0.30000001192092896</real>
-							<real>0.25</real>
+							<real>0.12999999523162842</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -726,7 +726,7 @@
 						<key>value</key>
 						<array>
 							<real>0.69999998807907104</real>
-							<real>0.5</real>
+							<real>0.37999999523162842</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1030,8 +1030,6 @@
 				<string></string>
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
-				<key>hidden</key>
-				<true/>
 				<key>memberVarAssignmentName</key>
 				<string>_titleLabel</string>
 				<key>memberVarAssignmentType</key>
@@ -1054,7 +1052,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.82999998331069946</real>
+							<real>0.70999997854232788</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1262,7 +1260,7 @@
 						<key>value</key>
 						<array>
 							<real>0.69999998807907104</real>
-							<real>0.25</real>
+							<real>0.12999999523162842</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1588,7 +1586,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.89999997615814209</real>
+							<real>0.77999997138977051</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1808,7 +1806,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.73000001907348633</real>
+							<real>0.61000001430511475</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>

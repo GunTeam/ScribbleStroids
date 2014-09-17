@@ -470,6 +470,7 @@ double largeStarSpeed = .0016;
 }
 
 -(void) gameOver {
+    [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"score"];
     if (self.score > [[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]) {
         [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
     }
