@@ -87,6 +87,7 @@
 		BAE6958819C8226500E7811F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE6958619C8226500E7811F /* Default-568h@2x.png */; };
 		BAE6958919C8226500E7811F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE6958719C8226500E7811F /* Default@2x.png */; };
 		BAE6958B19C822E700E7811F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAE6958A19C822E700E7811F /* Images.xcassets */; };
+		BAE6959119C94E8800E7811F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE6959019C94E8800E7811F /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,7 @@
 		BAE6958619C8226500E7811F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../../../Desktop/Default-568h@2x.png"; sourceTree = "<group>"; };
 		BAE6958719C8226500E7811F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../../../Desktop/Default@2x.png"; sourceTree = "<group>"; };
 		BAE6958A19C822E700E7811F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ScribbleStroids/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		BAE6959019C94E8800E7811F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE6959119C94E8800E7811F /* StoreKit.framework in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B737898A1807642B0076A88C /* libcocos2d.a in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -309,6 +312,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAE6959019C94E8800E7811F /* StoreKit.framework */,
 				BAE6957B19BE509F00E7811F /* GameKit.framework */,
 				8392007918EE8E3300B6C429 /* GLKit.framework */,
 				B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */,
