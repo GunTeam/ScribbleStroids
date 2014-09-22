@@ -14,58 +14,30 @@
 
 #define k_Save @"Saveitem"
 
-
-
 #import "InAppPurchaseScene.h"
-
-
-
-
+#import "MainScene.h"
 
 @implementation InAppPurchaseScene
-
-
 
 -(void) didLoadFromCCB{
     
     SSS = .03;
-    
     MSS = .05;
-    
     LSS = .08;
-    
-    
-    
     //start load background
-    
     int randX = 0;
-    
     int randY = 0;
     
     while (randX == 0 || randY == 0) {
-        
         randX = arc4random() % 10 - 5;
-        
         randY = arc4random() % 10 - 5;
-        
-        
-        
     }
     
     smallStarSpeedX = randX * SSS;
-    
     smallStarSpeedY = randY * SSS;
-    
-    
-    
     mediumStarSpeedX = randX * MSS;
-    
     mediumStarSpeedY = randY * MSS;
-    
-    
-    
     largeStarSpeedX = randX * LSS;
-    
     largeStarSpeedY = randY * LSS;
     
     
@@ -140,10 +112,6 @@
     
 }
 
-
-
-
-
 -(void) update:(CCTime)delta{
     
     for (Stars *star in smallStarsArray) {
@@ -166,10 +134,8 @@
     
 }
 
-
-
 -(void) GoBack{
-    
+
     CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
     
     [[CCDirector sharedDirector] popSceneWithTransition:transition];
@@ -186,16 +152,8 @@
     
     CCLOG(@"iad");
     
-    
-    
     self.productID = @"com.ScribbleStroids.RemoveAds";
-    
-    
-    
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    
-    
-    
     [self getProductInfo:self];
     
 }
@@ -208,16 +166,8 @@
     
     numberOfAdditionalCoins = 5000;
     
-    
-    
     self.productID = @"com.ScribbleStroids.Tier1coins";
-    
-    
-    
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    
-    
-    
     [self getProductInfo:self];
     
 }
@@ -229,22 +179,12 @@
     CCLOG(@"medium");
     
     numberOfAdditionalCoins = 25000;
-    
-    
-    
+
     self.productID = @"com.ScribbleStroids.Tier3coins";
-    
-    
-    
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    
-    
-    
     [self getProductInfo:self];
     
 }
-
-
 
 -(void) LargeCoin{
     
@@ -252,16 +192,8 @@
     
     numberOfAdditionalCoins = 50000;
     
-    
-    
     self.productID = @"com.ScribbleStroids.Tier5coins";
-    
-    
-    
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    
-    
-    
     [self getProductInfo:self];
     
 }
@@ -269,45 +201,23 @@
 //**********************************************************************************************
 
 
-
-
-
-
-
-
-
 //**********************************************************************************************
 
--(void)Purchased
-
-{
-    
+-(void)Purchased {
     if ([self.productID isEqualToString:@"com.ScribbleStroids.RemoveAds"]) {
         
-        NSUserDefaults *saveapp = [NSUserDefaults standardUserDefaults];
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"removeiAds"];
         
-        [saveapp setBool:TRUE forKey:k_Save];
+        [[CCDirector sharedDirector]popToRootSceneWithTransition:[CCTransition transitionFadeWithDuration:.15]];
         
-        
-        
-        [saveapp synchronize];
-        
-    }
-    
-    else {
+    } else {
         
         [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"]+ numberOfAdditionalCoins forKey:@"bank"];
         
     }
-    
 }
 
-
-
--(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-
-{
-    
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     [self unlockFeature];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Restored" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -316,46 +226,27 @@
     
 }
 
-
-
--(void)unlockFeature
-
-{
+-(void)unlockFeature {
     
     [self Purchased];
     
 }
 
-
-
--(void) getProductInfo:(InAppPurchaseScene *)viewController
-
-{
+-(void) getProductInfo:(InAppPurchaseScene *)viewController{
     
     if ([SKPaymentQueue canMakePayments]) {
         
         SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:self.productID]];
-        
-        
-        
         request.delegate = self;
-        
-        
-        
         [request start];
         
-    }
-    
-    else {
+    } else {
         
     }
     
 }
 
 //**********************************************************************************************
-
-
-
 
 
 //Displaying the in-app purchase on the screen
@@ -496,34 +387,20 @@
                 
             }
                 
-                
-                
             case SKPaymentTransactionStateFailed:
                 
             {
                 
                 NSLog(@"Transaction Failed");
-                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Transaction Failed" message:@"Try again or restore purchase if you have already bought it. You will not be charged twice." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
                 [alert show];
-                
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                
                 break;
-                
             }
-                
-                
-                
             default:
-                
                 break;
-                
         }
-        
     }
-    
 }
 
 //**********************************************************************************************

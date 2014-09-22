@@ -26,6 +26,8 @@
     CCSprite *_clock1,*_clock2,*_clock3,*_clock4,*_clock5;
     //end code connections
     
+    
+    int counter;
 }
 
 @property int shipCost;

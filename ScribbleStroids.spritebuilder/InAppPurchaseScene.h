@@ -18,7 +18,6 @@
     CGFloat screenWidth,screenHeight;
     
     int numberOfAdditionalCoins;
-    
 }
 
 @property (strong, nonatomic) SKProduct *product;

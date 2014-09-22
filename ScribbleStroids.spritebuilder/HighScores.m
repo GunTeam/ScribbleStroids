@@ -73,8 +73,7 @@
     
     _highestLevelLabel.string = [NSString stringWithFormat:@"Highest Level: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"highestLevel"]];
     
-//    _asteroidsDestroyedLabel.string = [NSString stringWithFormat:@"Stroids Destroid: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"asteroidsDestroyed"]];
-    _asteroidsDestroyedLabel.string = @"Stroids Destroid: 696969";
+    _asteroidsDestroyedLabel.string = [NSString stringWithFormat:@"Stroids Destroid: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"asteroidsDestroyed"]];
     
     _deathsLabel.string = [NSString stringWithFormat:@"Deaths: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"deaths"]];
     

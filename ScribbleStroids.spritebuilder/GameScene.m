@@ -68,6 +68,9 @@ double largeStarSpeed = .0016;
 }
 
 -(void) didLoadFromCCB {
+    
+    [[OALSimpleAudio sharedInstance]setEffectsMuted:![[NSUserDefaults standardUserDefaults]boolForKey:@"SFXOn"]];
+    
     //stats variables
     asteroidsDestroyed = 0;
     numDeaths = 0;
@@ -79,7 +82,6 @@ double largeStarSpeed = .0016;
     
     shipDestroyed = [OALSimpleAudio sharedInstance];
     
-    self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
     
     [[CCDirector sharedDirector] setDisplayStats:false];
     
@@ -149,8 +151,8 @@ double largeStarSpeed = .0016;
     //end labels
 //    [self createLevel:self.level];
     
-    self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]+1);
-    [self displayNumberOfLives:1];
+    self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]);
+    [self displayNumberOfLives:self.lives];
         
     self.numShields = 1;
     [self displayNumberOfShields:1];
@@ -203,8 +205,13 @@ double largeStarSpeed = .0016;
         self.tutorial = false;
         [self startGame];
     }
-    
+}
 
+-(void) onEnter{
+    [super onEnter];
+    self.bankRoll = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
+    levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
+    _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
 }
 
 -(void) startGame {
@@ -374,13 +381,14 @@ double largeStarSpeed = .0016;
         _buyLife.enabled = true;
     }
     
+    _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
+    
     if (self.paused) {
         _extraNukeCostLabel.visible = true;
         _buyLife.visible = true;
         _buyShield.visible = true;
         _pauseBankLabel.visible = true;
         _pauseBankBalance.visible = true;
-        _pauseBankBalance.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
         _extraLifeCostLabel.visible = true;
         _settingsButton.visible = true;
         _storeButton.visible = true;
@@ -528,7 +536,6 @@ double largeStarSpeed = .0016;
         [self asteroidCollision:asteroid];
         
         self.score += self.level-1;
-        scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
     }
     
     Explosion *explosion = (Explosion *)[CCBReader load:@"Explosion"];
@@ -599,6 +606,7 @@ double largeStarSpeed = .0016;
             [self levelOver];
         }
     }
+    scoreLabel.string = [NSString stringWithFormat:@"%d", self.score];
     [asteroidArray removeObject:asteroid];
     [asteroid removeFromParent];
 }

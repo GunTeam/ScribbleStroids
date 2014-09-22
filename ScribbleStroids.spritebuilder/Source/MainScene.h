@@ -9,9 +9,13 @@
 #import "cocos2d.h"
 #import "CCNode.h"
 #import "Ship.h"
+#import <iAd/iAd.h>
 
-@interface MainScene : CCNode
-{    
+@interface MainScene : CCNode <ADBannerViewDelegate>
+{
+    ADBannerView *_adView;
+    ADBannerView *_bannerView;
+    
     CCLabelTTF *_titleLabel,*_gameOverLabel,*_scoreLabel;
     
     NSMutableArray *smallStarsArray,*mediumStarsArray,*largeStarsArray;

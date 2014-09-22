@@ -1,15 +1,17 @@
 //
 //  MainScene.m
-//  PROJECTNAME
+//  Scribble 'Stroids
 //
-//  Created by Viktor on 10/10/13.
-//  Copyright (c) 2013 Apportable. All rights reserved.
+//  Created by Jorrie Brettin on 8/01/2014.
+//  Copyright (c) 2014 Jorrie Brettin. All rights reserved.
 //
 
 #import "MainScene.h"
 #import "GameScene.h"
 #import "Store.h"
+#import <iAd/iAd.h>
 
+#define k_Save @"SaveItem"
 
 double SSS = .03;
 double MSS = .05;
@@ -17,7 +19,76 @@ double LSS = .08;
 
 @implementation MainScene
 
+//iAd codes
+-(id)init
+{
+    bool adsRemoved =[[NSUserDefaults standardUserDefaults]boolForKey:@"removeiAds"];
+    
+    if( (self= [super init]) )
+    {
+        // On iOS 6 ADBannerView introduces a new initializer, use it when available.
+        if (!adsRemoved){
+            if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+                _adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+                
+            } else {
+                _adView = [[ADBannerView alloc] init];
+            }
+            _adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+            _adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+            [[[CCDirector sharedDirector]view]addSubview:_adView];
+            [_adView setBackgroundColor:[UIColor clearColor]];
+            [[[CCDirector sharedDirector]view]addSubview:_adView];
+            _adView.delegate = self;
+        }
+    }
+    if (!adsRemoved) {
+        [self layoutAnimated:YES];
+    }
+    return self;
+}
+
+
+- (void)layoutAnimated:(BOOL)animated
+{
+    // As of iOS 6.0, the banner will automatically resize itself based on its width.
+    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
+    CGRect contentFrame = [CCDirector sharedDirector].view.bounds;
+    _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    
+    CGRect bannerFrame = _bannerView.frame;
+    if (_bannerView.bannerLoaded) {
+        contentFrame.size.height -= _bannerView.frame.size.height;
+        bannerFrame.origin.y = contentFrame.size.height;
+    } else {
+        bannerFrame.origin.y = contentFrame.size.height;
+    }
+    
+    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
+        _bannerView.frame = bannerFrame;
+    }];
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    bool adsRemoved =[[NSUserDefaults standardUserDefaults]boolForKey:@"removeiAds"];
+    if (!adsRemoved) {
+        [self layoutAnimated:YES];
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    bool adsRemoved =[[NSUserDefaults standardUserDefaults]boolForKey:@"removeiAds"];
+    if (!adsRemoved) {
+        [self layoutAnimated:YES];
+    }
+}
+
+//end iAd codes
+
 -(void) didLoadFromCCB{
+    
+    [[OALSimpleAudio sharedInstance]setEffectsMuted:true];
+    
     //set defaults for first time users
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"returningUser"]) {
         CCLOG(@"set new defaults");
@@ -40,6 +111,8 @@ double LSS = .08;
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"deaths"];
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"bulletsFired"];
         
+        //inapp purchase
+        [[NSUserDefaults standardUserDefaults]setBool:false forKey:@"removeiAds"];
     }
     
     //start load background
@@ -118,6 +191,15 @@ double LSS = .08;
         _gameOverLabel.visible = false;
         _titleLabel.visible = true;
     }
+    
+}
+
+-(void) onEnter {
+    [super onEnter];
+    bool adsRemoved =[[NSUserDefaults standardUserDefaults]boolForKey:@"removeiAds"];
+    if (adsRemoved) {
+        [_adView setHidden:true];
+    }
 }
 
 -(void) randomEvent:(CCTime) dt{
@@ -126,6 +208,8 @@ double LSS = .08;
 }
 
 -(void) Play{
+    [_adView setHidden:true];
+    
     CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:.15];
     [[CCDirector sharedDirector] replaceScene:[CCBReader loadAsScene:@"GameScene"] withTransition:transition];
 }

@@ -20,6 +20,8 @@
     [super fire];
     int bulletLaunchImpulse = 3;
     int positionBoost = 17;
+    int topBoost = 25;
+
     
     CCSprite *bullet1 = (CCSprite *)[CCBReader load:@"Bullet"];
     bullet1.position = CGPointMake(self.position.x - positionBoost*cos(self.rotation*M_PI/180), self.position.y + positionBoost*sin(self.rotation*M_PI/180));
@@ -38,7 +40,7 @@
                                                    bulletLaunchImpulse*-sin((self.rotation-90)*M_PI/180))];
     
     CCSprite *bullet3 = (CCSprite *)[CCBReader load:@"Bullet"];
-    bullet3.position = CGPointMake(self.position.x, self.position.y);
+    bullet3.position = CGPointMake(self.position.x + topBoost*sin(self.rotation*M_PI/180), self.position.y + topBoost*cos(self.rotation*M_PI/180));
     bullet3.physicsBody.velocity = self.physicsBody.velocity;
     bullet3.scale = bulletScale;
     [self.parent addChild:bullet3 z:-2];

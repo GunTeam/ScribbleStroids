@@ -61,8 +61,16 @@
 		BA1FCEE619AB01A700BCF9B4 /* HighScores.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FCEE519AB01A700BCF9B4 /* HighScores.m */; };
 		BA9D12B81993F727000C05D1 /* whiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12B71993F727000C05D1 /* whiteCircle.png */; };
 		BA9D12BB19942211000C05D1 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D12BA19942211000C05D1 /* Bomb.m */; };
-		BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12BC19942357000C05D1 /* LittleNuke.png */; };
 		BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */; };
+		BAA245D319CD423C00340D6C /* 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245CD19CD423C00340D6C /* 40x40.png */; };
+		BAA245D419CD423C00340D6C /* 29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245CE19CD423C00340D6C /* 29x29.png */; };
+		BAA245D519CD423C00340D6C /* 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245CF19CD423C00340D6C /* 58x58.png */; };
+		BAA245D619CD423C00340D6C /* 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245D019CD423C00340D6C /* 80x80.png */; };
+		BAA245D719CD423C00340D6C /* 60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245D119CD423C00340D6C /* 60x60.png */; };
+		BAA245D819CD423C00340D6C /* 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245D219CD423C00340D6C /* 120x120.png */; };
+		BAA245DB19CD4AEC00340D6C /* 114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245D919CD4AEC00340D6C /* 114x114.png */; };
+		BAA245DC19CD4AEC00340D6C /* 57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245DA19CD4AEC00340D6C /* 57x57.png */; };
+		BAA245DE19CFE5F300340D6C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA245DD19CFE5F300340D6C /* iAd.framework */; };
 		BAA28AA31997C409000A83D1 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA28AA21997C409000A83D1 /* Settings.m */; };
 		BAA28AA61997C64D000A83D1 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA28AA51997C64D000A83D1 /* Store.m */; };
 		BAA28AA919986977000A83D1 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA28AA819986977000A83D1 /* Coin.m */; };
@@ -172,8 +180,16 @@
 		BA9D12B71993F727000C05D1 /* whiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteCircle.png; path = ../../../../../Desktop/SSArt/whiteCircle.png; sourceTree = "<group>"; };
 		BA9D12B919942211000C05D1 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
 		BA9D12BA19942211000C05D1 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
-		BA9D12BC19942357000C05D1 /* LittleNuke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LittleNuke.png; path = ../../../../../Desktop/SSArt/Buttons/LittleNuke.png; sourceTree = "<group>"; };
 		BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleFins200dpi.png; path = ../../../../../Desktop/SSArt/ShipSprites/PurpleFins200dpi.png; sourceTree = "<group>"; };
+		BAA245CD19CD423C00340D6C /* 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 40x40.png; path = ../../../../../Desktop/SSArt/Icons/40x40.png; sourceTree = "<group>"; };
+		BAA245CE19CD423C00340D6C /* 29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 29x29.png; path = ../../../../../Desktop/SSArt/Icons/29x29.png; sourceTree = "<group>"; };
+		BAA245CF19CD423C00340D6C /* 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 58x58.png; path = ../../../../../Desktop/SSArt/Icons/58x58.png; sourceTree = "<group>"; };
+		BAA245D019CD423C00340D6C /* 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 80x80.png; path = ../../../../../Desktop/SSArt/Icons/80x80.png; sourceTree = "<group>"; };
+		BAA245D119CD423C00340D6C /* 60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 60x60.png; path = ../../../../../Desktop/SSArt/Icons/60x60.png; sourceTree = "<group>"; };
+		BAA245D219CD423C00340D6C /* 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 120x120.png; path = ../../../../../Desktop/SSArt/Icons/120x120.png; sourceTree = "<group>"; };
+		BAA245D919CD4AEC00340D6C /* 114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 114x114.png; path = ../../../../../Desktop/SSArt/Icons/114x114.png; sourceTree = "<group>"; };
+		BAA245DA19CD4AEC00340D6C /* 57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 57x57.png; path = ../../../../../Desktop/SSArt/Icons/57x57.png; sourceTree = "<group>"; };
+		BAA245DD19CFE5F300340D6C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		BAA28AA11997C409000A83D1 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		BAA28AA21997C409000A83D1 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		BAA28AA41997C64D000A83D1 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
@@ -221,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAA245DE19CFE5F300340D6C /* iAd.framework in Frameworks */,
 				BAE6959119C94E8800E7811F /* StoreKit.framework in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B737898A1807642B0076A88C /* libcocos2d.a in Frameworks */,
@@ -312,6 +329,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAA245DD19CFE5F300340D6C /* iAd.framework */,
 				BAE6959019C94E8800E7811F /* StoreKit.framework */,
 				BAE6957B19BE509F00E7811F /* GameKit.framework */,
 				8392007918EE8E3300B6C429 /* GLKit.framework */,
@@ -375,21 +393,12 @@
 		BA10FE611988C7840023D1F2 /* Art */ = {
 			isa = PBXGroup;
 			children = (
-				BA9D12BC19942357000C05D1 /* LittleNuke.png */,
+				BAA245CB19CD421100340D6C /* Icons */,
 				BAE245BF199174390030F38A /* Stars */,
 				BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */,
 				BA9D12B71993F727000C05D1 /* whiteCircle.png */,
-				BA70A8E71989E35900CFEABB /* Asteroids */,
-				BA10FE631988C78B0023D1F2 /* FlameSprites */,
 			);
 			name = Art;
-			sourceTree = "<group>";
-		};
-		BA10FE631988C78B0023D1F2 /* FlameSprites */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = FlameSprites;
 			sourceTree = "<group>";
 		};
 		BA143A7B19B0BA99002E3762 /* Explosions */ = {
@@ -444,11 +453,19 @@
 			name = Ship;
 			sourceTree = "<group>";
 		};
-		BA70A8E71989E35900CFEABB /* Asteroids */ = {
+		BAA245CB19CD421100340D6C /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				BAA245CD19CD423C00340D6C /* 40x40.png */,
+				BAA245D919CD4AEC00340D6C /* 114x114.png */,
+				BAA245DA19CD4AEC00340D6C /* 57x57.png */,
+				BAA245CE19CD423C00340D6C /* 29x29.png */,
+				BAA245CF19CD423C00340D6C /* 58x58.png */,
+				BAA245D019CD423C00340D6C /* 80x80.png */,
+				BAA245D119CD423C00340D6C /* 60x60.png */,
+				BAA245D219CD423C00340D6C /* 120x120.png */,
 			);
-			name = Asteroids;
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		BAA28A9C1997C3A4000A83D1 /* Scene Classes */ = {
@@ -595,15 +612,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAA245D819CD423C00340D6C /* 120x120.png in Resources */,
 				BA1FCEE119AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 in Resources */,
 				BA143A8719B0BAB4002E3762 /* bulletAsteroid1.mp3 in Resources */,
 				BAE245CB1991744B0030F38A /* SmallStars.png in Resources */,
 				BA143A8619B0BAB4002E3762 /* bulletAsteroid2.mp3 in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
+				BAA245D319CD423C00340D6C /* 40x40.png in Resources */,
 				BAE6958819C8226500E7811F /* Default-568h@2x.png in Resources */,
 				BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				BAE245C81991744B0030F38A /* LargeStars@2x.png in Resources */,
+				BAA245D419CD423C00340D6C /* 29x29.png in Resources */,
 				BA1FCED119AAEA5800BCF9B4 /* pew4.mp3 in Resources */,
 				BA1FCED719AAEDC700BCF9B4 /* ping2.mp3 in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
@@ -611,11 +631,11 @@
 				BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */,
 				BA1FCED019AAEA5800BCF9B4 /* pew3.mp3 in Resources */,
 				BA143A7919AD1D34002E3762 /* rocketBlubber.mp3 in Resources */,
+				BAA245D519CD423C00340D6C /* 58x58.png in Resources */,
 				BA1FCED319AAEC0500BCF9B4 /* pew5.mp3 in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				BA1FCECB19AAE6CB00BCF9B4 /* ping1.mp3 in Resources */,
 				BA143A8319B0BAB4002E3762 /* bulletAsteroid5.mp3 in Resources */,
-				BA9D12BD19942357000C05D1 /* LittleNuke.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				BAE245C91991744B0030F38A /* MediumStars.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
@@ -624,12 +644,14 @@
 				BAE6958919C8226500E7811F /* Default@2x.png in Resources */,
 				BA1FCEE319AAF82600BCF9B4 /* rocketThrust.mp3 in Resources */,
 				BA143A8419B0BAB4002E3762 /* bulletAsteroid4.mp3 in Resources */,
+				BAA245DB19CD4AEC00340D6C /* 114x114.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				BAE6958B19C822E700E7811F /* Images.xcassets in Resources */,
 				BA1FCEDE19AAEF6F00BCF9B4 /* blooplow.mp3 in Resources */,
 				BA1FCECD19AAE90300BCF9B4 /* pew2.mp3 in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
+				BAA245D619CD423C00340D6C /* 80x80.png in Resources */,
 				BAE245CA1991744B0030F38A /* MediumStars@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				BA1FCE8119A3F2B500BCF9B4 /* Pew1.mp3 in Resources */,
@@ -641,6 +663,8 @@
 				BA143A8219B0BAB4002E3762 /* bulletAsteroid6.mp3 in Resources */,
 				BA143A8919B2109F002E3762 /* shipAsteroid.mp3 in Resources */,
 				BA143A8519B0BAB4002E3762 /* bulletAsteroid3.mp3 in Resources */,
+				BAA245DC19CD4AEC00340D6C /* 57x57.png in Resources */,
+				BAA245D719CD423C00340D6C /* 60x60.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
