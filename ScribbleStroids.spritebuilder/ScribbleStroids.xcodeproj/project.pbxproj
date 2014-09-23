@@ -59,6 +59,7 @@
 		BA1FCEE119AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEE019AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 */; };
 		BA1FCEE319AAF82600BCF9B4 /* rocketThrust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */; };
 		BA1FCEE619AB01A700BCF9B4 /* HighScores.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FCEE519AB01A700BCF9B4 /* HighScores.m */; };
+		BA5FACDD19D104FE00C6D49A /* 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = BA5FACDC19D104FE00C6D49A /* 180x180.png */; };
 		BA9D12B81993F727000C05D1 /* whiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D12B71993F727000C05D1 /* whiteCircle.png */; };
 		BA9D12BB19942211000C05D1 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D12BA19942211000C05D1 /* Bomb.m */; };
 		BAA23F9F198C00550095FE5C /* PurpleFins200dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA23F9E198C00550095FE5C /* PurpleFins200dpi.png */; };
@@ -177,6 +178,7 @@
 		BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rocketThrust.mp3; path = ../../../../../Desktop/SSAudio/rocketThrust.mp3; sourceTree = "<group>"; };
 		BA1FCEE419AB01A700BCF9B4 /* HighScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScores.h; sourceTree = "<group>"; };
 		BA1FCEE519AB01A700BCF9B4 /* HighScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScores.m; sourceTree = "<group>"; };
+		BA5FACDC19D104FE00C6D49A /* 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 180x180.png; path = ../../../../../Desktop/SSArt/Icons/180x180.png; sourceTree = "<group>"; };
 		BA9D12B71993F727000C05D1 /* whiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteCircle.png; path = ../../../../../Desktop/SSArt/whiteCircle.png; sourceTree = "<group>"; };
 		BA9D12B919942211000C05D1 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
 		BA9D12BA19942211000C05D1 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 		BAA245CB19CD421100340D6C /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				BA5FACDC19D104FE00C6D49A /* 180x180.png */,
 				BAA245CD19CD423C00340D6C /* 40x40.png */,
 				BAA245D919CD4AEC00340D6C /* 114x114.png */,
 				BAA245DA19CD4AEC00340D6C /* 57x57.png */,
@@ -628,6 +631,7 @@
 				BA1FCED719AAEDC700BCF9B4 /* ping2.mp3 in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				BA5FACDD19D104FE00C6D49A /* 180x180.png in Resources */,
 				BAE245CC1991744B0030F38A /* SmallStars@2x.png in Resources */,
 				BA1FCED019AAEA5800BCF9B4 /* pew3.mp3 in Resources */,
 				BA143A7919AD1D34002E3762 /* rocketBlubber.mp3 in Resources */,
@@ -792,6 +796,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = ScribbleStroids.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -809,7 +814,7 @@
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -828,6 +833,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = ScribbleStroids.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -844,7 +850,7 @@
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",

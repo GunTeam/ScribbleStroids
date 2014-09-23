@@ -22,7 +22,7 @@ int startLevel = 3;
 int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 1;
 double howOftenPowerupDropsAreMade = 60;
-int bombLimit = 5;
+int bombLimit = 5;      
 double coinFlipper = 0;
 
 double smallStarSpeed = .0006;
@@ -150,7 +150,6 @@ double largeStarSpeed = .0016;
     [self addChild:levelLabel];
     //end labels
 //    [self createLevel:self.level];
-    
     self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]);
     [self displayNumberOfLives:self.lives];
         
