@@ -177,7 +177,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/InAppPurchases/iAdFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -201,7 +201,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/iAdFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -220,7 +220,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/iAdFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -503,7 +503,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/InAppPurchases/smallCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -527,7 +527,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/smallCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -546,7 +546,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/smallCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -829,7 +829,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/InAppPurchases/mediumCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -853,7 +853,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/mediumCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -872,7 +872,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/mediumCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1155,7 +1155,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/InAppPurchases/largeCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1179,7 +1179,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/InAppPurchases/largeCoinFinal.png</string>
 						</array>
 					</dict>
 					<dict>

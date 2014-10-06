@@ -1,15 +1,9 @@
 //
-
 //  InAppPurchaseScene.m
-
 //  ScribbleStroids
-
 //
-
 //  Created by Jorrie Brettin on 9/16/14.
-
 //  Copyright 2014 Apportable. All rights reserved.
-
 //
 
 #define k_Save @"Saveitem"
@@ -265,13 +259,9 @@
     
     NSArray *products = response.products;
     
-    
-    
     if (products.count != 0) {
         
         _product = products[0];
-        
-        
         
         //Initial alertview displaying product info and asking to buy, restore, or cancel
         
@@ -303,56 +293,52 @@
         
     }
     
-    
-    
     products = response.invalidProductIdentifiers;
     
-    
-    
-    for (SKProduct *product in products)
-    
-    {
-        
+    for (SKProduct *product in products){
         NSLog(@"Product Not found: %@", product);
-        
     }
     
 }
 
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-    //Cancel
-    
-    if (buttonIndex == 0) {
+    if ([_productID isEqualToString:@"com.ScribbleStroids.RemoveAds"]) {
+        //Cancel
         
-        NSLog(@"button at 0 clicked");
+        if (buttonIndex == 0) {
+            NSLog(@"button at 0 clicked");
+        }
         
+        //Purchase
+        
+        else if (buttonIndex == 1) {
+            SKPayment *payment = [SKPayment paymentWithProduct:_product];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
+        }
+        
+        //Restore
+        
+        else if (buttonIndex == 2) {
+            [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+            [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+        }
+        
+    } else{
+        
+        //Cancel
+        if (buttonIndex == 0) {
+            NSLog(@"button at 0 clicked");
+        }
+        
+        //Purchase
+        else if (buttonIndex == 1) {
+            SKPayment *payment = [SKPayment paymentWithProduct:_product];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
+        }
     }
-    
-    //Purchase
-    
-    else if (buttonIndex == 1) {
-        
-        SKPayment *payment = [SKPayment paymentWithProduct:_product];
-        
-        [[SKPaymentQueue defaultQueue] addPayment:payment];
-        
-    }
-    
-    //Restore
-    
-    else if (buttonIndex == 2) {
-        
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-        
-        [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-        
-    }
-    
 }
 
 
