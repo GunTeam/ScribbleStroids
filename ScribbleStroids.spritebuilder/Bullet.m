@@ -18,6 +18,11 @@
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
+    if (screenWidth == 768 && screenHeight == 1024) {
+        screenWidth = screenWidth/2;
+        screenHeight = screenHeight/2;
+    }
+    
     CCLOG(@"bullet has been spawned");
     self.physicsBody.collisionType = @"bullet";
 //    self.physicsBody.collisionGroup = @"ShipGroup";

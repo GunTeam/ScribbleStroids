@@ -132,6 +132,11 @@ double largeStarSpeed = .0016;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
+    if (screenWidth == 768 && screenHeight == 1024) {
+        screenWidth = screenWidth/2;
+        screenHeight = screenHeight/2;
+    }
+    
     //add the physics node behind the gamescene buttons
     _physicsNode = [[CCPhysicsNode alloc]init];
     [self addChild:_physicsNode z:-1];

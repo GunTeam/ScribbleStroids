@@ -24,6 +24,11 @@ double shieldTimeCounter;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
+    if (screenWidth == 768 && screenHeight == 1024) {
+        screenWidth = screenWidth/2;
+        screenHeight = screenHeight/2;
+    }
+    
     fireRate = 0;
     
     
