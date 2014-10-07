@@ -69,6 +69,7 @@ double lexi = .08;
     }
     
     CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
+    background.scaleX = 1.25;
     [self addChild:background z:-6];
     //end load background
     
@@ -92,9 +93,6 @@ double lexi = .08;
 }
 
 -(void) UpgradeShip {
-    bankRoll;
-    self.shipCost;
-    
     
     if (bankRoll >= self.shipCost) {
         bankRoll -= self.shipCost;
@@ -136,7 +134,7 @@ double lexi = .08;
     // If using a CCTransitionScene: called when the transition begins.
     [super onEnter];
     bankRoll = (int) [[NSUserDefaults standardUserDefaults]integerForKey:@"bank"];
-    _bankLabel.string = [NSString stringWithFormat:@"$%d",[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"]];
+    _bankLabel.string = [NSString stringWithFormat:@"$%ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"bank"]];
 }
 
 -(void) shipAttributes:(int)level {

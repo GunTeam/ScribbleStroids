@@ -169,6 +169,7 @@ double LSS = .08;
     }
     
     CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
+    background.scaleX = 1.25;
     [self addChild:background z:-6];
     //end load background
     
@@ -185,7 +186,7 @@ double LSS = .08;
     [self schedule:@selector(randomEvent:) interval:6];
     
     if (![[NSUserDefaults standardUserDefaults]boolForKey:@"Main"]) {
-        _scoreLabel.string = [NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
+        _scoreLabel.string = [NSString stringWithFormat:@"%ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
         _scoreLabel.visible = true;
         _gameOverLabel.visible = true;
         _titleLabel.visible = false;

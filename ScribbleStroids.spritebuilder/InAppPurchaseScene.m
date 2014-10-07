@@ -34,76 +34,41 @@
     largeStarSpeedX = randX * LSS;
     largeStarSpeedY = randY * LSS;
     
-    
-    
     CGRect screenBound = [[UIScreen mainScreen] bounds];
-    
     CGSize screenSize = screenBound.size;
-    
     screenWidth = screenSize.width;
-    
     screenHeight = screenSize.height;
     
-    
-    
     //start load background
-    
     smallStarsArray = [[NSMutableArray alloc]init];
-    
     mediumStarsArray = [[NSMutableArray alloc]init];
-    
     largeStarsArray = [[NSMutableArray alloc]init];
     
-    
-    
     for (int i = 0; i <= 2; i++) {
-        
         for (int j = 0; j <= 2; j++) {
-            
-            
-            
             Stars *small = (Stars *)[CCBReader load:@"SmallStars"];
-            
             small.position = CGPointMake(i*160, j*284);
-            
             [self addChild:small z:-5];
-            
             [smallStarsArray addObject:small];
             
-            
-            
             Stars *medium = (Stars *) [CCBReader load:@"MediumStars"];
-            
             medium.position = CGPointMake(i*160, j*284);
-            
             [self addChild:medium z:-5];
-            
             [mediumStarsArray addObject:medium];
             
-            
-            
             Stars *large = (Stars *) [CCBReader load:@"LargeStars"];
-            
             large.position = CGPointMake(i*160, j*284);
-            
             [self addChild:large z:-5];
-            
             [largeStarsArray addObject:large];
-            
-            
-            
         }
-        
     }
     
-    
-    
     CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
-    
+    background.scaleX = 1.25;
+
     [self addChild:background z:-6];
-    
     //end load background
-    
+        
 }
 
 -(void) update:(CCTime)delta{
@@ -129,9 +94,7 @@
 }
 
 -(void) GoBack{
-
     CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
-    
     [[CCDirector sharedDirector] popSceneWithTransition:transition];
     
 }

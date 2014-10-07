@@ -63,6 +63,7 @@ double lss = .08;
     }
     
     CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
+    background.scaleX = 1.25;
     [self addChild:background z:-6];
     //end load background
     

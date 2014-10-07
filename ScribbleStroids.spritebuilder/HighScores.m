@@ -65,19 +65,20 @@
     }
     
     CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
+    background.scaleX = 1.25;
     [self addChild:background z:-6];
     //end load background
     
     
-    _highScoreLabel.string = [NSString stringWithFormat:@"High Score: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]];
+    _highScoreLabel.string = [NSString stringWithFormat:@"High Score: %ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"]];
     
-    _highestLevelLabel.string = [NSString stringWithFormat:@"Highest Level: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"highestLevel"]];
+    _highestLevelLabel.string = [NSString stringWithFormat:@"Highest Level: %ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"highestLevel"]];
     
-    _asteroidsDestroyedLabel.string = [NSString stringWithFormat:@"Stroids Destroid: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"asteroidsDestroyed"]];
+    _asteroidsDestroyedLabel.string = [NSString stringWithFormat:@"Stroids Destroid: %ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"asteroidsDestroyed"]];
     
-    _deathsLabel.string = [NSString stringWithFormat:@"Deaths: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"deaths"]];
+    _deathsLabel.string = [NSString stringWithFormat:@"Deaths: %ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"deaths"]];
     
-    _bulletsFiredLabel.string = [NSString stringWithFormat:@"Bullets Fired: %d",[[NSUserDefaults standardUserDefaults]integerForKey:@"bulletsFired"]];
+    _bulletsFiredLabel.string = [NSString stringWithFormat:@"Bullets Fired: %ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"bulletsFired"]];
     
 }
 

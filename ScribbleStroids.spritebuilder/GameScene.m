@@ -113,6 +113,7 @@ double largeStarSpeed = .0016;
     }
     
     CCSprite *background = (CCSprite *)[CCBReader load:@"Background"];
+    background.scaleX = 1.25;
     [self addChild:background z:-2];
     //end load background
     
@@ -135,6 +136,7 @@ double largeStarSpeed = .0016;
     if (screenWidth == 768 && screenHeight == 1024) {
         screenWidth = screenWidth/2;
         screenHeight = screenHeight/2;
+
     }
     
     //add the physics node behind the gamescene buttons

@@ -22,6 +22,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "ipadLowportrait.png",
       "scale" : "1x"
     },
     {
@@ -29,6 +30,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "ipadLowLandscape.png",
       "scale" : "1x"
     },
     {
@@ -44,12 +46,14 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "ipadLandscape.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "oldIphone.png",
       "scale" : "1x"
     },
     {
@@ -83,13 +87,14 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "ipadRetina-1.png",
+      "filename" : "portraitIpadbanner.png",
       "scale" : "2x"
     },
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "landscapeipadebanner.png",
       "scale" : "2x"
     }
   ],
