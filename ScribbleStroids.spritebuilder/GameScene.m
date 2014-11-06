@@ -18,7 +18,7 @@ bool debugMode = false;
 double joystickTouchThreshold = 90;
 double shipTouchThreshold = 50;
 int numberOfLives = 2;
-int startLevel = 3;
+int startLevel = 30;
 int bulletExplosionSpeed = 90;
 int startingNumberOfBombs = 1;
 double howOftenPowerupDropsAreMade = 60;
@@ -133,10 +133,10 @@ double largeStarSpeed = .0016;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
-    if (screenWidth == 768 && screenHeight == 1024) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
         screenWidth = screenWidth/2;
         screenHeight = screenHeight/2;
-
     }
     
     //add the physics node behind the gamescene buttons
@@ -156,14 +156,11 @@ double largeStarSpeed = .0016;
     levelLabel.position = CGPointMake(screenWidth, screenHeight);
     [self addChild:levelLabel];
     //end labels
-//    [self createLevel:self.level];
     self.lives = (int)([[NSUserDefaults standardUserDefaults]integerForKey:@"shipLevel"]);
     [self displayNumberOfLives:self.lives];
         
     self.numShields = 1;
     [self displayNumberOfShields:1];
-    
-//    [self schedule:@selector(powerUpDrop:) interval:30];
     
     //start pause menu
     self.paused = false;
@@ -318,7 +315,7 @@ double largeStarSpeed = .0016;
 
 -(void) update:(CCTime)delta{
     
-    if (self.collisionCounter < 60){
+    if (self.collisionCounter < 120){
         self.collisionCounter += 1;
     }
     
@@ -453,7 +450,7 @@ double largeStarSpeed = .0016;
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ship:(Ship *)ship asteroid:(Asteroid *)asteroid {
     // collision handling
     CCLOG(@"Asteroid and ship collided");
-    if (!mainShip.immune && self.collisionCounter >= 60) {
+    if (!mainShip.immune && self.collisionCounter >= 120) {
         numDeaths +=1;
         self.collisionCounter = 0;
         [[OALSimpleAudio sharedInstance] playEffect:@"shipAsteroid.mp3"];

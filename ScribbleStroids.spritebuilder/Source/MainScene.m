@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "Store.h"
 #import <iAd/iAd.h>
+#import "GameKitHelper.h"
 
 #define k_Save @"SaveItem"
 
@@ -22,6 +23,7 @@ double LSS = .08;
 //iAd codes
 -(id)init
 {
+    [[GameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
     bool adsRemoved =[[NSUserDefaults standardUserDefaults]boolForKey:@"removeiAds"];
     
     if( (self= [super init]) )
@@ -137,7 +139,8 @@ double LSS = .08;
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     
-    if (screenWidth == 768 && screenHeight == 1024) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
         screenWidth = screenWidth/2;
         screenHeight = screenHeight/2;
     }
@@ -186,7 +189,7 @@ double LSS = .08;
     [self schedule:@selector(randomEvent:) interval:6];
     
     if (![[NSUserDefaults standardUserDefaults]boolForKey:@"Main"]) {
-        _scoreLabel.string = [NSString stringWithFormat:@"%ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
+        _scoreLabel.string = [NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
         _scoreLabel.visible = true;
         _gameOverLabel.visible = true;
         _titleLabel.visible = false;
@@ -221,9 +224,30 @@ double LSS = .08;
 }
 
 -(void) ToHighscores{
+    if([[GameKitHelper sharedGameKitHelper]userAuthenticated] == TRUE)
+    {
+        GKGameCenterViewController * leaderboardController = [[GKGameCenterViewController alloc] init];
+        
+        if (leaderboardController != NULL) {
+            leaderboardController.gameCenterDelegate = self;
+            
+            [[CCDirector sharedDirector] presentViewController:leaderboardController animated:YES completion:nil];
+        }
+    }
+    else
+    {
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Authentication failed" message:@"Game Center cannot be accessed. Please make sure you have logged in." delegate:self cancelButtonTitle:@"" otherButtonTitles:nil, nil];
+        
+        [alertView show];
+    }
+    
     CCLOG(@"Highscores");
-    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
-    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"HighScoreScene"] withTransition:transition];
+//    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
+//    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"HighScoreScene"] withTransition:transition];
+}
+
+-(void) gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void) ToStore{
