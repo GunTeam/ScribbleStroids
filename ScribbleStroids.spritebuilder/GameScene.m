@@ -75,6 +75,7 @@ double largeStarSpeed = .0016;
     asteroidsDestroyed = 0;
     numDeaths = 0;
     bulletsFired = 0;
+    coinsCollected = 0;
     
     
     
@@ -486,15 +487,15 @@ double largeStarSpeed = .0016;
         [[NSUserDefaults standardUserDefaults]setInteger:self.score forKey:@"highScore"];
     }
     
-    if ((self.level-3)/2+1 > [[NSUserDefaults standardUserDefaults]integerForKey:@"highestLevel"] ) {
-        [[NSUserDefaults standardUserDefaults]setInteger:(self.level-3)/2 + 1 forKey:@"highestLevel"];
-    }
-    
     [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"asteroidsDestroyed"] +asteroidsDestroyed forKey:@"asteroidsDestroyed"];
     
     [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"deaths"] + numDeaths forKey:@"deaths"];
     
     [[NSUserDefaults standardUserDefaults]setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"bulletsFired"] +bulletsFired forKey:@"bulletsFired"];
+    
+    [[GameKitHelper sharedGameKitHelper] submitScore:(int64_t)coinsCollected + [[NSUserDefaults standardUserDefaults]integerForKey:@"Coins"] category:@"Coins"];
+    
+    [[NSUserDefaults standardUserDefaults]setInteger:coinsCollected + [[NSUserDefaults standardUserDefaults]integerForKey:@"Coins"] forKey:@"Coins"];
     
     [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"Main"];
     CCTransition *transition = [CCTransition transitionFadeWithDuration:1.];
@@ -563,6 +564,7 @@ double largeStarSpeed = .0016;
 }
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair shield:(CCSprite *)shield coin:(Coin *)coin{
     self.bankRoll += coin.value;
+    coinsCollected += coin.value;
     levelLabel.string = [NSString stringWithFormat:@"$%d",self.bankRoll];
     coin.wasPickedUp = true;
     [coin removeFromParent];

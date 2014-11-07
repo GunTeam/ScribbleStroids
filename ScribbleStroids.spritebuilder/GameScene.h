@@ -22,6 +22,7 @@
 #import "Level4.h"
 #import "Level5.h"
 #import "Explosion.h"
+#import "GameKitHelper.h"
 
 @interface GameScene : CCNode <CCPhysicsCollisionDelegate>
 {
@@ -64,7 +65,7 @@
     OALSimpleAudio *shipDestroyed;
     
     //stats variables
-    int asteroidsDestroyed,numDeaths,bulletsFired,numbBulletsPerFire;
+    int asteroidsDestroyed,numDeaths,bulletsFired,numbBulletsPerFire,coinsCollected;
     
 }
 

@@ -46,7 +46,6 @@
 		BA1FCEDF19AAEF6F00BCF9B4 /* bloopmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEDC19AAEF6F00BCF9B4 /* bloopmed.mp3 */; };
 		BA1FCEE119AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEE019AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 */; };
 		BA1FCEE319AAF82600BCF9B4 /* rocketThrust.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */; };
-		BA1FCEE619AB01A700BCF9B4 /* HighScores.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FCEE519AB01A700BCF9B4 /* HighScores.m */; };
 		BA5FACDD19D104FE00C6D49A /* 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = BA5FACDC19D104FE00C6D49A /* 180x180.png */; };
 		BA9D12BB19942211000C05D1 /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D12BA19942211000C05D1 /* Bomb.m */; };
 		BAA245D319CD423C00340D6C /* 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA245CD19CD423C00340D6C /* 40x40.png */; };
@@ -155,8 +154,6 @@
 		BA1FCEDC19AAEF6F00BCF9B4 /* bloopmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bloopmed.mp3; path = ../../../../../Desktop/SSAudio/coins/bloopmed.mp3; sourceTree = "<group>"; };
 		BA1FCEE019AAF1DC00BCF9B4 /* SoftRocketThrust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SoftRocketThrust.mp3; path = ../../../../../Desktop/SSAudio/SoftRocketThrust.mp3; sourceTree = "<group>"; };
 		BA1FCEE219AAF82600BCF9B4 /* rocketThrust.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rocketThrust.mp3; path = ../../../../../Desktop/SSAudio/rocketThrust.mp3; sourceTree = "<group>"; };
-		BA1FCEE419AB01A700BCF9B4 /* HighScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScores.h; sourceTree = "<group>"; };
-		BA1FCEE519AB01A700BCF9B4 /* HighScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScores.m; sourceTree = "<group>"; };
 		BA5FACDC19D104FE00C6D49A /* 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 180x180.png; path = ../../../../../Desktop/SSArt/Icons/180x180.png; sourceTree = "<group>"; };
 		BA9D12B919942211000C05D1 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
 		BA9D12BA19942211000C05D1 /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
@@ -450,8 +447,6 @@
 				BAA28AA21997C409000A83D1 /* Settings.m */,
 				BAA28AA41997C64D000A83D1 /* Store.h */,
 				BAA28AA51997C64D000A83D1 /* Store.m */,
-				BA1FCEE419AB01A700BCF9B4 /* HighScores.h */,
-				BA1FCEE519AB01A700BCF9B4 /* HighScores.m */,
 				BAE6958219C7FE2900E7811F /* InAppPurchaseScene.h */,
 				BAE6958319C7FE2900E7811F /* InAppPurchaseScene.m */,
 			);
@@ -642,7 +637,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		D2E0167A18D782EC00927430 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -650,9 +645,9 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "osascript -e 'tell application \"System Events\"' -e 'set ProcessList to name of every process' -e 'if \"SpriteBuilder\" is in ProcessList then' -e 'tell application \"SpriteBuilder\" to publish' -e 'end if' -e 'end tell'";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -675,7 +670,6 @@
 				BAAE87C1199D337B003C48FE /* Level4.m in Sources */,
 				BABD42D8198416E600C4A826 /* GameScene.m in Sources */,
 				BAAD3DD61995DB4D0064AF9A /* Shield.m in Sources */,
-				BA1FCEE619AB01A700BCF9B4 /* HighScores.m in Sources */,
 				BA00D87C1986DBEE00D3F431 /* Asteroid.m in Sources */,
 				BAAE87BE199D3370003C48FE /* Level3.m in Sources */,
 				BAA28AAD19991BB1000A83D1 /* CoinLabel.m in Sources */,

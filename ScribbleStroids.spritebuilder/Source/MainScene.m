@@ -90,6 +90,7 @@ double LSS = .08;
 -(void) didLoadFromCCB{
     
     [[OALSimpleAudio sharedInstance]setEffectsMuted:true];
+    [self reportToGameCenter];
     
     //set defaults for first time users
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"returningUser"]) {
@@ -189,7 +190,7 @@ double LSS = .08;
     [self schedule:@selector(randomEvent:) interval:6];
     
     if (![[NSUserDefaults standardUserDefaults]boolForKey:@"Main"]) {
-        _scoreLabel.string = [NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
+        _scoreLabel.string = [NSString stringWithFormat:@"%ld",[[NSUserDefaults standardUserDefaults]integerForKey:@"score"]];
         _scoreLabel.visible = true;
         _gameOverLabel.visible = true;
         _titleLabel.visible = false;
@@ -240,10 +241,7 @@ double LSS = .08;
         
         [alertView show];
     }
-    
-    CCLOG(@"Highscores");
-//    CCTransition *transition = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:.1];
-//    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"HighScoreScene"] withTransition:transition];
+
 }
 
 -(void) gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
@@ -339,6 +337,41 @@ double LSS = .08;
         [asteroid3 runAction:moveAsteroid3];
     }
 }
+
+-(void) reportToGameCenter{
+    //leaderboard reporting
+    [[GameKitHelper sharedGameKitHelper] submitScore:(int64_t)[[NSUserDefaults standardUserDefaults]integerForKey:@"highScore"] category:@"Points"];
+    
+    [[GameKitHelper sharedGameKitHelper] submitScore:(int64_t)[[NSUserDefaults standardUserDefaults]integerForKey:@"asteroidsDestroyed"] category:@"StroidsDestroid"];
+    
+    //end leaderboard reporting
+    
+    //achievement reporting
+    GKAchievement *oneK = [[GKAchievement alloc] initWithIdentifier:@"oneK"];
+    GKAchievement *tenK = [[GKAchievement alloc] initWithIdentifier:@"tenK"];
+    GKAchievement *hundredK = [[GKAchievement alloc] initWithIdentifier:@"hundredK"];
+    GKAchievement *mill = [[GKAchievement alloc] initWithIdentifier:@"mill"];
+
+    int stroids = (int)[[NSUserDefaults standardUserDefaults]integerForKey:@"asteroidsDestroyed"];
+    oneK.percentComplete = stroids/10.;
+    oneK.showsCompletionBanner = true;
+    tenK.percentComplete = stroids/100.;
+    tenK.showsCompletionBanner = true;
+    hundredK.percentComplete = stroids/1000.;
+    hundredK.showsCompletionBanner = true;
+    mill.percentComplete = stroids/10000.;
+    mill.showsCompletionBanner = true;
+
+    [GKAchievement reportAchievements:@[oneK,tenK,hundredK,mill] withCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"Error in reporting achievements: %@", error);
+             }
+         }];
+    //end achievement reporting
+    }
+
 
 
 

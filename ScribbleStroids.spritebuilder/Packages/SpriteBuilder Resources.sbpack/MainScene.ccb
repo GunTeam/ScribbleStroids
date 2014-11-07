@@ -820,7 +820,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/blueHighScoreButton.png</string>
+							<string>Art/Buttons/lightBlueBarGraph.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -831,7 +831,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/blueHighScoreButton.png</string>
+							<string>Art/Buttons/lightBlueBarGraph.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -855,7 +855,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/blueHighScoreButton.png</string>
+							<string>Art/Buttons/lightBlueBarGraph.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -874,7 +874,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Art/Buttons/blueHighScoreButton.png</string>
+							<string>Art/Buttons/lightBlueBarGraph.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1018,6 +1018,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
